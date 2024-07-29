@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"tobedetermined.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Beautiful Atomshttps:&#x2F;&#x2F;beautiful-atoms.readthedocs.io&#x2F;en&#x2F;latest&#x2F;getting_started&#x2F;python.htmlfrom ase.build import moleculefrom batoms_api import renderatoms &#x3D; molecule(“H2O”)render_input &#x3D; {“">
+<meta property="og:type" content="article">
+<meta property="og:title" content="blender">
+<meta property="og:url" content="http://tobedetermined.com/2024/06/16/blender/index.html">
+<meta property="og:site_name" content="TODO">
+<meta property="og:description" content="Beautiful Atomshttps:&#x2F;&#x2F;beautiful-atoms.readthedocs.io&#x2F;en&#x2F;latest&#x2F;getting_started&#x2F;python.htmlfrom ase.build import moleculefrom batoms_api import renderatoms &#x3D; molecule(“H2O”)render_input &#x3D; {“">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-16T11:30:56.000Z">
+<meta property="article:modified_time" content="2024-07-29T16:45:20.731Z">
+<meta property="article:author" content="Mingzhe Liu">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://tobedetermined.com/2024/06/16/blender/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://tobedetermined.com/2024/06/16/blender/","path":"2024/06/16/blender/","title":"blender"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>blender | TODO</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">TODO</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#beautiful-atoms-blender"><span class="nav-number">1.</span> <span class="nav-text">beautiful atoms &#x2F; blender</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#install"><span class="nav-number">1.1.</span> <span class="nav-text">install</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#how-to-read-POSCAR-or-SPIN-vasp"><span class="nav-number">1.2.</span> <span class="nav-text">how to read POSCAR or SPIN.vasp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#how-to-cut-slice"><span class="nav-number">1.3.</span> <span class="nav-text">how to cut slice</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#display-boundary"><span class="nav-number">1.4.</span> <span class="nav-text">display boundary</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#change-color"><span class="nav-number">1.5.</span> <span class="nav-text">change color</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#change-size"><span class="nav-number">1.6.</span> <span class="nav-text">change size</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#dict-as-attribute"><span class="nav-number">1.7.</span> <span class="nav-text">dict as attribute</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#add-z-coordinate-as-a-new-attribute-normalized-it-to-0-1"><span class="nav-number">1.8.</span> <span class="nav-text">add z coordinate as a new attribute, normalized it to [0, 1]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#color-atoms-by-their-z-coordinate"><span class="nav-number">1.9.</span> <span class="nav-text">color atoms by their z coordinate</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#label"><span class="nav-number">1.10.</span> <span class="nav-text">label</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#divide-element-into-groups"><span class="nav-number">1.11.</span> <span class="nav-text">divide element into groups</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#auto-divide-with-symmetry"><span class="nav-number">1.12.</span> <span class="nav-text">auto divide with symmetry</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#highlight"><span class="nav-number">1.13.</span> <span class="nav-text">highlight</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#camera-centering-atom"><span class="nav-number">1.14.</span> <span class="nav-text">camera centering atom</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#hide-atom"><span class="nav-number">1.15.</span> <span class="nav-text">hide atom</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mingzhe Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/duguex" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;duguex" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:duguex@126.com" title="E-Mail → mailto:duguex@126.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://tobedetermined.com/2024/06/16/blender/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mingzhe Liu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TODO">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="blender | TODO">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          blender
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-06-16 19:30:56" itemprop="dateCreated datePublished" datetime="2024-06-16T19:30:56+08:00">2024-06-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-07-30 00:45:20" itemprop="dateModified" datetime="2024-07-30T00:45:20+08:00">2024-07-30</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Beautiful Atoms<br><a target="_blank" rel="noopener" href="https://beautiful-atoms.readthedocs.io/en/latest/getting_started/python.html">https://beautiful-atoms.readthedocs.io/en/latest/getting_started/python.html</a><br>from ase.build import molecule<br>from batoms_api import render<br>atoms &#x3D; molecule(“H2O”)<br>render_input &#x3D; {“viewport”: [1, 1, 0], “engine”: “cycles”, “output”: “h2o.png”,}<br>render(atoms, render_input&#x3D;render_input)</p>
+<p>pymol<br>OVITO, ATOMEYE<br>python的ASE包生成pov文件然后用povray渲染<br>CYLview</p>
+<h1 id="beautiful-atoms-blender"><a href="#beautiful-atoms-blender" class="headerlink" title="beautiful atoms &#x2F; blender"></a>beautiful atoms &#x2F; blender</h1><h2 id="install"><a href="#install" class="headerlink" title="install"></a>install</h2><ul>
+<li>run Blender as administrator</li>
+</ul>
+<p>import pip<br>pip.main([‘install’, ‘ase’])<br>pip.main([‘install’, ‘scikit-image’])</p>
+<ul>
+<li>Download the latest version (beautiful-atoms.zip).</li>
+<li>Extract the file, move the folder batoms to Blender addons folder, could be C:\Program Files\Blender Foundation\Blender 3.4\3.4\scripts\addons\ or %USERPROFILE%\AppData\Roaming\Blender Foundation\Blender\3.4\scripts\addons.</li>
+<li>Enable the addon in the Preferences setting. Please open a Blender Python console, and run the following code to enable the batoms:</li>
+</ul>
+<p>import addon_utils<br>import bpy<br>addon_utils.enable(‘batoms’, default_set&#x3D;True)<br>bpy.context.preferences.view.use_translate_new_dataname &#x3D; False<br>bpy.ops.wm.save_userpref()</p>
+<p>pip.main([‘install’, ‘batoms’])<br>pip.main([‘install’, ‘batoms-api’])<br>pip.main([‘install’, ‘pymatgen’])</p>
+<h2 id="how-to-read-POSCAR-or-SPIN-vasp"><a href="#how-to-read-POSCAR-or-SPIN-vasp" class="headerlink" title="how to read POSCAR or SPIN.vasp"></a>how to read POSCAR or SPIN.vasp</h2><p>from batoms.bio import read<br>sic &#x3D; read(“POSCAR”)</p>
+<p>from pymatgen.io.vasp.outputs import VolumetricData<br>from batoms import Batoms</p>
+<p>poscar, data, data_aug &#x3D; VolumetricData.parse_file(r”D:\onedrive\general_scripts_of_vasp\metadata\nosym\attempt_1107\spin\spin_hk.vasp”)<br>batoms &#x3D; Batoms(‘batoms’, from_pymatgen &#x3D; poscar.structure)<br>batoms.volumetric_data[‘chgcar’] &#x3D; data[‘total’]<br>batoms.isosurface.settings[“1”] &#x3D; {‘level’: 14.0, ‘color’: [1, 1, 0, 0.3]}<br>batoms.isosurface.draw()</p>
+<h2 id="how-to-cut-slice"><a href="#how-to-cut-slice" class="headerlink" title="how to cut slice"></a>how to cut slice</h2><p>batoms.lattice_plane.setting[(0, 1, 0)] &#x3D; {“distance”: 6, “slicing”: True}<br>batoms.get_image(viewport &#x3D; [0, 1, 0], engine &#x3D; “cycles”, output&#x3D; r”D:\onedrive\general_scripts_of_vasp\metadata\nosym\attempt_1107\spin\h2o.png”)</p>
+<h2 id="display-boundary"><a href="#display-boundary" class="headerlink" title="display boundary"></a>display boundary</h2><p>batoms.boundary&#x3D; np.array([[-0.05,1.05],[-0.05,1.05],[-0.05,1.05]])<br>batoms.wrap &#x3D; True</p>
+<h2 id="change-color"><a href="#change-color" class="headerlink" title="change color"></a>change color</h2><p>ch4[“H”].color &#x3D; [0, 0, 0.8, 0.2]</p>
+<p>batoms.bond.settings[(“C”, “H”)].color1 &#x3D; [0.8, 0.1, 0.3, 0.5]<br>batoms.bond.settings[(“C”, “H”)].color2 &#x3D; [0.1, 0.3, 0.2, 1.0]<br>batoms.model_style &#x3D; 1</p>
+<h2 id="change-size"><a href="#change-size" class="headerlink" title="change size"></a>change size</h2><p>batoms[0].scale &#x3D; 2<br>batoms[240].scale &#x3D; 2</p>
+<h2 id="dict-as-attribute"><a href="#dict-as-attribute" class="headerlink" title="dict as attribute"></a>dict as attribute</h2><p>from ase.build import bulk<br>from batoms import Batoms<br>import numpy as np<br>au &#x3D; bulk(“Au”, cubic&#x3D;True)*[5, 5, 5]<br>au &#x3D; Batoms(label &#x3D; “au”, from_ase &#x3D; au)</p>
+<h2 id="add-z-coordinate-as-a-new-attribute-normalized-it-to-0-1"><a href="#add-z-coordinate-as-a-new-attribute-normalized-it-to-0-1" class="headerlink" title="add z coordinate as a new attribute, normalized it to [0, 1]"></a>add z coordinate as a new attribute, normalized it to [0, 1]</h2><p>z &#x3D; au.positions[:, 2]<br>au.set_attributes({“z_coor”: (z-np.min(z))&#x2F;(np.max(z)-np.min(z)) })</p>
+<h2 id="color-atoms-by-their-z-coordinate"><a href="#color-atoms-by-their-z-coordinate" class="headerlink" title="color atoms by their z coordinate"></a>color atoms by their z coordinate</h2><p>au.species.color_by_attribute(“z_coor”)<br>au.get_image(viewport &#x3D; [1, 0, 0], output &#x3D; “color_by_z_coordinate.png”)</p>
+<h2 id="label"><a href="#label" class="headerlink" title="label"></a>label</h2><p>batoms.show_label &#x3D; ‘index’<br>batoms.show_label &#x3D; ‘species’<br>batoms.show_label &#x3D; ‘elements’<br>batoms.set_attributes({“charges”: np.zeros(5)})<br>batoms.show_label &#x3D; ‘charges’</p>
+<h2 id="divide-element-into-groups"><a href="#divide-element-into-groups" class="headerlink" title="divide element into groups"></a>divide element into groups</h2><p>batoms.replace([1], “H_1”)<br>batoms.replace([0], “Si_V”)<br>batoms.replace([240], “C_V”)<br>ch4[“H_1”].color &#x3D; (1.0, 1.0, 0.0, 1.0)</p>
+<h2 id="auto-divide-with-symmetry"><a href="#auto-divide-with-symmetry" class="headerlink" title="auto divide with symmetry"></a>auto divide with symmetry</h2><p>magnetite.auto_build_species()</p>
+<h2 id="highlight"><a href="#highlight" class="headerlink" title="highlight"></a>highlight</h2><p>batoms.selects.add(“s1”, [2])<br>batoms.highlight.settings[“s1”] &#x3D; {“select”: “s1”, “scale”: 0.5, “color”: (0.5, 0.5, 0, 0.4)}<br>batoms.highlight.draw()<br>batoms.get_image(padding &#x3D; 3, output &#x3D; “highlight_batoms.png”)</p>
+<h2 id="camera-centering-atom"><a href="#camera-centering-atom" class="headerlink" title="camera centering atom"></a>camera centering atom</h2><p>batoms.get_image(padding &#x3D; 3,viewport &#x3D; [0, 1, 0], center&#x3D;batoms.positions[0], output &#x3D; r”D:\onedrive\general_scripts_of_vasp\metadata\nosym\attempt_1107\spin\look_at.png”)</p>
+<h2 id="hide-atom"><a href="#hide-atom" class="headerlink" title="hide atom"></a>hide atom</h2><p>batoms[0].show&#x3D;False<br>batoms[np.array(batoms.elements) &#x3D;&#x3D; “H”].show &#x3D; False<br>batoms[batoms.positions[:,1]&lt;0.48<em>15.479473].show &#x3D; False<br>batoms[batoms.positions[:,1]&gt;0.52</em>15.479473].show &#x3D; False</p>
+<p>batoms.get_image(padding &#x3D; 3, output &#x3D; “hide_batoms.png”)</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/06/16/qc/" rel="prev" title="qc">
+                  <i class="fa fa-angle-left"></i> qc
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/07/05/spin-lattice/" rel="next" title="spin-lattice">
+                  spin-lattice <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Mingzhe Liu</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

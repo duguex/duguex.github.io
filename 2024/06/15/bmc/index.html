@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"tobedetermined.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="华硕 KRPA-U16 bmc 网线连接修改BIOS设置del 进BIOS Server Mgmt菜单设置DM_LAN1(管理口) 为 Static设置Station IP为192.168.0.100 (共用 192.168.1.103)子关掩码设置为255.255.255.0Router IP address即网关&#x2F;路由器的IP地址, 指定为192.168.0.1 (192.168.1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bmc">
+<meta property="og:url" content="http://tobedetermined.com/2024/06/15/bmc/index.html">
+<meta property="og:site_name" content="TODO">
+<meta property="og:description" content="华硕 KRPA-U16 bmc 网线连接修改BIOS设置del 进BIOS Server Mgmt菜单设置DM_LAN1(管理口) 为 Static设置Station IP为192.168.0.100 (共用 192.168.1.103)子关掩码设置为255.255.255.0Router IP address即网关&#x2F;路由器的IP地址, 指定为192.168.0.1 (192.168.1">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-15T11:44:17.000Z">
+<meta property="article:modified_time" content="2024-07-29T16:45:20.764Z">
+<meta property="article:author" content="Mingzhe Liu">
+<meta property="article:tag" content="bmc">
+<meta property="article:tag" content="ipmi">
+<meta property="article:tag" content="server">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://tobedetermined.com/2024/06/15/bmc/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://tobedetermined.com/2024/06/15/bmc/","path":"2024/06/15/bmc/","title":"bmc"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>bmc | TODO</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">TODO</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8D%8E%E7%A1%95-KRPA-U16-bmc-%E7%BD%91%E7%BA%BF%E8%BF%9E%E6%8E%A5"><span class="nav-number">1.</span> <span class="nav-text">华硕 KRPA-U16 bmc 网线连接</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BF%AE%E6%94%B9BIOS%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.1.</span> <span class="nav-text">修改BIOS设置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%AC%E5%9C%B0%E8%AE%BE%E7%BD%AE"><span class="nav-number">1.2.</span> <span class="nav-text">本地设置</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%87%8D%E7%BD%AE-%E5%8D%8E%E7%A1%95-KRPA-U16-bmc-%E8%B4%A6%E6%88%B7%E5%AF%86%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">重置 华硕 KRPA-U16 bmc 账户密码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B5%AA%E6%BD%AE5588M3-%E8%B6%85%E5%BE%AE7047GR-IPMI%E9%BB%98%E8%AE%A4%E5%AF%86%E7%A0%81"><span class="nav-number">3.</span> <span class="nav-text">浪潮5588M3&#x2F;超微7047GR IPMI默认密码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fan-speed-control-raw"><span class="nav-number">4.</span> <span class="nav-text">fan speed control raw</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%98%88%E5%80%BC%E8%B0%83%E8%8A%82"><span class="nav-number">5.</span> <span class="nav-text">阈值调节</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%A8%A1%E5%BC%8F%E4%BB%8B%E7%BB%8D"><span class="nav-number">6.</span> <span class="nav-text">模式介绍</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BD%AC%E9%80%9F%E8%B0%83%E8%8A%82"><span class="nav-number">7.</span> <span class="nav-text">转速调节</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fan-control-supermicro"><span class="nav-number">8.</span> <span class="nav-text">fan control supermicro</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#get-temperature-sh"><span class="nav-number">9.</span> <span class="nav-text">get-temperature.sh</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-sensors-by-sudo-apt-install-lm-sensors"><span class="nav-number">10.</span> <span class="nav-text">install sensors by sudo apt install lm-sensors</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#set-fan-speed-sh"><span class="nav-number">11.</span> <span class="nav-text">set-fan-speed.sh</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#temperature-monitor-service"><span class="nav-number">12.</span> <span class="nav-text">temperature-monitor.service</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fan-control-service"><span class="nav-number">13.</span> <span class="nav-text">fan-control.service</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mingzhe Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/duguex" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;duguex" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:duguex@126.com" title="E-Mail → mailto:duguex@126.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://tobedetermined.com/2024/06/15/bmc/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mingzhe Liu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TODO">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="bmc | TODO">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          bmc
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-06-15 19:44:17" itemprop="dateCreated datePublished" datetime="2024-06-15T19:44:17+08:00">2024-06-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-07-30 00:45:20" itemprop="dateModified" datetime="2024-07-30T00:45:20+08:00">2024-07-30</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="华硕-KRPA-U16-bmc-网线连接"><a href="#华硕-KRPA-U16-bmc-网线连接" class="headerlink" title="华硕 KRPA-U16 bmc 网线连接"></a>华硕 KRPA-U16 bmc 网线连接</h1><h2 id="修改BIOS设置"><a href="#修改BIOS设置" class="headerlink" title="修改BIOS设置"></a>修改BIOS设置</h2><p>del 进BIOS Server Mgmt菜单<br>设置DM_LAN1(管理口) 为 Static<br>设置Station IP为192.168.0.100 (共用 192.168.1.103)<br>子关掩码设置为255.255.255.0<br>Router IP address即网关&#x2F;路由器的IP地址, 指定为192.168.0.1 (192.168.1.1)<br>sudo 726622</p>
+<h2 id="本地设置"><a href="#本地设置" class="headerlink" title="本地设置"></a>本地设置</h2><p>手动指定本地电脑的IP地址&#x2F;子关掩码&#x2F;网关<br>在出现的机器里的网络设备中找到以太网的设备, 右键点击, 选择“属性”<br>在网卡属性连的TCP&#x2F;IPV4协议的属性里, 选择“使用下面的IP地址”, 即手动设置IP地址方式, 将IP地址设置为与被测试对象同一网段下的某个地址, 比如设置为192.168.0.101,子关掩码设置255.255.255.0, 默认网关设置为与服务器BMC设置中一样的192.168.0.1</p>
+<p>将网线一头插入到被测试服务器的管理网口（DMLan端口）, 一头插入到笔记本的网卡接口上, 查看连接属性, 显示为未识别的网络, 这很正常, 毕竟是双机互联没有外网. 打开浏览器, 在浏览器的地址栏里输入被测试对象服务器里设置过的BMC的IP地址, 即192.168.0.100, 就出现了BMC的登录界面</p>
+<h1 id="重置-华硕-KRPA-U16-bmc-账户密码"><a href="#重置-华硕-KRPA-U16-bmc-账户密码" class="headerlink" title="重置 华硕 KRPA-U16 bmc 账户密码"></a>重置 华硕 KRPA-U16 bmc 账户密码</h1><p>超微&#x2F;华硕等服务器主板的远程管理 IPMI BMC 基本都基于AMI提供的标准底层来进行开发的, 经常遇到二手主板被之前用家设置了BMC密码以后无法登录, 下面内容在超微 H11SSL-I, 华硕 KRPA-U16 (ASMB9-iKVM)上测试成功. </p>
+<p>下载超微官网的IPMICFG软件, 包含了 DOS UEFI WINDOWS LINUX等版本, 下载需要注册一个Supermicro的账号 <a target="_blank" rel="noopener" href="https://www.supermicro.com/en/support/resources/downloadcenter/smsdownload?category=IPMI">https://www.supermicro.com/en/support/resources/downloadcenter/smsdownload?category=IPMI</a></p>
+<p>cmd命令行进入该目录, 使用 IPMICFG-Win.exe -user list列出所有用户, 查看一下需要修改密码的用户名对应的 user ID, 本例用户名为 admin,  user ID 为 2, 使用 IPMICFG-Win.exe -user setpwd 2 administrator来把 user ID 为 2 的密码更改为 administrator</p>
+<h1 id="浪潮5588M3-超微7047GR-IPMI默认密码"><a href="#浪潮5588M3-超微7047GR-IPMI默认密码" class="headerlink" title="浪潮5588M3&#x2F;超微7047GR IPMI默认密码"></a>浪潮5588M3&#x2F;超微7047GR IPMI默认密码</h1><p>用户名：ADMIN<br>密码：ADMIN</p>
+<p>epyc ipmi</p>
+<p>用户名: admin<br>密码: Zaqwsx1995</p>
+<p>x299 ipmi<br>用户名: ADMIN<br>密码: Zaqwsx1995</p>
+<h1 id="fan-speed-control-raw"><a href="#fan-speed-control-raw" class="headerlink" title="fan speed control raw"></a>fan speed control raw</h1><h1 id="阈值调节"><a href="#阈值调节" class="headerlink" title="阈值调节"></a>阈值调节</h1><p>ipmitool sensor thresh FAN3 lower 150 225 300 #non-recoverable critical non-critcal</p>
+<p>有些Homelab用户追求静音，猫扇一装，直接报警，或者经常出现间歇性满载停转满载停转的事情。猫扇的转速很低，一般远低于主板的警告范围，所以需要手动修正。</p>
+<p>以12025的猫扇为例，一般低负载的时候是300RPM，满转才不到2000RPM，所以需要修改ipmi的报警阈值。</p>
+<p>报警阈值修改方法</p>
+<p>登录服务器实体机的ssh（windows宿主请下载安装ipmitool）</p>
+<p>随后输入命令 sudo ipmitool sensor thresh “FANC” lower 432 648 864</p>
+<p>sudo ipmitool sensor thresh “FANC” lower 432 4000 4200</p>
+<p>ipmitool sensor thresh是指令，红色部分是要修改的风扇接口，根据自己风扇确定，lower是代表低于某数值该如何处理（upper是高于某数值）。粉色是致命故障阈值，绿色是严重故障阈值，天蓝色是需要警惕的阈值（Non Recoverable, Critical, Non Critical）</p>
+<p>执行后立即生效。不推荐都设为0，也不推荐设置太低，因为有时候风扇真的故障了可能自己都不知道。建议Non Critical设置为正常最低速度运行值的-25%（风扇测速误差）， Critical设为-45%，Non Recoverable设为-60%。比如猫扇低负载300，则可设置为120 165 225。</p>
+<h1 id="模式介绍"><a href="#模式介绍" class="headerlink" title="模式介绍"></a>模式介绍</h1><p>The Standard Speed profile is temperature controlled, with a base fan speed at 50% PWM duty cycle. This means that fan speeds will be between 50-100%, depending on system temperature.</p>
+<p>The Optimal Speed profile is also temperature controlled, but with a base fan speed at 30% PWM duty cycle, broadening the span to 30-100% to allow the system to save energy while idle.</p>
+<p>The Heavy IO profile sets 75% PWM duty cycle for fans attached to fan headers FAN A and FAN B, which typically blow on the PCI slots. This mode also uses the Standard mode to manage fans that cool the CPU&#x2F;RAM.</p>
+<p>The PUE Optimal profile is a power saving mode for select motherboards that lowers the fan speeds and power consumption as often as possible, similar to the Optimal profile, but prioritizes low power consumption over performance.</p>
+<p>The Full Speed profile sets the fans to run constantly at full speed.</p>
+<p>To set with IPMICFG, get the current status of the fan mode:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipmicfg -fan</span><br></pre></td></tr></table></figure>
+
+
+<p>This should display the current fan mode, and will also list the available modes to choose from. Once you’ve decided on the desired fan speed mode, set it with the following command:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipmicfg -fan &lt;n&gt;</span><br></pre></td></tr></table></figure>
+<p>Where n is the integer that corresponds to your desired fan speed mode.</p>
+<p>When using ipmitool to set fan speeds, you can send it in the form of a raw command instead. IPMICFG will still be able to display available fan modes, if you are not sure which modes your board supports. Example raw command:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipmitool raw 0x30 0x45 1 &lt;n&gt;</span><br></pre></td></tr></table></figure>
+<p>To send this command remotely to a system, add the necessary options for a remote login:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ipmitool -I lanplus -H &lt;hostname or IP&gt; -U &lt;user name&gt; -P &lt;password&gt; raw 0x30 0x45 1 &lt;n&gt;</span><br></pre></td></tr></table></figure>
+<p>To set from the IPMI web interface, connect to the system by entering its IP address into the web browser on a client system.</p>
+<h1 id="转速调节"><a href="#转速调节" class="headerlink" title="转速调节"></a>转速调节</h1><p>首先将风扇调成【Full】：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo /home/duguex/ipmicfg -fan 1</span><br><span class="line"></span><br><span class="line">0:Standard</span><br><span class="line">1:Full</span><br><span class="line">2:Optimal</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>也可以用raw指令：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./ipmicfg -raw 0x30 0x45 0x01 0x01</span><br></pre></td></tr></table></figure>
+<p>最后的16进制数字0x01代表【Full】模式，同时还有其他模式分别是0x00的【Standard】，0x02的【Optimal】，最后是0x03的【Heavy IO】</p>
+<p>之所以先设置成全速模式是因为假如不设置全速模式，我们自定义的转速马上就会被自动转速刷新，从而没有实际效果。</p>
+<p>接下来设置转速百分比：</p>
+<p>.&#x2F;ipmicfg -raw 0x30 0x70 0x66 0x01 0x00 0x20<br>.&#x2F;ipmicfg -raw 0x30 0x70 0x66 0x01 0x01 0x20</p>
+<p>最后一位16进制代表转速百分比。范围为0x01-0x64,0x20就代表转速为32%。<br>倒数第二位16进制代表的是区域范围。0x00代表系统区域，这个区域一般为负责CPU的风扇，对应风扇编号为FAN1,2,3,4,5,6。0x00代表周边设备区域，对应风扇编号为FANA,B,C,D之类</p>
+<p>查看当前风扇模式和支持的风扇模式</p>
+<p>sudo .&#x2F;ipmicfg -fan<br>sudo .&#x2F;ipmicfg -raw 0x30 0x45 0x01 0x01<br>sudo .&#x2F;ipmicfg -raw 0x30 0x70 0x66 0x01 0x00 0x20<br>sudo .&#x2F;ipmicfg -raw 0x30 0x70 0x66 0x01 0x01 0x20</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IPMICFG-Win.exe -fan</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./IPMICFG-Linux.x86_64 -fan</span><br></pre></td></tr></table></figure>
+<p>Current Fan Speed Mode is [ Optimal Mode ]<br>Supported Fan modes: 0:Standard 1:Full 2:Optimal 4:Heavy IO</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">IPMICFG-Win.exe -fan 4</span><br></pre></td></tr></table></figure>
+<p>或</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./IPMICFG-Linux.x86_64 -fan 4</span><br></pre></td></tr></table></figure>
+<p>Done.<br>[root@bogon 64bit]# .&#x2F;IPMICFG-Linux.x86_64 -fan Current Fan Speed Mode is [ Heavy IO speed Mode ]</p>
+<p>ipmitool -H 192.168.137.2 -U ADMIN -P ADMIN raw 0x30 0x70 0x66 0x01 0x00 0x24<br>ipmitool -H 192.168.137.2 -U ADMIN -P ADMIN raw 0x30 0x70 0x66 0x01 0x01 0x24<br>后面的0x24 代表 转速 从 0 到 0X64，</p>
+<p>In order to force the fans at a particular speed all the time, you need to do the following on a Supermicro X9 board:</p>
+<p>Set IPMI fan mode to “Full”<br>Set fan speed for the particular zone to the percentage fan speed you desire, expressed as a hexadecimal number. On the X9 boards, the possible speed range is 0-255, which is 0-100% expressed as hex, but on a scale where 0% &#x3D; 0x00 and 100% &#x3D; 0xff.<br>In your case, with 14k fans, you want their speed at 8k, so the ratio is 57% (8000 &#x2F; 14000 &#x3D; .57142…)</p>
+<p>Take 255 * .57 &#x3D; 145.35 &#x3D; 0x91 would be your speed value. Now plug that in.</p>
+<p>Step 1: Set “fan mode” to “Full”</p>
+<p>{ipmitool command syntax} raw 0x30 0x45 0x01 0x01<br>Step 2: Set “fan speed” to 57%</p>
+<p>For Zone 0 (normally CPU fans or FAN_ where _ &#x3D; a number, e.g. FAN1):</p>
+<p>{ipmitool command syntax} raw 0x30 0x91 0x5A 0x03 0x00 0x91<br>For Zone 1 (normally peripheral fans or FAN_ where _ &#x3D; a letter, e.g. FANA):</p>
+<p>{ipmitool command syntax} raw 0x30 0x91 0x5A 0x03 0x01 0x91<br>NOTE1: Verified on a Supermicro X9DRi-F with Nuvoton WPCM450 BMC.<br>X9DRG-QF<br>NOTE2: X10 boards operate differently. Some raw commands are different, and their %age fan speed is 0-100, not 0-255.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">sudo ./ipmicfg -raw 0x30 0x45 0x01 0x01</span><br><span class="line"></span><br><span class="line">0-255</span><br><span class="line">sudo ./ipmicfg -raw 0x30 0x45 0x01 0x01;</span><br><span class="line">sudo ./ipmicfg -raw 0x30 0x91 0x5A 0x03 0x00 0xFF;</span><br><span class="line">sudo ./ipmicfg -raw 0x30 0x91 0x5A 0x03 0x01 0xFF;</span><br><span class="line"></span><br><span class="line">sudo ipmitool raw 0x30 0x45 0x01 0x01;</span><br><span class="line">sudo ipmitool raw 0x30 0x91 0x5A 0x03 0x00 0xBF;</span><br><span class="line">sudo ipmitool raw 0x30 0x91 0x5A 0x03 0x01 0xFF;</span><br><span class="line"></span><br><span class="line">sudo ./ipmicfg -raw 0x30 0x45 0x01 0x01</span><br><span class="line">sudo ipmitool raw 0x30 0x70 0x66 0x01 0x00 0x32</span><br><span class="line">sudo ipmitool raw 0x30 0x70 0x66 0x01 0x01 0x64</span><br><span class="line"></span><br><span class="line">0-100</span><br><span class="line">sudo ./ipmicfg -raw 0x30 0x45 0x01 0x01</span><br><span class="line">sudo ./ipmicfg -raw 0x30 0x70 0x66 0x01 0x00 0x32</span><br><span class="line">sudo ./ipmicfg -raw 0x30 0x70 0x66 0x01 0x01 0x64</span><br></pre></td></tr></table></figure>
+
+<p>ipmitool -U <user name> -P <password> -H <hostname or IP> raw 0x30 0x70 0x66 0x01 0x00 0x&lt;01 - 64&gt;<br>If your fans spin at a max of 14000 RPM and you wanted them to spin at 8000 RPM then you’d set the duty to 0x37<br>ipmitool -U <user name> -P <password> -H <hostname or IP> raw 0x30 0x70 0x66 0x01 0x00 0x37</p>
+<p>+1 as this worked for me on a Supermicro 4028GR-TR (X9-Board)! To get the current values use ipmitool raw 0x30 0x70 0x66 0x00 0x0[0|1] with the last value specifying the region (0&#x3D;&#x3D;CPU-zone, 1&#x3D;peripheral-zone) </p>
+<h1 id="fan-control-supermicro"><a href="#fan-control-supermicro" class="headerlink" title="fan control supermicro"></a>fan control supermicro</h1><p>sudo apt install lm-sensors<br>cpu_temperature&#x3D;<code>sensors | grep &quot;Package&quot; | awk &#39;&#123;print $4&#125;&#39; | cut -d &#39;+&#39; -f 2 | cut -d &#39;.&#39; -f 1</code><br>gpu_temperature&#x3D;<code>nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader | sort -rn | head -n 1</code></p>
+<p>#!&#x2F;bin&#x2F;bash<br>cpu_temperature&#x3D;<code>jq .cpu /tmp/temperature.json</code><br>gpu_temperature&#x3D;<code>jq .gpu /tmp/temperature.json</code><br>fan_mode&#x3D;<code>/home/duguex/ipmicfg -fan | grep &quot;Current Fan Speed Mode&quot; | awk &#39;&#123;print $7&#125;&#39;</code></p>
+<p>#initiate fan speed mode to Full, then set fan speed to 50%<br>if [ “$fan_mode” !&#x3D; “Full” ]; then<br>    &#x2F;home&#x2F;duguex&#x2F;ipmicfg -fan 1<br>    cpu_fan&#x3D;0x32<br>    gpu_fan&#x3D;0x32<br>fi</p>
+<p>if [ -z “$cpu_temperature” ] || [ -z “$gpu_temperature” ]; then<br>    <!-- /home/duguex/ipmicfg -raw 0x30 0x70 0x66 0x01 0x00 0x64
+    /home/duguex/ipmicfg -raw 0x30 0x70 0x66 0x01 0x01 0x64 --><br>    cpu_fan&#x3D;0x64<br>    gpu_fan&#x3D;0x64<br>else<br>    if [ “$cpu_temperature” -ge 70 ]; then<br>        cpu_fan&#x3D;0x64<br>    elif [ “$cpu_temperature” -ge 50 ]; then<br>        cpu_fan&#x3D;0x48<br>    else<br>        cpu_fan&#x3D;0x32<br>    fi</p>
+<pre><code>if [ &quot;$gpu_temperature&quot; -ge 60 ]; then
+    gpu_fan=0x64
+elif [ &quot;$gpu_temperature&quot; -ge 50 ]; then
+    gpu_fan=0x48
+else
+    gpu_fan=0x32
+fi
+</code></pre>
+<p>fi</p>
+<p>echo “CPU temperature: $cpu_temperature”<br>echo “GPU temperature: $gpu_temperature”<br>echo “CPU fan speed: $cpu_fan”<br>echo “GPU fan speed: $gpu_fan”</p>
+<!-- /home/duguex/ipmicfg -raw 0x30 0x70 0x66 0x01 0x00 $cpu_fan
+/home/duguex/ipmicfg -raw 0x30 0x70 0x66 0x01 0x01 $gpu_fan -->
+
+
+<p>set-fan-speed.sh<br>temperature-monitor.service</p>
+<h1 id="get-temperature-sh"><a href="#get-temperature-sh" class="headerlink" title="get-temperature.sh"></a>get-temperature.sh</h1><p>#!&#x2F;bin&#x2F;bash</p>
+<h1 id="install-sensors-by-sudo-apt-install-lm-sensors"><a href="#install-sensors-by-sudo-apt-install-lm-sensors" class="headerlink" title="install sensors by sudo apt install lm-sensors"></a>install sensors by sudo apt install lm-sensors</h1><p>cpu_temperature&#x3D;<code>sensors | grep &quot;Package&quot; | awk &#39;&#123;print $4&#125;&#39; | cut -d &#39;+&#39; -f 2 | cut -d &#39;.&#39; -f 1</code><br>gpu_temperature&#x3D;<code>nvidia-smi --query-gpu=temperature.gpu --format=csv,noheader | sort -rn | head -n 1</code></p>
+<p>jq -n –argjson cpu_temperature “$cpu_temperature” –argjson gpu_temperature “$gpu_temperature” ‘{“cpu”: $cpu_temperature, “gpu”: $gpu_temperature}’ &gt; &#x2F;tmp&#x2F;temperature.json</p>
+<h1 id="set-fan-speed-sh"><a href="#set-fan-speed-sh" class="headerlink" title="set-fan-speed.sh"></a>set-fan-speed.sh</h1><p>#!&#x2F;bin&#x2F;bash<br>cpu_temperature&#x3D;<code>jq .cpu /tmp/temperature.json</code><br>gpu_temperature&#x3D;<code>jq .gpu /tmp/temperature.json</code><br>fan_mode&#x3D;<code>/home/duguex/ipmicfg -fan | grep &quot;Current Fan Speed Mode&quot; | awk &#39;&#123;print $7&#125;&#39;</code><br>#initiate fan speed mode to Full, then set fan speed to 50%<br>if [ “$fan_mode” !&#x3D; “Full” ]; then<br>    echo “init fan”<br>    &#x2F;home&#x2F;duguex&#x2F;ipmicfg -fan 1<br>    cpu_fan&#x3D;0x32<br>    gpu_fan&#x3D;0x32<br>fi</p>
+<p>if [ -z “$cpu_temperature” ] || [ -z “$gpu_temperature” ]; then<br>    cpu_fan&#x3D;0x48<br>    gpu_fan&#x3D;0x48<br>else<br>    if [ “$cpu_temperature” -ge 70 ]; then<br>        cpu_fan&#x3D;0x64<br>    elif [ “$cpu_temperature” -ge 50 ]; then<br>        cpu_fan&#x3D;0x4b<br>    else<br>        cpu_fan&#x3D;0x32<br>    fi</p>
+<pre><code>if [ &quot;$gpu_temperature&quot; -ge 70 ]; then
+    gpu_fan=0x64
+elif [ &quot;$gpu_temperature&quot; -ge 60 ]; then
+    gpu_fan=0x58
+elif [ &quot;$gpu_temperature&quot; -ge 50 ]; then
+    gpu_fan=0x4b
+else
+    gpu_fan=0x32
+fi
+</code></pre>
+<p>fi</p>
+<p>&#x2F;home&#x2F;duguex&#x2F;ipmicfg -raw 0x30 0x70 0x66 0x01 0x00 $cpu_fan<br>&#x2F;home&#x2F;duguex&#x2F;ipmicfg -raw 0x30 0x70 0x66 0x01 0x01 $gpu_fan</p>
+<h1 id="temperature-monitor-service"><a href="#temperature-monitor-service" class="headerlink" title="temperature-monitor.service"></a>temperature-monitor.service</h1><p>[Unit]<br>Description&#x3D;cpu and gpu temperature monitor<br>After&#x3D;lm-sensors.service<br>[Service]<br>User&#x3D;duguex<br>ExecStart&#x3D;&#x2F;home&#x2F;duguex&#x2F;get-temperature.sh<br>Restart&#x3D;always<br>RestartSec&#x3D;10s<br>[Install]<br>WantedBy&#x3D;multi-user.target</p>
+<h1 id="fan-control-service"><a href="#fan-control-service" class="headerlink" title="fan-control.service"></a>fan-control.service</h1><p>[Unit]<br>Description&#x3D;control fan speed according to temperature<br>After&#x3D;temperature-monitor.service<br>[Service]<br>User&#x3D;root<br>ExecStart&#x3D;&#x2F;home&#x2F;duguex&#x2F;set-fan-speed.sh<br>Restart&#x3D;always<br>RestartSec&#x3D;10s<br>[Install]<br>WantedBy&#x3D;multi-user.target</p>
+<p>sudo systemctl enable temperature-monitor<br>sudo systemctl enable fan-control</p>
+<p>sudo systemctl status temperature-monitor<br>sudo systemctl status fan-control</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/bmc/" rel="tag"># bmc</a>
+              <a href="/tags/ipmi/" rel="tag"># ipmi</a>
+              <a href="/tags/server/" rel="tag"># server</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/06/15/vasp-compile/" rel="prev" title="vasp_compile">
+                  <i class="fa fa-angle-left"></i> vasp_compile
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/06/15/spin-spin/" rel="next" title="spin-spin">
+                  spin-spin <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Mingzhe Liu</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

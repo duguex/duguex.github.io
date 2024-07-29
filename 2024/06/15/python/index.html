@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"tobedetermined.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="排序的稳定性numpy.argsort 函数是稳定的排序算法，它保证相等元素的相对顺序不会改变。 当 numpy.argsort 函数对数组进行排序时，它会返回一个索引数组，该数组指示原始数组中的元素在排序后的数组中的位置。如果两个元素在排序前相等，那么在排序后它们的相对顺序不会改变。 conda 删除环境conda remove -n glm4 –all 清理conda缓存conda clean">
+<meta property="og:type" content="article">
+<meta property="og:title" content="python">
+<meta property="og:url" content="http://tobedetermined.com/2024/06/15/python/index.html">
+<meta property="og:site_name" content="TODO">
+<meta property="og:description" content="排序的稳定性numpy.argsort 函数是稳定的排序算法，它保证相等元素的相对顺序不会改变。 当 numpy.argsort 函数对数组进行排序时，它会返回一个索引数组，该数组指示原始数组中的元素在排序后的数组中的位置。如果两个元素在排序前相等，那么在排序后它们的相对顺序不会改变。 conda 删除环境conda remove -n glm4 –all 清理conda缓存conda clean">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-15T13:08:13.000Z">
+<meta property="article:modified_time" content="2024-07-29T16:45:20.939Z">
+<meta property="article:author" content="Mingzhe Liu">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://tobedetermined.com/2024/06/15/python/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://tobedetermined.com/2024/06/15/python/","path":"2024/06/15/python/","title":"python"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>python | TODO</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">TODO</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%8E%92%E5%BA%8F%E7%9A%84%E7%A8%B3%E5%AE%9A%E6%80%A7"><span class="nav-number">1.</span> <span class="nav-text">排序的稳定性</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#conda-%E5%88%A0%E9%99%A4%E7%8E%AF%E5%A2%83"><span class="nav-number">2.</span> <span class="nav-text">conda 删除环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B8%85%E7%90%86conda%E7%BC%93%E5%AD%98"><span class="nav-number">3.</span> <span class="nav-text">清理conda缓存</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-py4vasp"><span class="nav-number">4.</span> <span class="nav-text">install py4vasp</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#material-project-api"><span class="nav-number">5.</span> <span class="nav-text">material project api</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#conda-update"><span class="nav-number">6.</span> <span class="nav-text">conda update</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#remove-all-packages-installed-with-pip"><span class="nav-number">7.</span> <span class="nav-text">remove all packages installed with pip</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#remote-jupyter-setting"><span class="nav-number">7.1.</span> <span class="nav-text">remote jupyter setting</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#c-NotebookApp-open-browser-False"><span class="nav-number">8.</span> <span class="nav-text">c.NotebookApp.open_browser &#x3D; False</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pytorch"><span class="nav-number">9.</span> <span class="nav-text">pytorch</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#in-jupyter-notebook-cli"><span class="nav-number">10.</span> <span class="nav-text">in jupyter notebook cli</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8E%BB%E9%99%A4%E9%87%8D%E5%A4%8Dconda-env-list-%E4%B8%AD%E7%8E%AF%E5%A2%83"><span class="nav-number">11.</span> <span class="nav-text">去除重复conda env list 中环境</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#super"><span class="nav-number">12.</span> <span class="nav-text">super</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#enum-%E5%8F%AF%E4%BB%A5%E4%BD%9C%E4%B8%BA%E5%AD%97%E5%85%B8%E7%9A%84%E9%94%AE"><span class="nav-number">13.</span> <span class="nav-text">enum 可以作为字典的键</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#property-%E8%A3%85%E9%A5%B0%E5%99%A8"><span class="nav-number">14.</span> <span class="nav-text">@property 装饰器</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Jupyter-notebook-%E6%96%87%E4%BB%B6%E8%B7%AF%E5%BE%84"><span class="nav-number">15.</span> <span class="nav-text">Jupyter notebook 文件路径</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#mpi4py-conda"><span class="nav-number">16.</span> <span class="nav-text">mpi4py conda</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pytorch-cpu"><span class="nav-number">17.</span> <span class="nav-text">pytorch cpu</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pykan"><span class="nav-number">18.</span> <span class="nav-text">pykan</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#or"><span class="nav-number">19.</span> <span class="nav-text">or</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#pykan-with-large-network-scale-error"><span class="nav-number">20.</span> <span class="nav-text">pykan with large network scale error</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#popen-os-system"><span class="nav-number">21.</span> <span class="nav-text">popen os.system</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#os-system"><span class="nav-number">21.0.1.</span> <span class="nav-text">os.system</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#os-popen"><span class="nav-number">21.0.2.</span> <span class="nav-text">os.popen</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%80%BB%E7%BB%93"><span class="nav-number">21.0.3.</span> <span class="nav-text">总结</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mingzhe Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/duguex" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;duguex" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:duguex@126.com" title="E-Mail → mailto:duguex@126.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://tobedetermined.com/2024/06/15/python/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mingzhe Liu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TODO">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="python | TODO">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          python
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-06-15 21:08:13" itemprop="dateCreated datePublished" datetime="2024-06-15T21:08:13+08:00">2024-06-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-07-30 00:45:20" itemprop="dateModified" datetime="2024-07-30T00:45:20+08:00">2024-07-30</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="排序的稳定性"><a href="#排序的稳定性" class="headerlink" title="排序的稳定性"></a>排序的稳定性</h1><p>numpy.argsort 函数是稳定的排序算法，它保证相等元素的相对顺序不会改变。</p>
+<p>当 numpy.argsort 函数对数组进行排序时，它会返回一个索引数组，该数组指示原始数组中的元素在排序后的数组中的位置。如果两个元素在排序前相等，那么在排序后它们的相对顺序不会改变。</p>
+<h1 id="conda-删除环境"><a href="#conda-删除环境" class="headerlink" title="conda 删除环境"></a>conda 删除环境</h1><p>conda remove -n glm4 –all</p>
+<h1 id="清理conda缓存"><a href="#清理conda缓存" class="headerlink" title="清理conda缓存"></a>清理conda缓存</h1><p>conda clean –all </p>
+<h1 id="install-py4vasp"><a href="#install-py4vasp" class="headerlink" title="install py4vasp"></a>install py4vasp</h1><p><a target="_blank" rel="noopener" href="https://github.com/vasp-dev/py4vasp">https://github.com/vasp-dev/py4vasp</a><br><a target="_blank" rel="noopener" href="https://vasp.at/py4vasp/latest/">https://vasp.at/py4vasp/latest/</a></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">git clone git@github.com:vasp-dev/py4vasp.git</span><br><span class="line">conda create --name py4vasp-env python=3.8</span><br><span class="line">conda activate py4vasp-env</span><br><span class="line">conda install -c conda-forge poetry</span><br><span class="line">conda install -c conda-forge mdtraj</span><br><span class="line">poetry install</span><br><span class="line">poetry run pytest</span><br></pre></td></tr></table></figure>
+
+<h1 id="material-project-api"><a href="#material-project-api" class="headerlink" title="material project api"></a>material project api</h1><p>pip install mp_api</p>
+<p>mpcontribs-client not installed. Install the package to query MPContribs data, or construct pourbaix diagrams: ‘pip install mpcontribs-client’</p>
+<p>conda install -c conda-forge mdtraj<br>pip install py4vasp</p>
+<p>from mp_api.client import MPRester</p>
+<p>DeprecationWarning: Accessing summary data through MPRester.summary is deprecated. Please use MPRester.materials.summary instead.</p>
+<p>with MPRester(“your_api_key_here”) as mpr:<br>    #do stuff with mpr…</p>
+<p><a target="_blank" rel="noopener" href="https://docs.materialsproject.org/downloading-data/using-the-api/querying-data">material project new api</a></p>
+<h1 id="conda-update"><a href="#conda-update" class="headerlink" title="conda update"></a>conda update</h1><p>conda update –all<br>conda update numpy<br>conda update conda</p>
+<p>conda remove numpy<br>conda clean –all</p>
+<h1 id="remove-all-packages-installed-with-pip"><a href="#remove-all-packages-installed-with-pip" class="headerlink" title="remove all packages installed with pip"></a>remove all packages installed with pip</h1><p>pip freeze | xargs pip uninstall -y<br>pip cache purge</p>
+<h2 id="remote-jupyter-setting"><a href="#remote-jupyter-setting" class="headerlink" title="remote jupyter setting"></a>remote jupyter setting</h2><p>conda install -c conda-forge jupyterlab<br>jupyter lab –generate-config</p>
+<p>c.NotebookApp.ip &#x3D; ‘*’<br>c.NotebookApp.allow_remote_access &#x3D; True</p>
+<h1 id="c-NotebookApp-open-browser-False"><a href="#c-NotebookApp-open-browser-False" class="headerlink" title="c.NotebookApp.open_browser &#x3D; False"></a>c.NotebookApp.open_browser &#x3D; False</h1><h1 id="pytorch"><a href="#pytorch" class="headerlink" title="pytorch"></a>pytorch</h1><p>docker run –gpus all -it –rm nvcr.io&#x2F;nvidia&#x2F;pytorch:23.12-py3<br>docker run –gpus all –ipc&#x3D;host –ulimit memlock&#x3D;-1 –ulimit stack&#x3D;67108864 …<br>NOTE: The SHMEM allocation limit is set to the default of 64MB.  This may be<br>   insufficient for PyTorch.  NVIDIA recommends the use of the following flags:<br>   docker run –gpus all –ipc&#x3D;host –ulimit memlock&#x3D;-1 –ulimit stack&#x3D;67108864 …</p>
+<p>docker run –gpus all –ipc&#x3D;host –ulimit memlock&#x3D;-1 –ulimit stack&#x3D;67108864 -it  nvcr.io&#x2F;nvidia&#x2F;pytorch:23.12-py3</p>
+<h1 id="in-jupyter-notebook-cli"><a href="#in-jupyter-notebook-cli" class="headerlink" title="in jupyter notebook cli"></a>in jupyter notebook cli</h1><p>pip install vs python -m pip install<br>When installing packages using pip, the recommended approach is to use python -m pip install instead of pip install. Refer the Installing Python Modules documentation.</p>
+<p>!pip install vs %pip install<br>Any command prefixed with ! is treated as a shell command in Jupyter cells. Thus !pip install <module> is treated as a simple shell command that translates to pip install <module>. However the recommendation is to use python -m pip install <module>. To get this desired behavior one must use %pip install <module></p>
+<p>%conda install<br>However when installing packages in Jupyter into a conda environment, use of conda install is preferred over pip install. Hence its highly recommended that one use %conda install in jupyter notebooks when dealing with Conda enviornments.</p>
+<p>More information<br>See here for further details <a target="_blank" rel="noopener" href="https://jakevdp.github.io/blog/2017/12/05/installing-python-packages-from-jupyter/">https://jakevdp.github.io/blog/2017/12/05/installing-python-packages-from-jupyter/</a></p>
+<h1 id="去除重复conda-env-list-中环境"><a href="#去除重复conda-env-list-中环境" class="headerlink" title="去除重复conda env list 中环境"></a>去除重复conda env list 中环境</h1><p>remove C:\Users\dugue.conda\environments.txt</p>
+<h1 id="super"><a href="#super" class="headerlink" title="super"></a>super</h1><p>super 是一个内置函数，用于调用父类（或超类）的方法。它常常用在 <strong>init</strong> 方法中，以确保父类的初始化方法被正确地调用，但它也可以用来调用父类中的其他方法。</p>
+<p>子类 继承 基类&#x3D;&#x3D;父类&#x3D;&#x3D;超类</p>
+<h1 id="enum-可以作为字典的键"><a href="#enum-可以作为字典的键" class="headerlink" title="enum 可以作为字典的键"></a>enum 可以作为字典的键</h1><p>在Python中，<code>enum</code>是一个枚举类型，它是一种特殊的类，用于创建一组有限且唯一的值。<code>RunType</code>可能是一个<code>enum</code>，它定义了一组相关的常量，这些常量可能代表了某种运行类型。</p>
+<p>例如，<code>RunType</code>可能被定义为：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> enum <span class="keyword">import</span> Enum</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">RunType</span>(<span class="title class_ inherited__">Enum</span>):</span><br><span class="line">    TRAIN = <span class="number">1</span></span><br><span class="line">    TEST = <span class="number">2</span></span><br><span class="line">    VALIDATE = <span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>RunType</code>是一个<code>enum</code>，它有三个成员：<code>TRAIN</code>，<code>TEST</code>和<code>VALIDATE</code>，它们分别被赋值为1，2和3。</p>
+<p>然而，没有具体的代码或文档，我无法提供关于<code>RunType</code>的更多具体信息。你需要查看定义<code>RunType</code>的代码或文档以获取更多详细信息。</p>
+<p>是的，Python中的枚举（enum）可以作为字典的键。这是因为枚举值在Python中是唯一的，因此它们可以用作字典的键。以下是一个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> enum <span class="keyword">import</span> Enum</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Color</span>(<span class="title class_ inherited__">Enum</span>):</span><br><span class="line">    RED = <span class="number">1</span></span><br><span class="line">    GREEN = <span class="number">2</span></span><br><span class="line">    BLUE = <span class="number">3</span></span><br><span class="line"></span><br><span class="line">color_dict = &#123;</span><br><span class="line">    Color.RED: <span class="string">&#x27;red&#x27;</span>,</span><br><span class="line">    Color.GREEN: <span class="string">&#x27;green&#x27;</span>,</span><br><span class="line">    Color.BLUE: <span class="string">&#x27;blue&#x27;</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(color_dict[Color.RED])  <span class="comment"># 输出：&#x27;red&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，我们定义了一个名为<code>Color</code>的枚举，然后使用这个枚举的值作为字典<code>color_dict</code>的键。</p>
+<h1 id="property-装饰器"><a href="#property-装饰器" class="headerlink" title="@property 装饰器"></a>@property 装饰器</h1><p>在Python中，<code>@property</code>是一个装饰器，它可以将一个方法转换为属性，使得你可以像访问属性一样访问这个方法，而不需要在调用它时加上括号。</p>
+<p>以下是一个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Circle</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self, radius</span>):</span><br><span class="line">        self._radius = radius</span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">radius</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self._radius</span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">diameter</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> self._radius * <span class="number">2</span></span><br><span class="line"></span><br><span class="line"><span class="meta">    @property</span></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">area</span>(<span class="params">self</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="number">3.14</span> * self._radius ** <span class="number">2</span></span><br></pre></td></tr></table></figure>
+
+<p>在这个例子中，<code>radius</code>、<code>diameter</code>和<code>area</code>都是属性，你可以像访问属性一样访问它们：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">c = Circle(<span class="number">5</span>)</span><br><span class="line"><span class="built_in">print</span>(c.radius)  <span class="comment"># 输出：5</span></span><br><span class="line"><span class="built_in">print</span>(c.diameter)  <span class="comment"># 输出：10</span></span><br><span class="line"><span class="built_in">print</span>(c.area)  <span class="comment"># 输出：78.5</span></span><br></pre></td></tr></table></figure>
+
+<p>注意，虽然<code>radius</code>、<code>diameter</code>和<code>area</code>看起来像属性，但它们实际上是方法。<code>@property</code>装饰器使得你可以像访问属性一样访问这些方法。</p>
+<h1 id="Jupyter-notebook-文件路径"><a href="#Jupyter-notebook-文件路径" class="headerlink" title="Jupyter notebook 文件路径"></a>Jupyter notebook 文件路径</h1><p>如果你在 Jupyter notebook 中使用文件名（而不是完整的文件路径）来打开或写入文件，那么文件将会被写入到当前的工作目录中。你可以使用 Python 的 <code>os</code> 模块的 <code>getcwd</code> 函数来查看当前的工作目录。</p>
+<p>例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="built_in">print</span>(os.getcwd())</span><br></pre></td></tr></table></figure>
+
+<p>这将会打印出当前的工作目录。</p>
+<p>如果你想改变当前的工作目录，你可以使用 <code>os</code> 模块的 <code>chdir</code> 函数。例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">os.chdir(<span class="string">&#x27;/path/to/your/directory&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>然后，当你使用文件名来打开或写入文件时，文件将会被写入到新的工作目录中。</p>
+<h1 id="mpi4py-conda"><a href="#mpi4py-conda" class="headerlink" title="mpi4py conda"></a>mpi4py conda</h1><p>conda install conda-forge::mpi4py<br>conda install anaconda::numpy scipy</p>
+<h1 id="pytorch-cpu"><a href="#pytorch-cpu" class="headerlink" title="pytorch cpu"></a>pytorch cpu</h1><p>PyTorch 默认会使用所有可用的 CPU 核心来进行计算。然而，你可以通过设置环境变量 <code>OMP_NUM_THREADS</code> 来限制 PyTorch 使用的 CPU 核心数。</p>
+<p>如果你想查看 PyTorch 实际使用了多少 CPU 核心，你可以使用 Python 的 <code>os</code> 模块来获取 <code>OMP_NUM_THREADS</code> 环境变量的值。以下是一个例子：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line"></span><br><span class="line">num_threads = os.environ.get(<span class="string">&#x27;OMP_NUM_THREADS&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&#x27;PyTorch is using <span class="subst">&#123;num_threads&#125;</span> CPU cores.&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如果 <code>OMP_NUM_THREADS</code> 环境变量没有被设置，那么 <code>os.environ.get(&#39;OMP_NUM_THREADS&#39;)</code> 将返回 <code>None</code>，这意味着 PyTorch 将使用所有可用的 CPU 核心。</p>
+<p>请注意，这只是一个近似的方法，它可能无法准确地反映 PyTorch 实际使用的 CPU 核心数。如果你需要更精确的信息，你可能需要使用操作系统的工具（如 Linux 的 <code>top</code> 或 <code>htop</code> 命令）来监视 PyTorch 的 CPU 使用情况。</p>
+<h1 id="pykan"><a href="#pykan" class="headerlink" title="pykan"></a>pykan</h1><p>actually install the latest version of python and other packages instead of following the instructions in the requirements.txt file</p>
+<p>matplotlib&#x3D;&#x3D;3.6.2<br>numpy&#x3D;&#x3D;1.24.4<br>scikit_learn&#x3D;&#x3D;1.1.3<br>setuptools&#x3D;&#x3D;65.5.0<br>sympy&#x3D;&#x3D;1.11.1<br>torch&#x3D;&#x3D;2.2.2<br>tqdm&#x3D;&#x3D;4.66.2</p>
+<p>matplotlib         3.9.0<br>numpy              1.26.4<br>scikit-learn       1.5.0<br>setuptools         68.0.0<br>sympy              1.12.1<br>torch              2.3.1+cu121<br>tqdm               4.66.4</p>
+<p>conda create –name pykan-env python&#x3D;3.9.7<br>conda activate pykan-env<br>pip install git+<a target="_blank" rel="noopener" href="https://github.com/KindXiaoming/pykan.git">https://github.com/KindXiaoming/pykan.git</a>  # For GitHub installation</p>
+<h1 id="or"><a href="#or" class="headerlink" title="or"></a>or</h1><p>pip install pykan  # For PyPI installation only pykan not with its requirements</p>
+<p>pip install -r C:&#x2F;Users&#x2F;dugue&#x2F;Downloads&#x2F;pykan-master&#x2F;requirements.txt<br>pip install -r C:&#x2F;Users&#x2F;dugue&#x2F;Downloads&#x2F;pykan-master&#x2F;requirements_new.txt</p>
+<p><a target="_blank" rel="noopener" href="https://pytorch.org/get-started/locally/#windows-pip">https://pytorch.org/get-started/locally/#windows-pip</a><br>pip3 install torch torchvision torchaudio –index-url <a target="_blank" rel="noopener" href="https://download.pytorch.org/whl/cu121">https://download.pytorch.org/whl/cu121</a></p>
+<p>pip3 install –pre torch torchvision torchaudio –index-url <a target="_blank" rel="noopener" href="https://download.pytorch.org/whl/nightly/cu124">https://download.pytorch.org/whl/nightly/cu124</a></p>
+<p>cuda 12.2 pytorch cuda 12.1 mismatch but it works</p>
+<p>在 PyKan 中，<code>beta</code> 是一个参数，它控制了 KAN (Kernelized Attention Network) 中的注意力机制的强度。<code>beta</code> 参数决定了模型在处理输入数据时，对于不同部分的关注程度。</p>
+<p>具体来说，<code>beta</code> 参数控制了注意力权重的分布。较大的 <code>beta</code> 值会使得注意力权重更集中，即模型会更关注某些特定的输入部分。相反，较小的 <code>beta</code> 值会使得注意力权重更分散，即模型会更平均地关注所有的输入部分。</p>
+<p>在训练模型时，<code>beta</code> 可以作为一个超参数进行调整，以找到最优的模型性能。</p>
+<h1 id="pykan-with-large-network-scale-error"><a href="#pykan-with-large-network-scale-error" class="headerlink" title="pykan with large network scale error"></a>pykan with large network scale error</h1><p><a target="_blank" rel="noopener" href="https://github.com/pytorch/pytorch/issues/125892">https://github.com/pytorch/pytorch/issues/125892</a></p>
+<p>File c:\Users\dugue\Downloads\pykan-master\kan\spline.py:138, in curve2coef(x_eval, y_eval, grid, k, device)<br>    136 mat &#x3D; B_batch(x_eval, grid, k, device&#x3D;device).permute(0, 2, 1)<br>    137 # coef &#x3D; torch.linalg.lstsq(mat, y_eval.unsqueeze(dim&#x3D;2)).solution[:, :, 0]<br>–&gt; 138 coef &#x3D; torch.linalg.lstsq(mat.to(device), y_eval.unsqueeze(dim&#x3D;2).to(device),<br>    139                           driver&#x3D;’gelsy’ if device &#x3D;&#x3D; ‘cpu’ else ‘gels’).solution[:, :, 0]<br>    140 return coef.to(device)</p>
+<p>RuntimeError: false INTERNAL ASSERT FAILED at “..\aten\src\ATen\native\BatchLinearAlgebra.cpp”:1538, please report a bug to PyTorch. torch.linalg.lstsq: (Batch element 0): Argument 6 has illegal value. Most certainly there is a bug in the implementation calling the backend library.</p>
+<p>I’m on it. Could you please share your environment versions by following commands?</p>
+<p>wget <a target="_blank" rel="noopener" href="https://raw.githubusercontent.com/pytorch/pytorch/main/torch/utils/collect_env.py">https://raw.githubusercontent.com/pytorch/pytorch/main/torch/utils/collect_env.py</a><br>python collect_env.py</p>
+<p>It works fine on nightly version, you can install it by:<br>pip install –pre –upgrade torch torchvision torchaudio –index-url <a target="_blank" rel="noopener" href="https://download.pytorch.org/whl/nightly">https://download.pytorch.org/whl/nightly</a></p>
+<p>$ curl -fsSL <a target="_blank" rel="noopener" href="https://gist.githubusercontent.com/shink/ff8e666f17dd6f7f115cae2fae8e075b/raw/9d0d5e2047ac838174faa3cc626e068281bc5a84/kan.py">https://gist.githubusercontent.com/shink/ff8e666f17dd6f7f115cae2fae8e075b/raw/9d0d5e2047ac838174faa3cc626e068281bc5a84/kan.py</a> | python -<br>torch.Size([1000, 2])<br>torch.Size([1000, 1])<br>train loss: 1.21e-01 | test loss: 1.24e-01 | reg: 2.61e+01 : 100%|██| 20&#x2F;20 [00:38&lt;00:00,  1.94s&#x2F;it]<br>train loss: 1.82e-03 | test loss: 1.96e-03 | reg: 1.17e+01 : 100%|██| 50&#x2F;50 [01:00&lt;00:00,  1.21s&#x2F;it]<br>fixing (0,0,0) with x^4, r2&#x3D;0.8006412982940674<br>fixing (0,0,1) with sin, r2&#x3D;0.9999699592590332<br>fixing (0,1,0) with sin, r2&#x3D;0.9219197034835815<br>fixing (0,1,1) with x^2, r2&#x3D;0.9999983310699463<br>fixing (1,0,0) with log, r2&#x3D;0.7761432528495789<br>fixing (1,1,0) with exp, r2&#x3D;1.0000001192092896<br>train loss: nan | test loss: nan | reg: nan : 100%|█████████████████| 50&#x2F;50 [01:10&lt;00:00,  1.40s&#x2F;it]</p>
+<p>$ python torch&#x2F;utils&#x2F;collect_env.py<br>Collecting environment information…<br>PyTorch version: 2.4.0.dev20240509<br>Is debug build: False<br>CUDA used to build PyTorch: None<br>ROCM used to build PyTorch: N&#x2F;A</p>
+<p>OS: macOS 14.4.1 (arm64)<br>GCC version: Could not collect<br>Clang version: 15.0.0 (clang-1500.3.9.4)<br>CMake version: Could not collect<br>Libc version: N&#x2F;A</p>
+<p>Python version: 3.11.9 (main, Apr 19 2024, 11:43:47) [Clang 14.0.6 ] (64-bit runtime)<br>Python platform: macOS-14.4.1-arm64-arm-64bit<br>Is CUDA available: False<br>CUDA runtime version: No CUDA<br>CUDA_MODULE_LOADING set to: N&#x2F;A<br>GPU models and configuration: No CUDA<br>Nvidia driver version: No CUDA<br>cuDNN version: No CUDA<br>HIP runtime version: N&#x2F;A<br>MIOpen runtime version: N&#x2F;A<br>Is XNNPACK available: True</p>
+<p>CPU:<br>Apple M3 Pro</p>
+<p>Versions of relevant libraries:<br>[pip3] numpy&#x3D;&#x3D;1.26.4<br>[pip3] torch&#x3D;&#x3D;2.4.0.dev20240509<br>[pip3] torchaudio&#x3D;&#x3D;2.2.0.dev20240509<br>[pip3] torchvision&#x3D;&#x3D;0.19.0.dev20240509<br>[conda] numpy                     1.26.4                   pypi_0    pypi<br>[conda] torch                     2.4.0.dev20240509          pypi_0    pypi<br>[conda] torchaudio                2.2.0.dev20240509          pypi_0    pypi<br>[conda] torchvision               0.19.0.dev20240509          pypi_0    pypi</p>
+<p>要使<code>argparse</code>接受没有任何输入（即使定义了位置参数）而不引发错误，你需要将位置参数（<code>tags</code>）改为可选参数。这通常通过使用<code>-</code>或<code>--</code>前缀来实现。然而，如果你想保持<code>tags</code>作为一个不带<code>-</code>或<code>--</code>的参数，并允许用户不提供任何<code>tags</code>，你可以将<a href="command:_github.copilot.openSymbolFromReferences?%5B%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22c%3A%5C%5CUsers%5C%5Cdugue%5C%5C.vscode-insiders%5C%5Cextensions%5C%5Cms-python.vscode-pylance-2024.6.101%5C%5Cdist%5C%5Ctypeshed-fallback%5C%5Cstdlib%5C%5Cargparse.pyi%22%2C%22_sep%22%3A1%2C%22path%22%3A%22%2Fc%3A%2FUsers%2Fdugue%2F.vscode-insiders%2Fextensions%2Fms-python.vscode-pylance-2024.6.101%2Fdist%2Ftypeshed-fallback%2Fstdlib%2Fargparse.pyi%22%2C%22scheme%22%3A%22file%22%7D%2C%7B%22line%22%3A88%2C%22character%22%3A8%7D%5D" title="c:\Users\dugue.vscode-insiders\extensions\ms-python.vscode-pylance-2024.6.101\dist\typeshed-fallback\stdlib\argparse.pyi"><code>nargs</code></a>设置为<code>*</code>而不是<code>+</code>。这样，<code>tags</code>参数可以接受零个或多个输入值，如果用户没有提供任何值，<code>tags</code>将默认为一个空列表。</p>
+<p>修改后的代码如下：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">parser.add_argument(</span><br><span class="line">    <span class="string">&quot;tags&quot;</span>,</span><br><span class="line">    nargs=<span class="string">&quot;*&quot;</span>,</span><br><span class="line">    default=[],</span><br><span class="line">    <span class="built_in">type</span>=<span class="built_in">str</span>,</span><br><span class="line">    <span class="built_in">help</span>=<span class="string">&quot;specify the features of the job by tags.&quot;</span>,</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+
+<p>这样，如果用户没有提供任何<code>tags</code>，程序不会引发错误，并且<code>tags</code>参数将是一个空列表。</p>
+<h1 id="popen-os-system"><a href="#popen-os-system" class="headerlink" title="popen os.system"></a>popen os.system</h1><p>在Python中，<a href="command:_github.copilot.openSymbolFromReferences?%5B%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22c%3A%5C%5CUsers%5C%5Cdugue%5C%5COneDrive%5C%5Cblog%5C%5Csource%5C%5C_posts%5C%5Cpython.md%22%2C%22_sep%22%3A1%2C%22path%22%3A%22%2Fc%3A%2FUsers%2Fdugue%2FOneDrive%2Fblog%2Fsource%2F_posts%2Fpython.md%22%2C%22scheme%22%3A%22file%22%7D%2C%7B%22line%22%3A347%2C%22character%22%3A0%7D%5D" title="c:\Users\dugue\OneDrive\blog\source_posts\python.md"><code>os.system</code></a>和<a href="command:_github.copilot.openSymbolFromReferences?%5B%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22c%3A%5C%5CUsers%5C%5Cdugue%5C%5COneDrive%5C%5Cblog%5C%5Csource%5C%5C_posts%5C%5Cpython.md%22%2C%22_sep%22%3A1%2C%22path%22%3A%22%2Fc%3A%2FUsers%2Fdugue%2FOneDrive%2Fblog%2Fsource%2F_posts%2Fpython.md%22%2C%22scheme%22%3A%22file%22%7D%2C%7B%22line%22%3A347%2C%22character%22%3A0%7D%5D" title="c:\Users\dugue\OneDrive\blog\source_posts\python.md"><code>os.popen</code></a>都用于执行外部命令，但它们在功能和用法上有一些关键区别：</p>
+<h3 id="os-system"><a href="#os-system" class="headerlink" title="os.system"></a><a href="command:_github.copilot.openSymbolFromReferences?%5B%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22c%3A%5C%5CUsers%5C%5Cdugue%5C%5COneDrive%5C%5Cblog%5C%5Csource%5C%5C_posts%5C%5Cpython.md%22%2C%22_sep%22%3A1%2C%22path%22%3A%22%2Fc%3A%2FUsers%2Fdugue%2FOneDrive%2Fblog%2Fsource%2F_posts%2Fpython.md%22%2C%22scheme%22%3A%22file%22%7D%2C%7B%22line%22%3A347%2C%22character%22%3A0%7D%5D" title="c:\Users\dugue\OneDrive\blog\source_posts\python.md"><code>os.system</code></a></h3><ul>
+<li><a href="command:_github.copilot.openSymbolFromReferences?%5B%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22c%3A%5C%5CUsers%5C%5Cdugue%5C%5COneDrive%5C%5Cblog%5C%5Csource%5C%5C_posts%5C%5Cpython.md%22%2C%22_sep%22%3A1%2C%22path%22%3A%22%2Fc%3A%2FUsers%2Fdugue%2FOneDrive%2Fblog%2Fsource%2F_posts%2Fpython.md%22%2C%22scheme%22%3A%22file%22%7D%2C%7B%22line%22%3A347%2C%22character%22%3A0%7D%5D" title="c:\Users\dugue\OneDrive\blog\source_posts\python.md"><code>os.system(command)</code></a>执行指定的命令并返回命令执行后的状态码（通常，0表示成功）。</li>
+<li>它不返回命令的输出，只返回一个状态码。</li>
+<li>执行期间，当前Python脚本会等待命令执行完成。</li>
+<li>用法更简单，但功能较为基础。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">status = os.system(<span class="string">&#x27;echo Hello World&#x27;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Status:&#x27;</span>, status)</span><br></pre></td></tr></table></figure>
+
+<h3 id="os-popen"><a href="#os-popen" class="headerlink" title="os.popen"></a><code>os.popen</code></h3><ul>
+<li><code>os.popen(command)</code>执行指定的命令并返回一个文件对象，可以用来读取命令的标准输出。</li>
+<li>通过这个文件对象，你可以获取命令的输出结果。</li>
+<li>它允许更复杂的交互，比如读取命令的输出进行处理。</li>
+<li><code>os.popen</code>已在较新版本的Python中被<code>subprocess</code>模块的功能所取代，但仍可用于简单的用途。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os</span><br><span class="line">stream = os.popen(<span class="string">&#x27;echo Hello World&#x27;</span>)</span><br><span class="line">output = stream.read()</span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Output:&#x27;</span>, output)</span><br></pre></td></tr></table></figure>
+
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ul>
+<li>使用<a href="command:_github.copilot.openSymbolFromReferences?%5B%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22c%3A%5C%5CUsers%5C%5Cdugue%5C%5COneDrive%5C%5Cblog%5C%5Csource%5C%5C_posts%5C%5Cpython.md%22%2C%22_sep%22%3A1%2C%22path%22%3A%22%2Fc%3A%2FUsers%2Fdugue%2FOneDrive%2Fblog%2Fsource%2F_posts%2Fpython.md%22%2C%22scheme%22%3A%22file%22%7D%2C%7B%22line%22%3A347%2C%22character%22%3A0%7D%5D" title="c:\Users\dugue\OneDrive\blog\source_posts\python.md"><code>os.system</code></a>时，你只能知道命令是否成功执行（通过状态码），但不能获取命令的输出。</li>
+<li>使用<a href="command:_github.copilot.openSymbolFromReferences?%5B%7B%22%24mid%22%3A1%2C%22fsPath%22%3A%22c%3A%5C%5CUsers%5C%5Cdugue%5C%5COneDrive%5C%5Cblog%5C%5Csource%5C%5C_posts%5C%5Cpython.md%22%2C%22_sep%22%3A1%2C%22path%22%3A%22%2Fc%3A%2FUsers%2Fdugue%2FOneDrive%2Fblog%2Fsource%2F_posts%2Fpython.md%22%2C%22scheme%22%3A%22file%22%7D%2C%7B%22line%22%3A347%2C%22character%22%3A0%7D%5D" title="c:\Users\dugue\OneDrive\blog\source_posts\python.md"><code>os.popen</code></a>时，你可以读取命令的输出，这对于需要处理或检查外部命令输出的情况非常有用。</li>
+<li>对于更复杂的需求，如需要更细粒度的控制执行过程、环境变量、输入输出重定向等，推荐使用<code>subprocess</code>模块。</li>
+</ul>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/06/15/resource-management/" rel="prev" title="resource_management">
+                  <i class="fa fa-angle-left"></i> resource_management
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/06/15/network/" rel="next" title="network">
+                  network <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Mingzhe Liu</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

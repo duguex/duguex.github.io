@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"tobedetermined.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="INCAR tags控制占据ISMEAR&#x3D;-2FERWE&#x3D;6431.0 10.0 1.0 5000.0FERDO&#x3D;6431.0 10.0 1.0 5000.0 旋轨耦合LSORBIT&#x3D;.TRUE.SAXIS&#x3D;0 0 1MAGMOM&#x3D;0 0 3 500*0 杂化密度泛函LHFCALC&#x3D;.TRUE.HFSCREEN&#x3D;0.2">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vasp_tags">
+<meta property="og:url" content="http://tobedetermined.com/2024/06/15/vasp/index.html">
+<meta property="og:site_name" content="TODO">
+<meta property="og:description" content="INCAR tags控制占据ISMEAR&#x3D;-2FERWE&#x3D;6431.0 10.0 1.0 5000.0FERDO&#x3D;6431.0 10.0 1.0 5000.0 旋轨耦合LSORBIT&#x3D;.TRUE.SAXIS&#x3D;0 0 1MAGMOM&#x3D;0 0 3 500*0 杂化密度泛函LHFCALC&#x3D;.TRUE.HFSCREEN&#x3D;0.2">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-15T09:09:36.000Z">
+<meta property="article:modified_time" content="2024-07-29T16:45:21.087Z">
+<meta property="article:author" content="Mingzhe Liu">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://tobedetermined.com/2024/06/15/vasp/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://tobedetermined.com/2024/06/15/vasp/","path":"2024/06/15/vasp/","title":"vasp_tags"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>vasp_tags | TODO</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">TODO</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#INCAR-tags"><span class="nav-number">1.</span> <span class="nav-text">INCAR tags</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Nonlocal-vdW-DF-functionals"><span class="nav-number">2.</span> <span class="nav-text">Nonlocal vdW-DF functionals</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NSIM"><span class="nav-number">3.</span> <span class="nav-text">NSIM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#phonopy-phonon-basic-use-and-animation"><span class="nav-number">4.</span> <span class="nav-text">phonopy phonon basic use and animation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NGYROMAG"><span class="nav-number">5.</span> <span class="nav-text">NGYROMAG</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#QUAD-EFG"><span class="nav-number">6.</span> <span class="nav-text">QUAD_EFG</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mingzhe Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/duguex" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;duguex" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:duguex@126.com" title="E-Mail → mailto:duguex@126.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://tobedetermined.com/2024/06/15/vasp/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mingzhe Liu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TODO">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="vasp_tags | TODO">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          vasp_tags
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-06-15 17:09:36" itemprop="dateCreated datePublished" datetime="2024-06-15T17:09:36+08:00">2024-06-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-07-30 00:45:21" itemprop="dateModified" datetime="2024-07-30T00:45:21+08:00">2024-07-30</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="INCAR-tags"><a href="#INCAR-tags" class="headerlink" title="INCAR tags"></a>INCAR tags</h1><p>控制占据<br>ISMEAR&#x3D;-2<br>FERWE&#x3D;643<em>1.0 1</em>0.0 1.0 500<em>0.0<br>FERDO&#x3D;643</em>1.0 1<em>0.0 1.0 500</em>0.0</p>
+<p>旋轨耦合<br>LSORBIT&#x3D;.TRUE.<br>SAXIS&#x3D;0 0 1<br>MAGMOM&#x3D;0 0 3 500*0</p>
+<p>杂化密度泛函<br>LHFCALC&#x3D;.TRUE.<br>HFSCREEN&#x3D;0.2<br>AEXX&#x3D;0.25<br>ALGO&#x3D;All<br>PRECFOCK&#x3D;Fast</p>
+<p>HSE06<br>GGA &#x3D; PE<br>ALGO&#x3D;All<br>LHFCALC &#x3D; .TRUE.<br>HFSCREEN &#x3D; 0.2<br>AEXX&#x3D;0.25<br>PRECFOCK&#x3D;Fast</p>
+<p>with the default values AEXX&#x3D;0.25, AGGAX&#x3D;1-AEXX&#x3D;0.75, AGGAC&#x3D;1.0, and ALDAC&#x3D;1.0.</p>
+<p>HSE03<br>LHFCALC &#x3D; .TRUE.<br>GGA &#x3D; PE<br>HFSCREEN &#x3D; 0.3<br>with the default values AEXX&#x3D;0.25, AGGAX&#x3D;1-AEXX&#x3D;0.75, AGGAC&#x3D;1.0, and ALDAC&#x3D;1.0.</p>
+<p>HSEsol<br>LHFCALC &#x3D; .TRUE.<br>GGA &#x3D; PS<br>HFSCREEN &#x3D; 0.2<br>with the default values AEXX&#x3D;0.25, AGGAX&#x3D;1-AEXX&#x3D;0.75, AGGAC&#x3D;1.0, and ALDAC&#x3D;1.0.<br>Unscreened hybrid functionals</p>
+<p>PBEh (PBE0)<br>LHFCALC &#x3D; .TRUE.<br>GGA &#x3D; PE<br>with the default values AEXX&#x3D;0.25, AGGAX&#x3D;1-AEXX&#x3D;0.75, AGGAC&#x3D;1.0, and ALDAC&#x3D;1.0.</p>
+<p>B3LYP with VWN3 (or VWN5) for LDA correlation<br>LHFCALC &#x3D; .TRUE.<br>GGA     &#x3D; B3 (or B5)<br>AEXX    &#x3D; 0.2<br>AGGAX   &#x3D; 0.72<br>AGGAC   &#x3D; 0.81<br>ALDAC   &#x3D; 0.19<br>with the default value ALDAX&#x3D;1-AEXX&#x3D;0.8.</p>
+<p>B3PW91 (using Libxc, see the tag LIBXC1)<br>LHFCALC &#x3D; .TRUE.<br>GGA &#x3D; LIBXC<br>LIBXC1 &#x3D; HYB_GGA_XC_B3PW91 # or 401<br>AEXX &#x3D; 0.2</p>
+<p>B1-WC (using Libxc, see the tag LIBXC1)<br>LHFCALC &#x3D; .TRUE.<br>GGA &#x3D; LIBXC<br>LIBXC1 &#x3D; HYB_GGA_XC_B1WC # or 412<br>AEXX &#x3D; 0.16</p>
+<p>SCAN0<br>LHFCALC &#x3D; .TRUE.<br>METAGGA &#x3D; SCAN<br>with the default values AEXX&#x3D;0.25, AMGGAX&#x3D;1-AEXX&#x3D;0.75, and AMGGAC&#x3D;1.0.</p>
+<p>METAGGA&#x3D;SCAN<br>The SCAN (Strongly constrained and appropriately normed) functional is a semilocal density functional that fulfills all known constraints that the exact density functional must fulfill. There are indications that this functional is superior to most gradient corrected functionals. This functional is only available as of VASP version ≥ 5.4.3.<br>METAGGA&#x3D;RSCAN<br>The rSCAN (regularized SCAN) functional, introduces regularizations that improve the numerical sensitivity and convergence behavior. These regularizations break several of the exact constraints that the parent SCAN functional was designed to satisfy. However, testing has indicated that the accuracy of rSCAN can be inferior to SCAN in some cases. This functional is available as of VASP version ≥ 6.2.0.<br>METAGGA&#x3D;R2SCAN<br>The r2SCAN (regularized-restored SCAN) functional modifies the regularizations introduced in rSCAN to enforce adherence to the exact constraints obeyed by SCAN. It fulfills all known constraints. However, it only recovers the slowly varying density-gradient expansion for exchange to second order, while SCAN recovers the expansion to 4th order. Testing indicates that r2SCAN at least matches the accuracy of the parent SCAN functional but with significantly improved numerical efficiency and accuracy under low-cost computational settings. This functional is available as of VASP version ≥ 6.2.0, or in version 5.4.4 by patch 4.<br>METAGGA&#x3D;SCAN_X, RSCAN_X, or R2SCAN_X<br>The exchange component of SCAN, RSCAN, or R2SCAN. Available since VASP.6.4.3.<br>METAGGA&#x3D;SCAN_C, RSCAN_C, or R2SCAN_C<br>The correlation component of SCAN, RSCAN, or R2SCAN. Available since VASP.6.4.3.<br>METAGGA&#x3D;SCANL, RSCANL, or R2SCANL<br>The functionals SCAN-L, rSCAN-L, and r2SCAN-L are deorbitalized versions of SCAN, rSCAN, and r2SCAN, respectively. They do not depend on the kinetic-energy density tau , but on the Laplacian of the density instead.</p>
+<p>Hartree-Fock (no correlation)<br>LHFCALC &#x3D; .TRUE.<br>AEXX    &#x3D; 1.0<br>with the default values AGGAX&#x3D;1-AEXX&#x3D;0.0, ALDAC&#x3D;0.0, and AGGAC&#x3D;0.0.</p>
+<p>LHFCALC &#x3D; .TRUE.<br>GGA &#x3D; PE<br>HFSCREEN &#x3D; 0.2</p>
+<p>LDA+U<br>LDAU&#x3D;.TRUE.<br>LDAUL&#x3D;1 -1 -1 -1<br>LDAUU&#x3D;3 0 0 0<br>LDAUJ&#x3D;0 0 0 0</p>
+<p>电荷密度<br>LPARD &#x3D; .T.<br>IBAND &#x3D; 872<br>LSEPB &#x3D; .TRUE.</p>
+<p>杂化密度泛函+控制占据<br><a target="_blank" rel="noopener" href="https://wiki.kfki.hu/nano/Easy_manual_occupancy_of_Kohn-Sham_levels_with_FERWE_and_FERDO">https://wiki.kfki.hu/nano/Easy_manual_occupancy_of_Kohn-Sham_levels_with_FERWE_and_FERDO</a><br>LHFCALC&#x3D;.TRUE.<br>HFSCREEN&#x3D;0<br>AEXX&#x3D;0.32<br>ALGO&#x3D;All<br>PRECFOCK&#x3D;Fast<br>LDIAG &#x3D; .FALSE.<br>LSUBROT &#x3D; .FALSE.</p>
+<h1 id="Nonlocal-vdW-DF-functionals"><a href="#Nonlocal-vdW-DF-functionals" class="headerlink" title="Nonlocal vdW-DF functionals"></a>Nonlocal vdW-DF functionals</h1><p>Jump to navigationJump to search The vdW-DF method originally proposed by Dion et al.[1] consists of a semilocal exchange-correlation functional that is augmented with a nonlocal correlation functional {\displaystyle E_{\text{c,disp}}} that approximately accounts for dispersion interactions. In VASP, the nonlocal functional is implemented using the algorithm of Román-Pérez and Soler[2] that is based on FFTs and the convolution theorem to calculate efficiently the double real-space integral. Several versions of the vdW-DF functionals proposed in the literature can be used (see list below).</p>
+<p>The vdW-DF functionals are available since the 5.2.12.26May2011 version of VASP for the calculation of total energies and forces. The stress tensor calculation for the cell optimization (ISIF&#x3D;3) is available since the VASP 5.2.12.11Nov2011 version for spin-unpolarized systems and VASP 5.3.1 for spin-polarized systems. They have been implemented by J. Klimeš. If you make use of the vdW-DF functionals presented in this section, we ask you to cite Ref. [3]. Please also cite the original vdW-DF paper of Dion et al.[1] and the paper of Román-Pérez and Soler[2].</p>
+<p>An overview of the performance of the vdW-DF functionals can be found for instance in Ref. [3][4][5].</p>
+<p>Contents<br>1	List of nonlocal vdW-DF functionals<br>2	Important technical remarks<br>3	Related Tags and Sections<br>4	References<br>List of nonlocal vdW-DF functionals<br>To add a nonlocal correlation energy {\displaystyle E_{\text{c,disp}}} to the semilocal exchange-correlation energy (selected with the GGA or METAGGA tag) one needs to set LUSE_VDW&#x3D;.TRUE. in the INCAR file.<br>Note that for all vdW-DF functionals listed below except rVV10 and SCAN+rVV10, the GGA component of the semilocal (PBE) correlation needs to be removed (with AGGAC&#x3D;0.0), so that only LDA correlation is left.<br>In the vdW-DF2 and rev-vdW-DF2 functionals, the nonlocal correlation consists of the Dion et al. functional, but with the parameter {\displaystyle Z_{ab}} that is changed from -0.8491 (the default value in VASP) to -1.8867 by setting ZAB_VDW&#x3D;-1.8867.<br>Since vdW-DF functionals tend to yield less spherical densities than standard GGA functionals, it is recommended to set LASPH&#x3D;.TRUE. to get reasonably accurate contributions from the spheres around the atoms.<br>Mind: In versions of VASP prior to 6.4.0, a meta-GGA functional (e.g., SCAN) could be combined only with the rVV10 nonlocal functional. Conversely, a GGA functional could be combined only with the original nonlocal functional of Dion et al.. This restriction is lifted since VASP.6.4.0 thanks to the introduction of the IVDW_NL tag.<br>Mind: Since VASP.6.4.0, the spin-polarized formulation of the nonlocal vdW correlation term[6] is available. It can be switched on with the logical tag LSPIN_VDW (.FALSE. by default), however its use is limited to the the functional of Dion et al. (not available for rVV10) and only when the nonlocal term is combined with a GGA functional. In other cases (and in prior versions of VASP), the nonlocal correlation functional is evaluated with the sum of the spin-up and spin-down electron densities.<br>Mind: In VASP.6.2 (and prior versions) the stress tensor is broken for rVV10 (it is correct for other vdW-DF though). From VASP.6.3.0 onwards, the stress tensor for rVV10 is correct.<br>Examples of INCAR files are shown below.</p>
+<p>Original vdW-DF of Dion et al.[1]:<br>GGA      &#x3D; RE<br>AGGAC    &#x3D; 0.0<br>LUSE_VDW &#x3D; .TRUE.<br>LASPH    &#x3D; .TRUE.<br>vdW-DF2 of Lee et al. (2nd version of vdW-DF)[7]:<br>GGA      &#x3D; ML<br>AGGAC    &#x3D; 0.0<br>LUSE_VDW &#x3D; .TRUE.<br>ZAB_VDW  &#x3D; -1.8867 # the default is -0.8491<br>LASPH    &#x3D; .TRUE.<br>optPBE-vdW of Klimeš et al.[8]:<br>GGA      &#x3D; OR<br>AGGAC    &#x3D; 0.0<br>LUSE_VDW &#x3D; .TRUE.<br>LASPH    &#x3D; .TRUE.<br>optB88-vdW of Klimeš et al.[8]:<br>GGA      &#x3D; BO<br>PARAM1   &#x3D; 0.1833333333<br>PARAM2   &#x3D; 0.22<br>AGGAC    &#x3D; 0.0<br>LUSE_VDW &#x3D; .TRUE.<br>LASPH    &#x3D; .TRUE.<br>optB86b-vdW of Klimeš et al.[3]:<br>GGA      &#x3D; MK<br>PARAM1   &#x3D; 0.1234<br>PARAM2   &#x3D; 1.0<br>AGGAC    &#x3D; 0.0<br>LUSE_VDW &#x3D; .TRUE.<br>LASPH    &#x3D; .TRUE.<br>rev-vdW-DF2 (also known as vdW-DF2-B86R) of Hamada[9]:<br>GGA      &#x3D; MK<br>PARAM1   &#x3D; 0.1234567 # 10&#x2F;81~0.1234567<br>PARAM2   &#x3D; 0.7114<br>AGGAC    &#x3D; 0.0<br>LUSE_VDW &#x3D; .TRUE.<br>ZAB_VDW  &#x3D; -1.8867 # the default is -0.8491<br>LASPH    &#x3D; .TRUE.<br>vdW-DF-cx of Berland and Hyldgaard[10]:<br>GGA      &#x3D; CX<br>AGGAC    &#x3D; 0.0<br>LUSE_VDW &#x3D; .TRUE.<br>LASPH    &#x3D; .TRUE.<br>rVV10 of Sabatini et al. [11]:<br>GGA      &#x3D; ML<br>LUSE_VDW &#x3D; .TRUE.<br>IVDW_NL  &#x3D; 2<br>BPARAM   &#x3D; 6.3     # default but can be overwritten by this tag<br>CPARAM   &#x3D; 0.0093  # default but can be overwritten by this tag<br>LASPH    &#x3D; .TRUE.<br>SCAN+rVV10 of Peng et al. [12]:<br>METAGGA  &#x3D; SCAN<br>LUSE_VDW &#x3D; .TRUE.<br>BPARAM   &#x3D; 15.7    # the default value is 6.3<br>CPARAM   &#x3D; 0.0093  # default but can be overwritten by this tag<br>LASPH    &#x3D; .TRUE.<br>r2SCAN+rVV10 of Ning et al. [13]:<br>METAGGA  &#x3D; R2SCAN<br>LUSE_VDW &#x3D; .TRUE.<br>BPARAM   &#x3D; 11.95   # the default value is 6.3<br>CPARAM   &#x3D; 0.0093  # default but can be overwritten by this tag<br>LASPH    &#x3D; .TRUE.<br>Important technical remarks<br>The calculation of the nonlocal correlation functional of Dion et al. (used in all functionals listed above except rVV10 and SCAN+rVV10) requires a precalculated kernel which is distributed via the VASP download portal (VASP -&gt; src -&gt; vdw_kernel.bindat). If VASP does not find this file, the kernel will be calculated, which is however rather demanding. The kernel needs to be either copied to the VASP run directory for each calculation or can be stored in a central location and read from there. The location needs to be set in routine PHI_GENERATE. This does not work on some clusters and the kernel needs to be copied into the run directory in such cases. The distributed file uses little endian convention and won’t be read on big endian machines. The big endian version of the file is available from the VASP team. In the case of the rVV10 nonlocal correlation functional, no precalculated kernel is required and it is calculated on the fly, which is however not as demanding as in the case of the functional of Dion et al..<br>There are no special POTCAR files for the vdW-DF functionals and the PBE or LDA POTCAR files can be used. Currently the evaluation of the nonlocal correlation functional is not done fully within the PAW method, but the sum of the pseudo-valence density and partial core density is used. This approximation works rather well, as is discussed in [3], and the accuracy generally increases when the number of valence electrons is increased or when harder PAW datasets are used. For example, for adsorption it is recommended to compare the adsorption energy obtained with standard PAW datasets and more-electron POTCAR files for both PBE calculations and vdW-DF calculations to assess the quality of the results.<br>The evaluation of the nonlocal correlation energy requires some additional time. Most of it is spent on performing FFTs to evaluate the energy and potential. Thus the additional time is determined by the number of FFT grid points, basically the size of the simulation cell. It is almost independent on the number of the atoms in the cell. Thus the relative cost of the vdW-DF method depends on the “filling” of the cell and increases with the amount of vacuum in the cell. The relative increase is high for isolated molecules in large cells, but small for solids in smaller cells with many k-points.</p>
+<h1 id="NSIM"><a href="#NSIM" class="headerlink" title="NSIM"></a>NSIM</h1><p>To achieve the best performance it is important to chose KPAR and NSIM wisely. Unfortunately, the ideal values will depend on the particulars of your system, both in the sense of workload as well as hardware, so you will have to experiment with different settings. However, as a rule of thumb one can say:<br>Set KPAR to the number of GPUs (&#x3D; MPI-ranks) you are going to use. This only makes sense, though, when the number of irreducible k-points in your calculation is more or less evenly dividable by KPAR, otherwise the distribution of the work over the MPI-ranks will be strongly imbalanced. This means your options in choosing this parameter are somewhat limited.<br>NSIM determines the number of bands that are optimized simultaneously in many of the electronic solvers (e.g RMM-DIIS and blocked-Davidson). As a rule, one should choose this parameter larger to get good performance on GPUs than one would for CPU-sided execution.<br>N.B.: For optimal CPU-sided execution of VASP one would normally experiment with different settings for NCORE as well. When running on GPUs anything different from NCORE&#x3D;1 will adversely affect performance, and VASP will automatically switch to NCORE&#x3D;1, even if otherwise specified in the INCAR file.</p>
+<hr>
+<p>NSIM &#x3D; [integer]<br>Default: NSIM &#x3D; 4 </p>
+<p>Description: NSIM sets the number of bands that are optimized simultaneously by the RMM-DIIS algorithm.</p>
+<p>The RMM-DIIS algorithm (IALGO&#x3D;48) works in a blocked mode. NSIM bands are optimized at the same time. This allows to use matrix-matrix operations instead of matrix-vector operation for the evaluations of the non local projection operators in real space, and might speed up calculations on some machines. There should be no difference in the total energy and the convergence behavior between NSIM&#x3D;1 and NSIM&gt;1, only the performance should improve.</p>
+<h1 id="phonopy-phonon-basic-use-and-animation"><a href="#phonopy-phonon-basic-use-and-animation" class="headerlink" title="phonopy phonon basic use and animation"></a>phonopy phonon basic use and animation</h1><p>conda install -c conda-forge phonopy<br>conda install conda-forge::seekpath</p>
+<p>phonopy -d –dim&#x3D;”1 1 1”;phonopy –fc vasprun.xml;<br>echo -e “DIM &#x3D; 1 1 1\nPRIMITIVE_AXES&#x3D;Auto\nBAND &#x3D;0 0 0 0 0 0\nFORCE_CONSTANTS&#x3D; READ\nEIGENVECTORS&#x3D;.TRUE.\nBAND_POINTS&#x3D;1\n” &gt; band.conf;<br>phonopy band.conf;</p>
+<p>band.conf<br>ATOM_NAME &#x3D;Si<br>DIM &#x3D; 1 1 1<br>PRIMITIVE_AXES&#x3D;Auto<br>MP &#x3D; 24 24 24<br>BAND &#x3D;-0.333333 0.666667 0.0  0.0 0.0 0.0  0.0 0.0 0.5<br>BAND_POINTS &#x3D; 101<br>FORCE_CONSTANTS&#x3D; READ</p>
+<p>mesh.conf<br>DIM &#x3D; 1 1 1<br>MP &#x3D; 7 7 7<br>PRIMITIVE_AXES&#x3D;Auto<br>FORCE_CONSTANTS&#x3D; READ</p>
+<p>DIM&#x3D; 1 1 1<br>FORCE_CONSTANTS&#x3D;read<br>EIGENVECTORS&#x3D;.TRUE.<br>BAND&#x3D; 0 0 0 0 0 0<br>PRIMITIVE_AXES&#x3D;Auto<br>BAND_POINTS&#x3D;1<br>ANIME_TYPE &#x3D; XYZ<br>ANIME &#x3D; 4 5 20</p>
+<p><a target="_blank" rel="noopener" href="https://phonopy.github.io/phonopy/setting-tags.html?highlight=anim#create-animation-file">https://phonopy.github.io/phonopy/setting-tags.html?highlight=anim#create-animation-file</a><br>Create animation file<br>ANIME_TYPE<br>ANIME_TYPE &#x3D; JMOL<br>There are V_SIM, ARC, XYZ, JMOL, and POSCAR settings. Those may be viewed by v_sim, gdis, jmol (animation), jmol (vibration), respectively. For POSCAR, a set of POSCAR format structure files corresponding to respective animation images are created such as APOSCAR-000, APOSCAR-001,….</p>
+<p>There are several parameters to be set in the ANIME tag.</p>
+<p>ANIME<br>The format of ANIME tag was modified after ver. 0.9.3.3.</p>
+<p>For v_sim<br>ANIME &#x3D; 0.5 0.5 0<br>The values are the q-point to be calculated. An animation file of anime.ascii is generated.</p>
+<p>How to watch animation<br>For the other animation formats<br>Phonon is only calculated at  point. So q-point is not necessary to be set.</p>
+<p>anime.arc, anime.xyz, anime.xyz_jmol, or APOSCAR-* are generated according to the ANIME_TYPE setting.</p>
+<p>ANIME &#x3D; 4 5 20 0.5 0.5 0<br>The values are as follows from left:</p>
+<p>Band index given by ascending order in phonon frequency.</p>
+<p>Magnitude to be multiplied. In the harmonic phonon calculation, there is no amplitude information obtained directly. The relative amplitude among atoms in primitive cell can be obtained from eigenvectors with the constraint of the norm or the eigenvectors equals one, i.e., number of atoms in the primitive is large, the displacements become small. Therefore this has to be adjusted to make the animation good looking.</p>
+<p>Number of images in one phonon period.</p>
+<p>(4-6) Shift of atomic points in reduced coordinate in real space. These values can be omitted and the default values are 0 0 0.</p>
+<p>For anime.xyz_jmol, the first and third values are not used, however dummy values, e.g. 0, are required.</p>
+<h1 id="NGYROMAG"><a href="#NGYROMAG" class="headerlink" title="NGYROMAG"></a>NGYROMAG</h1><p>Default: NGYROMAG &#x3D; NTYP*1.0</p>
+<h1 id="QUAD-EFG"><a href="#QUAD-EFG" class="headerlink" title="QUAD_EFG"></a>QUAD_EFG</h1><p>Default: QUAD_EFG &#x3D; NTYP*1.0 </p>
+<p>For IBRION&#x3D;0, a molecular dynamics is performed, whereas all other algorithms are destined for relaxations into a local energy minimum. For difficult relaxation problems it is recommended to use the conjugate gradient algorithm (IBRION&#x3D;2), which presently possesses the most reliable backup routines. Damped molecular dynamics (IBRION&#x3D;3) are often useful when starting from very bad initial guesses. Close to the local minimum the RMM-DIIS (IBRION&#x3D;1) is usually the best choice. IBRION&#x3D;5 and IBRION&#x3D;6 are using finite differences to determine the second derivatives (Hessian matrix and phonon frequencies), whereas IBRION&#x3D;7 and IBRION&#x3D;8 use density functional perturbation theory to calculate the derivatives.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/06/15/keychain/" rel="prev" title="keychain">
+                  <i class="fa fa-angle-left"></i> keychain
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/06/15/vasp-compile/" rel="next" title="vasp_compile">
+                  vasp_compile <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Mingzhe Liu</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

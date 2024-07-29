@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"tobedetermined.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Building VASP 6.3.X to 6.4.X on Ubuntu 22.04from https:&#x2F;&#x2F;www.vasp.at&#x2F;wiki&#x2F;index.php&#x2F;Personal_computer_installation First, we need to make sure that the prerequisites for building VASP are met. Here, w">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vasp_compile">
+<meta property="og:url" content="http://tobedetermined.com/2024/06/15/vasp-compile/index.html">
+<meta property="og:site_name" content="TODO">
+<meta property="og:description" content="Building VASP 6.3.X to 6.4.X on Ubuntu 22.04from https:&#x2F;&#x2F;www.vasp.at&#x2F;wiki&#x2F;index.php&#x2F;Personal_computer_installation First, we need to make sure that the prerequisites for building VASP are met. Here, w">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://tobedetermined.com/image.png">
+<meta property="og:image" content="http://tobedetermined.com/image-1.png">
+<meta property="og:image" content="http://tobedetermined.com/image-2.png">
+<meta property="og:image" content="http://tobedetermined.com/image-3.png">
+<meta property="og:image" content="http://tobedetermined.com/image-4.png">
+<meta property="og:image" content="http://tobedetermined.com/image-5.png">
+<meta property="og:image" content="http://tobedetermined.com/image-6.png">
+<meta property="og:image" content="http://tobedetermined.com/image-7.png">
+<meta property="og:image" content="http://tobedetermined.com/image-8.png">
+<meta property="og:image" content="http://tobedetermined.com/image-9.png">
+<meta property="og:image" content="http://tobedetermined.com/image-11.png">
+<meta property="og:image" content="http://tobedetermined.com/image-10.png">
+<meta property="article:published_time" content="2024-06-15T09:10:19.000Z">
+<meta property="article:modified_time" content="2024-07-29T16:45:21.073Z">
+<meta property="article:author" content="Mingzhe Liu">
+<meta property="article:tag" content="vasp">
+<meta property="article:tag" content="compile">
+<meta property="article:tag" content="AMD">
+<meta property="article:tag" content="EPYC">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://tobedetermined.com/image.png">
+
+
+<link rel="canonical" href="http://tobedetermined.com/2024/06/15/vasp-compile/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://tobedetermined.com/2024/06/15/vasp-compile/","path":"2024/06/15/vasp-compile/","title":"vasp_compile"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>vasp_compile | TODO</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">TODO</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Building-VASP-6-3-X-to-6-4-X-on-Ubuntu-22-04"><span class="nav-number">1.</span> <span class="nav-text">Building VASP 6.3.X to 6.4.X on Ubuntu 22.04</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#singlarity-container-for-vasp"><span class="nav-number">2.</span> <span class="nav-text">singlarity container for vasp</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#in-makefile-include"><span class="nav-number">2.1.</span> <span class="nav-text">in makefile.include</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#in-bashrc"><span class="nav-number">2.2.</span> <span class="nav-text">in .bashrc</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Running-VASP"><span class="nav-number">3.</span> <span class="nav-text">Running VASP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vasp-test"><span class="nav-number">4.</span> <span class="nav-text">vasp test</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AMD-tricks"><span class="nav-number">5.</span> <span class="nav-text">AMD tricks</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#in-makefile-include-1"><span class="nav-number">5.1.</span> <span class="nav-text">in makefile.include</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#in-bashrc-1"><span class="nav-number">5.2.</span> <span class="nav-text">in .bashrc</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VASP-segmentation-fault"><span class="nav-number">6.</span> <span class="nav-text">VASP segmentation fault</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#solving-%E2%80%9CError-EDDDAV-Call-to-ZHEGV-failed-Returncode-xx%E2%80%9D"><span class="nav-number">7.</span> <span class="nav-text">solving “Error EDDDAV: Call to ZHEGV failed. Returncode &#x3D; xx”</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VASP-on-7402P"><span class="nav-number">8.</span> <span class="nav-text">VASP on 7402P</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Precompiler-options"><span class="nav-number">9.</span> <span class="nav-text">Precompiler options</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#For-what-used-to-be-vasp-5-lib"><span class="nav-number">10.</span> <span class="nav-text">For what used to be vasp.5.lib</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#For-the-parser-library"><span class="nav-number">11.</span> <span class="nav-text">For the parser library</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#For-the-fft-library"><span class="nav-number">11.0.1.</span> <span class="nav-text">For the fft library</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Normally-no-need-to-change-this"><span class="nav-number">12.</span> <span class="nav-text">Normally no need to change this</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#run-VASP-on-EPYC"><span class="nav-number">13.</span> <span class="nav-text">run VASP on EPYC</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#VASP-on-ARM"><span class="nav-number">14.</span> <span class="nav-text">VASP on ARM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Optimizing-on-the-AMD-EPYC"><span class="nav-number">15.</span> <span class="nav-text">Optimizing on the AMD EPYC</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#zen2-zen3-%E5%BE%AE%E6%9E%B6%E6%9E%84"><span class="nav-number">16.</span> <span class="nav-text">zen2 zen3 微架构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#use-NCORE-8-for-ARM-CPU-96-core-TAISHAN-node"><span class="nav-number">17.</span> <span class="nav-text">use NCORE&#x3D;8 for ARM-CPU 96-core TAISHAN node</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#cpu-%E4%BC%98%E5%8C%96"><span class="nav-number">18.</span> <span class="nav-text">cpu 优化</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%9C%A8%E8%BD%AF%E4%BB%B6%E5%BC%80%E5%8F%91%E4%B8%AD%EF%BC%8C%E2%80%9Ddevel%E2%80%9D%EF%BC%88%E5%BC%80%E5%8F%91%EF%BC%89%E5%92%8C-%E2%80%9Cruntime%E2%80%9D%EF%BC%88%E8%BF%90%E8%A1%8C%E6%97%B6%EF%BC%89%E9%80%9A%E5%B8%B8%E6%8C%87%E7%9A%84%E6%98%AF%E4%B8%A4%E7%A7%8D%E4%B8%8D%E5%90%8C%E7%B1%BB%E5%9E%8B%E7%9A%84%E8%BD%AF%E4%BB%B6%E5%8C%85%E3%80%82"><span class="nav-number">19.</span> <span class="nav-text">在软件开发中，”devel”（开发）和 “runtime”（运行时）通常指的是两种不同类型的软件包。</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#nvidia-hpc-sdk-FFTW"><span class="nav-number">20.</span> <span class="nav-text">nvidia hpc sdk FFTW</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#cc60-cc70-cc80"><span class="nav-number">20.1.</span> <span class="nav-text">cc60,cc70,cc80</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#compile-oneapi-VASP"><span class="nav-number">21.</span> <span class="nav-text">compile oneapi VASP</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#oneapi-docker-images"><span class="nav-number">22.</span> <span class="nav-text">oneapi docker images</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#compile-HDF5"><span class="nav-number">23.</span> <span class="nav-text">compile HDF5</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#wannier90"><span class="nav-number">24.</span> <span class="nav-text">wannier90</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vasp-test-1"><span class="nav-number">25.</span> <span class="nav-text">vasp test</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#compile-oneapi-vasp"><span class="nav-number">26.</span> <span class="nav-text">compile oneapi vasp</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#compile-vasp-with-intel-oneapi-container"><span class="nav-number">27.</span> <span class="nav-text">compile vasp with intel oneapi container</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vasp-compiled-by-intel-oneapi-segmentation-fault"><span class="nav-number">28.</span> <span class="nav-text">vasp compiled by intel oneapi segmentation fault</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker-oneapi-mpi-bus-error"><span class="nav-number">29.</span> <span class="nav-text">docker oneapi mpi bus error</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#nvidia"><span class="nav-number">30.</span> <span class="nav-text">nvidia</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#compile-CUDA-For-installing-NVIDIA-HPC-SDK"><span class="nav-number">31.</span> <span class="nav-text">compile CUDA (For installing NVIDIA HPC SDK)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#compile-NVIDIA-HPC-SDK-should-match"><span class="nav-number">32.</span> <span class="nav-text">compile NVIDIA HPC SDK (should match)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#gfortran-needed"><span class="nav-number">33.</span> <span class="nav-text">gfortran needed</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#nvidia-openacc-vasp"><span class="nav-number">33.1.</span> <span class="nav-text">nvidia openacc vasp</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#fftw"><span class="nav-number">34.</span> <span class="nav-text">fftw</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#For-the-fftlib-library-recommended"><span class="nav-number">35.</span> <span class="nav-text">For the fftlib library (recommended)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Software-emulation-of-quadruple-precsion-mandatory"><span class="nav-number">36.</span> <span class="nav-text">Software emulation of quadruple precsion (mandatory)</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#nvidia-openacc-vasp-1"><span class="nav-number">37.</span> <span class="nav-text">nvidia openacc vasp</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E2%80%93ipc-host-failed-for-vasp-run-with-oneapi-container"><span class="nav-number">38.</span> <span class="nav-text">–ipc host failed for vasp run with oneapi container</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#singlarity-container-for-nvidia-openacc-vasp"><span class="nav-number">39.</span> <span class="nav-text">singlarity container for nvidia openacc vasp</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#90-environment-sh"><span class="nav-number">40.</span> <span class="nav-text">90-environment.sh</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Custom-environment-shell-code-should-follow"><span class="nav-number">41.</span> <span class="nav-text">Custom environment shell code should follow</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-vasp-aocc-zen2-with-spack"><span class="nav-number">42.</span> <span class="nav-text">install vasp aocc zen2 with spack</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#install-spack"><span class="nav-number">42.1.</span> <span class="nav-text">install spack</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spack-install-aocc"><span class="nav-number">42.2.</span> <span class="nav-text">spack install aocc</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#spack-install-vasp"><span class="nav-number">42.3.</span> <span class="nav-text">spack install vasp</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#env-setting"><span class="nav-number">42.4.</span> <span class="nav-text">env setting</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Running-multiple-OpenMP-threads-per-MPI-rank"><span class="nav-number">43.</span> <span class="nav-text">Running multiple OpenMP threads per MPI rank</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mapping-of-process-to-hardware-resources"><span class="nav-number">44.</span> <span class="nav-text">Mapping of process to hardware resources</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Running-VASP-1"><span class="nav-number">45.</span> <span class="nav-text">Running VASP</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-OpenMPI"><span class="nav-number">45.1.</span> <span class="nav-text">Using OpenMPI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Using-IntelMPI"><span class="nav-number">45.2.</span> <span class="nav-text">Using IntelMPI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MPI-versus-MPI-OpenMP-the-main-difference"><span class="nav-number">45.3.</span> <span class="nav-text">MPI versus MPI&#x2F;OpenMP: the main difference</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#docker-vasp-warning"><span class="nav-number">46.</span> <span class="nav-text">docker vasp warning</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#might-be-the-issue-of-docker-https-github-com-open-mpi-ompi-issues-7368"><span class="nav-number">46.1.</span> <span class="nav-text">might be the issue of docker https:&#x2F;&#x2F;github.com&#x2F;open-mpi&#x2F;ompi&#x2F;issues&#x2F;7368</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#avx-test"><span class="nav-number">47.</span> <span class="nav-text">avx test</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#kunpeng-920-vasp-hyperfine"><span class="nav-number">48.</span> <span class="nav-text">kunpeng 920 vasp hyperfine</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%98%BE%E8%91%97%E5%BD%B1%E5%93%8D%E9%80%9F%E5%BA%A6"><span class="nav-number">49.</span> <span class="nav-text">显著影响速度</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mingzhe Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/duguex" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;duguex" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:duguex@126.com" title="E-Mail → mailto:duguex@126.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://tobedetermined.com/2024/06/15/vasp-compile/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mingzhe Liu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TODO">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="vasp_compile | TODO">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          vasp_compile
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-06-15 17:10:19" itemprop="dateCreated datePublished" datetime="2024-06-15T17:10:19+08:00">2024-06-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-07-30 00:45:21" itemprop="dateModified" datetime="2024-07-30T00:45:21+08:00">2024-07-30</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="Building-VASP-6-3-X-to-6-4-X-on-Ubuntu-22-04"><a href="#Building-VASP-6-3-X-to-6-4-X-on-Ubuntu-22-04" class="headerlink" title="Building VASP 6.3.X to 6.4.X on Ubuntu 22.04"></a>Building VASP 6.3.X to 6.4.X on Ubuntu 22.04</h1><p>from <a target="_blank" rel="noopener" href="https://www.vasp.at/wiki/index.php/Personal_computer_installation">https://www.vasp.at/wiki/index.php/Personal_computer_installation</a></p>
+<p>First, we need to make sure that the prerequisites for building VASP are met. Here, we install the following compiler and libraries from the system’s package manager:</p>
+<table>
+<thead>
+<tr>
+<th>Compiler</th>
+<th>MPI</th>
+<th>FFT</th>
+<th>BLAS</th>
+<th>LAPACK</th>
+<th>ScaLAPACK</th>
+<th>HDF5</th>
+<th>Known issues</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>gcc-11.2.0</td>
+<td>openmpi-4.1.2</td>
+<td>fftw-3.3.8</td>
+<td>openblas-0.3.20</td>
+<td>netlib-scalapack-2.1.0</td>
+<td>hdf5-1.10.7</td>
+<td>-</td>
+<td></td>
+</tr>
+</tbody></table>
+<p>These packages can be installed directly from the command line like this:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt upgrade &amp;&amp; sudo apt install rsync make build-essential g++ gfortran libopenblas-dev libopenmpi-dev libscalapack-openmpi-dev libfftw3-dev libhdf5-openmpi-dev lrzsz nano</span><br><span class="line"></span><br><span class="line">apt update &amp;&amp; apt upgrade &amp;&amp; apt install rsync make build-essential g++ gfortran libopenblas-dev libopenmpi-dev libscalapack-openmpi-dev libfftw3-dev libhdf5-openmpi-dev lrzsz nano</span><br></pre></td></tr></table></figure>
+
+<p>Next, unpack the VASP source code to a location of your choice. Then change into the VASP base directory and use the arch&#x2F;makefile.include.gnu_omp template as basis for the makefile.include:</p>
+<p>cp arch&#x2F;makefile.include.gnu_omp makefile.include</p>
+<p>Search for the paragraph in makefile.include starting with ## Customize as of this point! and apply the following changes below:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">Comment out the OPENBLAS_ROOT variable (not needed) and set BLASPACK:</span><br><span class="line"></span><br><span class="line">#BLAS and LAPACK (mandatory)</span><br><span class="line">#OPENBLAS_ROOT ?= /path/to/your/openblas/installation</span><br><span class="line">BLASPACK = -lopenblas</span><br><span class="line"></span><br><span class="line">Comment out the SCALAPACK_ROOT variable (not needed) and set SCALAPACK:</span><br><span class="line"></span><br><span class="line">#scaLAPACK (mandatory)</span><br><span class="line">#SCALAPACK_ROOT ?= /path/to/your/scalapack/installation</span><br><span class="line">SCALAPACK = -lscalapack-openmpi</span><br><span class="line"></span><br><span class="line">Comment out the FFTW_ROOT variable (not needed). Set LLIBS and INCS in the FFTW section:</span><br><span class="line"></span><br><span class="line">#FFTW (mandatory)</span><br><span class="line">#FFTW_ROOT ?= /path/to/your/fftw/installation</span><br><span class="line">LLIBS += -lfftw3 -lfftw3_omp</span><br><span class="line">INCS += -I/usr/include</span><br><span class="line"></span><br><span class="line">Enable HDF5 support by adding -DVASP_HDF5 to the CPP_OPTIONS variable. Leave HDF5_ROOT variable commented out (not needed). Set LLIBS and INCS in the HDF5 section:</span><br><span class="line"></span><br><span class="line">#HDF5-support (optional but strongly recommended)</span><br><span class="line">CPP_OPTIONS+= -DVASP_HDF5</span><br><span class="line">#HDF5_ROOT ?= /path/to/your/hdf5/installation</span><br><span class="line">LLIBS += -L/usr/lib/x86_64-linux-gnu/hdf5/openmpi/ -lhdf5_fortran</span><br><span class="line">INCS += -I/usr/include/hdf5/openmpi/</span><br><span class="line"></span><br><span class="line"># For the fftlib library (recommended)</span><br><span class="line">CPP_OPTIONS+= -Dsysv</span><br><span class="line">FCL        += fftlib.o</span><br><span class="line">CXX_FFTLIB  = g++ -fopenmp -std=c++11 -DFFTLIB_THREADSAFE</span><br><span class="line">INCS_FFTLIB = -I./include -I/usr/include</span><br><span class="line">LIBS       += fftlib</span><br><span class="line">LLIBS      += -ldl</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>Save your makefile.include and compile VASP:</p>
+<p>make DEPS&#x3D;1 -j</p>
+<p>Once the build process is complete the binaries are located in the VASP bin subfolder. They were compiled with OpenMP-threading support. Before running VASP please always check if the OMP_NUM_THREADS environment variable is set according to your needs. For example, if you require only pure MPI parallelization without OpenMP threading add</p>
+<p>export OMP_NUM_THREADS&#x3D;1<br>export OMPI_ALLOW_RUN_AS_ROOT&#x3D;1<br>export OMPI_ALLOW_RUN_AS_ROOT_CONFIRM&#x3D;1<br>PATH&#x3D;$PATH:&#x2F;opt&#x2F;vasp.6.4.2&#x2F;bin_gnu_default<br>export PATH</p>
+<h1 id="singlarity-container-for-vasp"><a href="#singlarity-container-for-vasp" class="headerlink" title="singlarity container for vasp"></a>singlarity container for vasp</h1><p>.singularity.d&#x2F;env&#x2F;90-environment.sh<br>export OMPI_ALLOW_RUN_AS_ROOT&#x3D;1<br>export OMPI_ALLOW_RUN_AS_ROOT_CONFIRM&#x3D;1</p>
+<p>PATH&#x3D;$PATH:&#x2F;opt&#x2F;vasp.6.4.2&#x2F;bin<br>export PATH</p>
+<h2 id="in-makefile-include"><a href="#in-makefile-include" class="headerlink" title="in makefile.include"></a>in makefile.include</h2><p>OFLAG &#x3D; -O2 -march&#x3D;core-avx2 #使用amd的avx2指令集<br>…<br>OBJECTS &#x3D; fftmpiw.o fftmpi_map.o fft3dlib.o fftw3d.o $(MKLROOT)&#x2F;interfaces&#x2F;fftw3xf&#x2F;libfftw3xf_intel.a<br>…</p>
+<h2 id="in-bashrc"><a href="#in-bashrc" class="headerlink" title="in .bashrc"></a>in .bashrc</h2><p>export MKL_DEBUG_CPU_TYPE&#x3D;5<br>export MKL_CBWR&#x3D;AVX2<br>export I_MPI_PIN_DOMAIN&#x3D;numa</p>
+<p>in your ~&#x2F;.bashrc file.</p>
+<p>就目前而言，采用intel2019以及intel oneAPI在AMD平台上编译vasp具有可行性，按照和intel平台一样的编译方式，随后在bashrc里面加入export参数export MKL_DEBUG_CPU_TYPE&#x3D;5 和export MKL_CBWR&#x3D;AVX2即可。随后，对于第四代AMD EPYC（微型计算机2022 <a target="_blank" rel="noopener" href="http://www.bbs.cniti.combbs.cniti.com/index.php/article/index/id/16397%EF%BC%89%E6%8F%90%E5%88%B0%EF%BC%8C%E2%80%9CEPYC">http://www.bbs.cniti.combbs.cniti.com/index.php/article/index/id/16397）提到，“EPYC</a> 9554与EPYC 7763在双路配置性能上的对比。测试成绩显示尽管两款双路系统的核心数、线程数都为128核心、256线程配置，但使用新架构、DDR5内存，工作频率也更高的EPYC 9554在测试成绩上有非常显著的提升，其浮点运算性能较上一代产品提升了高达90.2%，整数运算性能也提升了多达62.2%。同时更为惊人的是，即便核心、线程数更少的EPYC 9374F双路系统（64核心、128线程）也战胜了核心、线程数翻倍的AMD EPYC 7763双路系统。”</p>
+<p>#Mapping of process to hardware resources<br>#For AMD EPYC processors it is recommended to use a single rank per L3 cache and set OMP_NUM_THREADS to the number of cores per L3 cache. Below is the example for 4th Gen EPYC processors with 8 cores per L3 cache, hence using OMP_NUM_THREADS&#x3D;8</p>
+<p>export NUM_CORES&#x3D;$(nproc)<br>export OMP_NUM_THREADS&#x3D;4<br>NUM_MPI_RANKS&#x3D;$(( $NUM_CORES &#x2F; $OMP_NUM_THREADS ))</p>
+<h1 id="Running-VASP"><a href="#Running-VASP" class="headerlink" title="Running VASP"></a>Running VASP</h1><p>mpirun -np $NUM_MPI_RANKS –map-by ppr:1:l3cache:pe&#x3D;$OMP_NUM_THREADS vasp_gam</p>
+<p>VASP AOCC</p>
+<h1 id="vasp-test"><a href="#vasp-test" class="headerlink" title="vasp test"></a>vasp test</h1><p>After building the <code>vasp_std</code>, <code>vasp_gam</code>, and <code>vasp_ncl</code><br>executables (e.g. by means of <code>make all</code>), you can test your<br>build by means of:</p>
+<pre><code>make test
+</code></pre>
+<p>(either in <code>root</code> or <code>root/testsuite</code>).</p>
+<p>The above will run a subset of tests from the testsuite (the so-called<br><code>FAST CATEGORY</code> of tests) that will take roughly 1.5 hours to complete<br>on 4 cores.</p>
+<p>The full testsuite may be executed by means of:</p>
+<pre><code>make test_all
+</code></pre>
+<p>The output of the tests (<code>stdout+stderr</code>) is written to<br><code>root/testsuite/testsuite.log</code>.</p>
+<p>Tests that fail write an <code>ERROR</code> to <code>root/testsuite/testsuite.log</code> and<br>the tests that were not passed successfully will be listed at the end of<br>this file (and <code>make</code> will exit in error).</p>
+<p>To clean up after running the testsuite, execute:</p>
+<pre><code>make cleantest
+</code></pre>
+<p>in <code>root/testsuite</code>.</p>
+<ul>
+<li><p><code>VASP_TESTSUITE_EXE_STD</code>:</p>
+<p> The command that runs the standard version of VASP.<br> Default:<br>VASP_TESTSUITE_EXE_STD&#x3D;”mpirun -np 12 &#x2F;home&#x2F;duguex&#x2F;vasp.6.4.2&#x2F;bin&#x2F;vasp_std”;VASP_TESTSUITE_EXE_GAM&#x3D;”mpirun -np 12 &#x2F;home&#x2F;duguex&#x2F;vasp.6.4.2&#x2F;bin&#x2F;vasp_gam”;VASP_TESTSUITE_EXE_NCL&#x3D;”mpirun -np 12 &#x2F;home&#x2F;duguex&#x2F;vasp.6.4.2&#x2F;bin&#x2F;vasp_ncl”<br><strong>N.B.</strong>: Specify the absolute path your <em>standard</em> executable<br>  (e.g. <code>vasp_std</code> or <code>vasp_gpu</code>).</p>
+</li>
+<li><p><code>VASP_TESTSUITE_EXE_GAM</code>:</p>
+<p>The command that runs the gamma-only version of VASP.<br>Default:<br>VASP_TESTSUITE_EXE_GAM&#x3D;”mpirun -np 12 &#x2F;home&#x2F;duguex&#x2F;vasp.6.4.2&#x2F;bin&#x2F;vasp_gam”<br><strong>N.B.</strong>: Specify the absolute path to your <em>gamma-only</em> executable<br>  (e.g. <code>vasp_gam</code>).</p>
+</li>
+<li><p><code>VASP_TESTSUITE_EXE_NCL</code>:</p>
+<p>The command that runs the non-collinear version of VASP.<br>Default:<br>VASP_TESTSUITE_EXE_NCL&#x3D;”mpirun -np 12 &#x2F;home&#x2F;duguex&#x2F;vasp.6.4.2&#x2F;bin&#x2F;vasp_ncl”<br><strong>N.B.</strong>: Specify the absolute path to your <em>non-collinear</em> executable<br>  (e.g. <code>vasp_ncl</code> or <code>vasp_gpu_ncl</code>).</p>
+</li>
+</ul>
+<h1 id="AMD-tricks"><a href="#AMD-tricks" class="headerlink" title="AMD tricks"></a>AMD tricks</h1><p>from <a target="_blank" rel="noopener" href="http://bbs.keinsci.com/thread-25445-1-1.html">http://bbs.keinsci.com/thread-25445-1-1.html</a></p>
+<h2 id="in-makefile-include-1"><a href="#in-makefile-include-1" class="headerlink" title="in makefile.include"></a>in makefile.include</h2><p>OFLAG &#x3D; -O2 -march&#x3D;core-avx2 #使用amd的avx2指令集<br>…<br>OBJECTS &#x3D; fftmpiw.o fftmpi_map.o fft3dlib.o fftw3d.o $(MKLROOT)&#x2F;interfaces&#x2F;fftw3xf&#x2F;libfftw3xf_intel.a<br>…</p>
+<h2 id="in-bashrc-1"><a href="#in-bashrc-1" class="headerlink" title="in .bashrc"></a>in .bashrc</h2><p>export MKL_DEBUG_CPU_TYPE&#x3D;5<br>export MKL_CBWR&#x3D;AVX2<br>export I_MPI_PIN_DOMAIN&#x3D;numa</p>
+<h1 id="VASP-segmentation-fault"><a href="#VASP-segmentation-fault" class="headerlink" title="VASP segmentation fault"></a>VASP segmentation fault</h1><p>如果有开发经验，可以回过去把makefile.include以及src&#x2F;makefile里面所有的编译器优化选项改成-O0 -g，然后重新编译，用gdb调试，不难定位到出问题的数组，然后控制变量法排除各种其他因素，最终找到可能的原因。这里就直接写结论了：这是一个编译器bug，github上的相关页面在这里：1、Flang runtime uses uninitialized value, causing memory leak and segfault 和 2、F08: Polymorphic assignment segfaults with empty abstract base type</p>
+<p>也就是说，flang编译器中的flang存在bug，AMD自家修改定制的AOCC自然也继承了这个bug，用它构建VASP 6.1，能成功编译，但不能成功运行，只能等之后flang的更新，看有没有修复这个bug了。AMD no！</p>
+<p>ldd <full_path>&#x2F;vasp_std</p>
+<p>Flang is a Fortran language front-end for LLVM, which is an open-source compiler infrastructure project. Flang is designed to support modern Fortran standards and provide a high-performance Fortran compiler. It is developed by the Flang community, which includes members from various organizations such as AMD, NVIDIA, and Cray. Flang is released under the LLVM license, which is a permissive open-source license.</p>
+<h1 id="solving-“Error-EDDDAV-Call-to-ZHEGV-failed-Returncode-xx”"><a href="#solving-“Error-EDDDAV-Call-to-ZHEGV-failed-Returncode-xx”" class="headerlink" title="solving “Error EDDDAV: Call to ZHEGV failed. Returncode &#x3D; xx”"></a>solving “Error EDDDAV: Call to ZHEGV failed. Returncode &#x3D; xx”</h1><p>I’ve tried several solutions proposed earlier in the forum:</p>
+<p>commenting out the line #define USE_ZHEEVX in rmm-diis.F, davidson.F, subrot.F, and wavpre_noio.F and recompiling</p>
+<p>using IALGO &#x3D; 48 (this just changes the error)</p>
+<p>using a different lapack</p>
+<p>adding “LSCALAPACK &#x3D; .FALSE.” in INCAR</p>
+<p>all of them unsuccessful.<br>Then I found something surprising: with exactly the same input files, I find the problem when using 32 cores (i.e. 4 nodes having each two quad-core Opterons) but not if using 24 cores (i.e. three nodes of the said type). The problem (in my case) seems thus to be related with the way in which the work is distributed among nodes. Then I found that the problem is also avoided if I suppress the line<br>LPLANE &#x3D; .FALSE.<br>which I had in my INCAR.<br>Hopefully this information can help others. Maybe there is also something to change in the code for future versions.</p>
+<h1 id="VASP-on-7402P"><a href="#VASP-on-7402P" class="headerlink" title="VASP on 7402P"></a>VASP on 7402P</h1><p>arch&#x2F;makefile.include.linux_gnu_omp</p>
+<p>I could compile the CPU version with gfortran 9.3 and the system libraries. You may need to install some packages:<br>sudo apt install libscalapack-openmpi-dev libfftw3-dev libopenblas-dev</p>
+<h1 id="Precompiler-options"><a href="#Precompiler-options" class="headerlink" title="Precompiler options"></a>Precompiler options</h1><p>CPP_OPTIONS&#x3D; -DHOST&#x3D;&quot;LinuxGNU&quot; <br>             -DMPI -DMPI_BLOCK&#x3D;8000 -Duse_collective <br>             -DscaLAPACK <br>             -DCACHE_SIZE&#x3D;4000 <br>             -Davoidalloc <br>             -Dvasp6 <br>             -Duse_bse_te <br>             -Dtbdyn <br>             -Dfock_dblbuf <br>             -D_OPENMP</p>
+<p>CPP        &#x3D; gcc -E -P -C -w $<em>$(FUFFIX) &gt;$</em>$(SUFFIX) $(CPP_OPTIONS)</p>
+<p>FC         &#x3D; mpif90 -fopenmp<br>FCL        &#x3D; mpif90 -fopenmp</p>
+<p>FREE       &#x3D; -ffree-form -ffree-line-length-none</p>
+<p>FFLAGS     &#x3D; -w -march&#x3D;native<br>OFLAG      &#x3D; -O2<br>OFLAG_IN   &#x3D; $(OFLAG)<br>DEBUG      &#x3D; -O0</p>
+<p>BLAS       &#x3D; -lopenblas<br>LAPACK     &#x3D;<br>BLACS      &#x3D;<br>SCALAPACK  &#x3D; -lscalapack-openmpi $(BLACS)</p>
+<p>LLIBS      &#x3D; $(SCALAPACK) $(LAPACK) $(BLAS)</p>
+<p>FFTW       ?&#x3D;<br>LLIBS      +&#x3D; -lfftw3 -lfftw3_omp<br>INCS       &#x3D; -I&#x2F;usr&#x2F;include</p>
+<p>OBJECTS    &#x3D; fftmpiw.o fftmpi_map.o  fftw3d.o  fft3dlib.o</p>
+<p>OBJECTS_O1 +&#x3D; fftw3d.o fftmpi.o fftmpiw.o<br>OBJECTS_O2 +&#x3D; fft3dlib.o</p>
+<h1 id="For-what-used-to-be-vasp-5-lib"><a href="#For-what-used-to-be-vasp-5-lib" class="headerlink" title="For what used to be vasp.5.lib"></a>For what used to be vasp.5.lib</h1><p>CPP_LIB    &#x3D; $(CPP)<br>FC_LIB     &#x3D; $(FC)<br>CC_LIB     &#x3D; gcc<br>CFLAGS_LIB &#x3D; -O<br>FFLAGS_LIB &#x3D; -O1<br>FREE_LIB   &#x3D; $(FREE)</p>
+<p>OBJECTS_LIB&#x3D; linpack_double.o getshmem.o</p>
+<h1 id="For-the-parser-library"><a href="#For-the-parser-library" class="headerlink" title="For the parser library"></a>For the parser library</h1><p>CXX_PARS   &#x3D; g++<br>LLIBS      +&#x3D; -lstdc++</p>
+<h3 id="For-the-fft-library"><a href="#For-the-fft-library" class="headerlink" title="For the fft library"></a>For the fft library</h3><p>##CXX_FFTLIB &#x3D; g++ -fopenmp -std&#x3D;c++11 -DFFTLIB_THREADSAFE<br>##INCS_FFTLIB&#x3D; -I.&#x2F;include -I$(FFTW)&#x2F;include<br>##LIBS       +&#x3D; fftlib<br>##LLIBS      +&#x3D; -ldl</p>
+<h1 id="Normally-no-need-to-change-this"><a href="#Normally-no-need-to-change-this" class="headerlink" title="Normally no need to change this"></a>Normally no need to change this</h1><p>SRCDIR     &#x3D; ..&#x2F;..&#x2F;src<br>BINDIR     &#x3D; ..&#x2F;..&#x2F;bin</p>
+<h1 id="run-VASP-on-EPYC"><a href="#run-VASP-on-EPYC" class="headerlink" title="run VASP on EPYC"></a>run VASP on EPYC</h1><p>mpirun -np 4 –map-by ppr:2:socket:PE&#x3D;12 –bind-to core <br>              -x OMP_NUM_THREADS&#x3D;12 -x OMP_STACKSIZE&#x3D;512m <br>              -x OMP_PLACES&#x3D;cores -x OMP_PROC_BIND&#x3D;close <br>              –report-bindings vasp_std</p>
+<p>export OMP_NUM_THREADS&#x3D;1</p>
+<p>I’m trying to compile VASP 6.3.2 using Intel oneAPI compiler and library suite on AMD Epyc 7713 64-core processors, as others have already mentioned that Intel compilers produce better performance than AMD’s own compiler (AOCC&#x2F;AOCL; I already used it and the executable works without issues). However, I’m having some issues using the included makefiles, and even after modifying some flags, the executable fails on some tests, and even crashes with Segmentation fault without further details. I understand that using Intel compilers on AMD processors is not entirely supported, but perhaps you could help me to identify the issue.</p>
+<p>Following suggestions in the Intel community forum and others, I tried setting the variable VASP_TARGET_CPU to either “-xHOST -msoft-float -msse -msse2 -msse3 -msse4” or “-march&#x3D;core-avx2”. Compilation succeeded with both flag sets, but the executable failed to pass the testsuite, and even crashed with Segmentation fault in several cases. I’ve attached the testsuite.log and compilation output.</p>
+<h1 id="VASP-on-ARM"><a href="#VASP-on-ARM" class="headerlink" title="VASP on ARM"></a>VASP on ARM</h1><p>I have installed VASP on my Macbook Pro 2021 (M1 Pro chip) and ran it without any issues. All external libraries were installed with macports, but I am sure that it will also work if these are compiled by hand.</p>
+<p>The following libraries were linked during the installation:</p>
+<ol>
+<li>HDF5</li>
+<li>FFTW3</li>
+<li>OPENBlas</li>
+<li>SCALAPACK</li>
+<li>Wannier90</li>
+</ol>
+<p>For compilers I used gcc10 and mpich, and libraries had openmp support. I include the makefile.include that I used.</p>
+<p>Cheers,<br>Pedro Melo</p>
+<p><a target="_blank" rel="noopener" href="https://gist.github.com/janosh/a484f3842b600b60cd575440e99455c0">https://gist.github.com/janosh/a484f3842b600b60cd575440e99455c0</a></p>
+<p><a target="_blank" rel="noopener" href="https://gist.github.com/duguex/60f382f8ac027f6c3007854ef895575d">https://gist.github.com/duguex/60f382f8ac027f6c3007854ef895575d</a></p>
+<h1 id="Optimizing-on-the-AMD-EPYC"><a href="#Optimizing-on-the-AMD-EPYC" class="headerlink" title="Optimizing on the AMD EPYC"></a>Optimizing on the AMD EPYC</h1><p>内存插满</p>
+<p>EPYC是大胶水CPU，每个CCX只有4C8T，靠I&#x2F;O die互联，所以高度NUMA，可以去BIOS里把这个原始的NUMA拓扑暴露出来，如果代码是NUMA-aware的性能应该会好不少</p>
+<p>第一，超微GEN11的板子对zen2 zen3支持多少有点问题，检查最新的bios更新<br>第二，最关键的一点，AMD的跨插槽性能下降比intel的厉害。如果有单路64C的选择，绝不要双路32C。4核心每通道的比例带来的性能增幅很有可能比不上跨插槽带来的性能下降。第三，ZEN2不是ZEN3，依然是每CCD 2个CCX，每个CCX4个zen 2 core，每个CCX共享8MB L3,到第五个核的时候涉及到跨CCX访问，延迟会明显加大 因此分配核心的基本单位是4核<br>第三，每个CPU你只分配了4条内存，7452只有128MB L3，而且还分了60核，跨CCX，跨插槽访问两个巨大的性能debuff你都遇上了，难看是必然的</p>
+<p>1，bios更新到最新，即把AGESA RomePI更到1.0.0.5，bios设置使用默认不要改动。<br>2，内存换16g*16（成本最低），或预算充足且512g内存也不会浪费的话再加8条同样的内存，即保证每路都开启8通道，你现在双路只插了8条，带宽只有标准的一半，这个损失还是很严重的。<br>3，fluent试用最新版（2021r1），去rhel&#x2F;centos下跑，-mpi&#x3D;intel试试，另外带上-platform&#x3D;intel参数开启avx2加速。</p>
+<ol start="3">
+<li><p>内存要用2R或者更多rank的，指令率1t的。指令率有多重要不用多说了。单一rank和多个rank的内存三级时序，也就是所谓的小时序不一样，虽然大时序也许都是23-23-23-28 1t，小时序的差别可以让内存带宽相差百分之十几。</p>
+</li>
+<li><p>BIOS设置里面把NUMA设置到NPS4。多核计算机NUMA的设置很重要。原则上按照机器结构有几层NUMA就设置到几，让CPU尽量就近访问内存。NPS1和NPS4的内存带宽可以差一倍。</p>
+</li>
+<li><p>关闭EPYC的内存加密功能。计算效率可以再提升3%～5%的样子。</p>
+</li>
+<li><p>考虑把内存降频到2933。EPYC 二代的IFOP不足，满血支持最大频率是2933，内存设置到3200会失去同步，延迟上升大概 35%的样子。自我测试给出来的结果是2933是计算快一点。软件设置繁杂，只拣着重要的说了。</p>
+</li>
+<li><p>关于其他软件设置细节，可以参考AMD官方文档HPC Tuning Guide，除了内存频率官推3200之外，别的都照着调试过确认是会快一点的。</p>
+</li>
+</ol>
+<p><img src="/image.png" alt="由于用在PowerEdge R6525服务器上的AMD EPYC 7742是顶配的64核，所以在每CPU配置8或8的倍数条内存时，双路带宽最高达到330 GB/s以上"></p>
+<p><img src="/image-1.png" alt="AMD EPYC2凭借将8个小的CCD（Core Die）和I/O Die分开的设计，再加上CCD使用7nm先进工艺，在核心数量上做到了64，超出Intel Xeon"><br>同时代价也是有的，那就是和第一代EPYC服务器CPU类似的片上NUMA（非一致性内存访问），尽管内存控制器都在中间那颗大的I&#x2F;O Die上<br><img src="/image-2.png" alt="如上图，ROME（EPYC2）的8个内存通道分别属于4个内存控制器，每2个CCD Die能够就近优化访问其中的一组，而跨越“四象限”的内存访问就不是最佳性能（延时/带宽）了"></p>
+<p><img src="/image-3.png" alt="上图出自一位发烧友兄弟之手，我不保证其中每一处细节都完全准确，不过这个用来辅助说明EPYC2的片上NUMA设计还是比较形象的"></p>
+<ul>
+<li><p>NPS 0——双CPU系统设置为1个NUMA节点（相当于Intel Xeon系统关闭NUMA），所有内存通道使用interleave交错访问模式；</p>
+</li>
+<li><p>NPS 1——每个CPU插槽1个NUMA节点（相当于Intel Xeon系统打开NUMA），连接到同一插槽的所有内存通道使用交错访问；</p>
+</li>
+<li><p>NPS 2——每个CPU插槽2个NUMA节点，划分为2个4内存通道的interleave集；</p>
+</li>
+<li><p>NPS 4——每插槽4个NUMA节点，在“四象限”各自的2通道内存间交错访问，相当于CPU to内存的亲和优化到每个内存控制器；</p>
+</li>
+</ul>
+<p><img src="/image-4.png" alt="引用Dell白皮书《Balanced Memory with 2nd Generation AMD EPYC Processors for PowerEdge Servers》中的一个表格"></p>
+<p>最右边一列应该都算非Balanced内存配置，不能做到4个内存控制器的DIMM配置完全对等。我看到过有的朋友建议，在AMDEPYC2服务器上应尽量少用达不到Balanced的插法——也就是说最好按照每颗CPU 4、8、12、16条内存来配。</p>
+<p>而在内存达到4和8的倍数时，为什么反而要建议NPS设为1或者0呢？我觉得这里是为了保守起见。毕竟许多传统应用没有NUMA优化、或者习惯于针对Intel Xeon每插槽一个NUMA节点来优化，这时AMD的片上NUMA如果打开有可能带来负面结果。</p>
+<p><img src="/image-5.png" alt="不是每一款AMD EPYC2 CPU都支持NPS 4"></p>
+<p>总的原则是，如果EPYC2的8个CCD都激活，那么一般就会支持到NPS 4；而如果只有8-16个核心并且都位于四象限的1-2组内存控制器附近，那么就可能不支持NPS 2和4。</p>
+<p>特别一点的是，像7552这样48核没有在四象限完全对称分布，所以也只支持到NPS2；而7262的8个核心反而均等处于四个象限，所以支持NPS4</p>
+<p><img src="/image-6.png" alt="来自Dell文档《NUMA Configuration settings on AMD EPYC 2nd Generation》的图表，是我认为本文中最有价值的"></p>
+<p>其中总结了4大类型的应用工作负载：</p>
+<p>通用工作负载建议NPS&#x3D;1。其中SPEC CPU测试和I&#x2F;O密集型应用是这方面的代表；SPEC的另外2套BenchMarkjbb2015和power ssj2008则适合NPS设为4&#x2F;2。</p>
+<p>虚拟化类应用可以设为NPS 1&#x2F;4。除了我以前介绍过的VDI，容器类应用也属于资源隔离比较好的，所以NPS建议也是4；但像VMmark 3这样测试虚机资源开销不等的复杂环境，NPS还是建议为1。</p>
+<p>数据库和分析类应用NPS1&#x2F;4。这里HammerDB对应的是OLTP交易型数据库，NPS建议设为1，其实按照Oracle用户的习惯，Intel CPU插槽间的NUMA通常也要关掉，否则一旦内存利用不均衡触发swap对性能影响较严重。Hadoop应该属于适合水平扩展的分析型应用，建议NPS设置4。</p>
+<p>高性能计算和电信类应用建议NPS 2&#x2F;4。HPC和EDA（电子设计自动化）可以把NPS设为4，基于OpenStack的NFV（网络功能虚拟化）又分细出一项实时Kernel的，都建议设置NPS 2</p>
+<p>引用AMD文档《RDBMS Tuning Guide for AMD EPYC 7002 Series Processors》侧面验证下上述观点：<br>对于通用（常规的）Oracle数据库，建议BIOS中每插槽的NUMA节点设为1，也就是NPS 1<br>对于微软SQL Server 2019，如果是OLTP也是建议NPS 1；DW数据挖掘（分析型）应用则可以根据情况来选择是否设置为2或者4</p>
+<p><img src="/image-7.png" alt="上图引用自Dell文档《The Value of Using Four-Channel Optimized AMD EPYC CPUs in PowerEdge Servers》"><br>左边CPU核心所在的CCD临近2组内存控制器，所以为4通道优化型；而右边CPU核心的CCD则分布于4组内存控制器附近，就是8通道优化型。那么在同样插4条内存的情况下，哪个性能更好？</p>
+<p><img src="/image-8.png" alt="Alt text"><br>上图用同为16核的EPYC 7282和7302进行对比（都配置4通道内存），CPU核心分布在更多CCD Die上的7302在主频、功耗和内存带宽指标上全面领先，但一些应用中性能反而落后。像Web Server、基于Web的Java应用以及内容创建（视频编辑、图像处理），此处就推荐使用AMD7282、7252一类4通道优化型的CPU。</p>
+<p>这应该就是核心相对集中的好处，7282每8个Core之间的内存数据能够享受就近访问的待遇；而7302的内存访问路径在I&#x2F;O Die上就相对复杂了。</p>
+<h1 id="zen2-zen3-微架构"><a href="#zen2-zen3-微架构" class="headerlink" title="zen2 zen3 微架构"></a>zen2 zen3 微架构</h1><p><img src="/image-9.png" alt="zen2 3900x"><br><img src="/image-11.png" alt="L3合并"><br><img src="/image-10.png" alt="zen3 5900x"></p>
+<h1 id="use-NCORE-8-for-ARM-CPU-96-core-TAISHAN-node"><a href="#use-NCORE-8-for-ARM-CPU-96-core-TAISHAN-node" class="headerlink" title="use NCORE&#x3D;8 for ARM-CPU 96-core TAISHAN node"></a>use NCORE&#x3D;8 for ARM-CPU 96-core TAISHAN node</h1><h1 id="cpu-优化"><a href="#cpu-优化" class="headerlink" title="cpu 优化"></a>cpu 优化</h1><p>这些都是编译器选项，用于指定生成的代码应该针对哪种类型的 CPU 进行优化。</p>
+<ul>
+<li><p><code>-march=native</code> 是 GCC 和 Clang 的一个选项，它指示编译器生成针对运行编译命令的机器的 CPU 的优化代码。这意味着编译出的程序将针对当前机器的 CPU 进行优化，可能无法在其他类型的 CPU 上运行。</p>
+</li>
+<li><p><code>-xHOST</code> 是 Intel 编译器的一个选项，它的作用和 <code>-march=native</code> 类似，也是指示编译器生成针对运行编译命令的机器的 CPU 的优化代码。</p>
+</li>
+<li><p><code>-tp host</code> 是 PGI 编译器的一个选项，它的作用和上面两个选项类似，也是指示编译器生成针对运行编译命令的机器的 CPU 的优化代码。</p>
+</li>
+</ul>
+<p>这三个选项的主要区别在于它们适用于不同的编译器。你应该根据你使用的编译器来选择合适的选项。</p>
+<h1 id="在软件开发中，”devel”（开发）和-“runtime”（运行时）通常指的是两种不同类型的软件包。"><a href="#在软件开发中，”devel”（开发）和-“runtime”（运行时）通常指的是两种不同类型的软件包。" class="headerlink" title="在软件开发中，”devel”（开发）和 “runtime”（运行时）通常指的是两种不同类型的软件包。"></a>在软件开发中，”devel”（开发）和 “runtime”（运行时）通常指的是两种不同类型的软件包。</h1><p>“devel” 软件包通常包含用于开发软件的文件，例如头文件（.h 文件）、源代码文件、链接库等。这些文件通常用于编译和链接程序。例如，如果你想要开发一个使用某个库的程序，你可能需要安装这个库的 “devel” 软件包。</p>
+<p>“runtime” 软件包通常包含用于运行软件的文件，例如二进制可执行文件、动态链接库、配置文件、数据文件等。这些文件通常在程序运行时被加载和使用。例如，如果你想要运行一个使用某个库的程序，你可能需要安装这个库的 “runtime” 软件包。</p>
+<p>在你的上下文中，<code>mpiexec -n 8 pytest --pyargs gpaw -v</code> 这个命令是在运行时环境中执行的，它使用 <code>mpiexec</code> 来并行运行 <code>pytest</code> 测试，测试的目标是 <code>gpaw</code> 包。</p>
+<p><a target="_blank" rel="noopener" href="https://tensorflow.google.cn/install/pip?hl=zh-cn#virtual-environment-install">https://tensorflow.google.cn/install/pip?hl=zh-cn#virtual-environment-install</a></p>
+<p><a target="_blank" rel="noopener" href="https://developer.nvidia.com/hpc-sdk-downloads">https://developer.nvidia.com/hpc-sdk-downloads</a><br><a target="_blank" rel="noopener" href="https://developer.nvidia.com/rdp/cudnn-download">https://developer.nvidia.com/rdp/cudnn-download</a><br><a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-downloads?target_os=Linux&target_arch=x86_64&Distribution=Ubuntu&target_version=22.04&target_type=deb_local">https://developer.nvidia.com/cuda-downloads?target_os=Linux&amp;target_arch=x86_64&amp;Distribution=Ubuntu&amp;target_version=22.04&amp;target_type=deb_local</a></p>
+<p>get key<br>wget <a target="_blank" rel="noopener" href="https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.0-1_all.deb">https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.0-1_all.deb</a></p>
+<p>wget <a target="_blank" rel="noopener" href="https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-ubuntu2204.pin">https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-ubuntu2204.pin</a><br>sudo mv cuda-ubuntu2204.pin<br>cuda-repository-pin-600<br>wget <a target="_blank" rel="noopener" href="https://developer.download.nvidia.com/compute/cuda/12.2.2/local_installers/cuda-repo-ubuntu2204-12-2-local_12.2.2-535.104.05-1_amd64.deb">https://developer.download.nvidia.com/compute/cuda/12.2.2/local_installers/cuda-repo-ubuntu2204-12-2-local_12.2.2-535.104.05-1_amd64.deb</a><br>sudo dpkg -i cuda-repo-ubuntu2204-12-2-local_12.2.2-535.104.05-1_amd64.deb<br>sudo cp &#x2F;var&#x2F;cuda-repo-ubuntu2204-12-2-local&#x2F;cuda-*-keyring.gpg &#x2F;usr&#x2F;share&#x2F;keyrings&#x2F;<br>sudo apt-get update<br>sudo apt-get -y install cuda</p>
+<p>wget <a target="_blank" rel="noopener" href="https://developer.download.nvidia.com/hpc-sdk/23.7/nvhpc_2023_237_Linux_x86_64_cuda_12.2.tar.gz">https://developer.download.nvidia.com/hpc-sdk/23.7/nvhpc_2023_237_Linux_x86_64_cuda_12.2.tar.gz</a><br>tar xpzf nvhpc_2023_237_Linux_x86_64_cuda_12.2.tar.gz<br>nvhpc_2023_237_Linux_x86_64_cuda_12.2&#x2F;install</p>
+<p><a target="_blank" rel="noopener" href="https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html">https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html</a></p>
+<p>your CUDA directory path is referred to as &#x2F;usr&#x2F;local&#x2F;cuda&#x2F;<br>your cuDNN download path is referred to as <cudnnpath></p>
+<p>Making symbolic link in &#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64</p>
+<p>generating environment modules for NV HPC SDK 23.7 … done.<br>Installation complete.<br>HPC SDK successfully installed into &#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk</p>
+<p>If you use the Environment Modules package, that is, the module load<br>command, the NVIDIA HPC SDK includes a script to set up the<br>appropriate module files.</p>
+<p>% module load &#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;modulefiles&#x2F;nvhpc&#x2F;23.7<br>% module load nvhpc&#x2F;23.7</p>
+<p>Alternatively, the shell environment may be initialized to use the HPC SDK.</p>
+<p>In csh, use these commands:</p>
+<p>% setenv MANPATH “$MANPATH”:&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.7&#x2F;compilers&#x2F;man<br>% set path &#x3D; (&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.7&#x2F;compilers&#x2F;bin $path)</p>
+<p>In bash, sh, or ksh, use these commands:</p>
+<p>MANPATH&#x3D;$MANPATH:&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.7&#x2F;compilers&#x2F;man; export MANPATH<br>PATH&#x3D;&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.7&#x2F;compilers&#x2F;bin:$PATH; export PATH</p>
+<p>Once the 64-bit compilers are available, you can make the OpenMPI<br>commands and man pages accessible using these commands.</p>
+<p>% set path &#x3D; (&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.7&#x2F;comm_libs&#x2F;mpi&#x2F;bin $path)<br>% setenv MANPATH “$MANPATH”:&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.7&#x2F;comm_libs&#x2F;mpi&#x2F;man<br>In bash, sh, or ksh, use these commands:</p>
+<p>MANPATH&#x3D;$MANPATH:&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.7&#x2F;compilers&#x2F;man; export MANPATH<br>PATH&#x3D;&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.7&#x2F;compilers&#x2F;bin:$PATH; export PATH</p>
+<p>Once the 64-bit compilers are available, you can make the OpenMPI<br>commands and man pages accessible using these commands.</p>
+<p>% set path &#x3D; (&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.7&#x2F;comm_libs&#x2F;mpi&#x2F;bin $path)<br>% setenv MANPATH “$MANPATH”:&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.7&#x2F;comm_libs&#x2F;mpi&#x2F;man</p>
+<p>And the equivalent in bash, sh, and ksh:</p>
+<p>export PATH&#x3D;&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.7&#x2F;comm_libs&#x2F;mpi&#x2F;bin:$PATH<br>export MANPATH&#x3D;$MANPATH:&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.7&#x2F;comm_libs&#x2F;mpi&#x2F;man</p>
+<p>Please check <a target="_blank" rel="noopener" href="https://developer.nvidia.com/">https://developer.nvidia.com</a> for documentation,<br>use of NVIDIA HPC SDK software, and other questions.</p>
+<p>Before issuing the following commands, you must replace X.Y and v8.x.x.x with your specific CUDA and cuDNN versions and package date.</p>
+<p>Navigate to your <cudnnpath> directory containing the cuDNN tar file.<br>Unzip the cuDNN package.<br>tar -xvf cudnn-linux-$arch-8.x.x.x_cudaX.Y-archive.tar.xz</p>
+<p>Where ${arch} is x86_64, sbsa, or ppc64le.</p>
+<p>Copy the following files into the CUDA toolkit directory.</p>
+<p>sudo cp cudnn-<em>-archive&#x2F;include&#x2F;cudnn</em>.h &#x2F;usr&#x2F;local&#x2F;cuda&#x2F;include<br>sudo cp -P cudnn-<em>-archive&#x2F;lib&#x2F;libcudnn</em> &#x2F;usr&#x2F;local&#x2F;cuda&#x2F;lib64<br>sudo chmod a+r &#x2F;usr&#x2F;local&#x2F;cuda&#x2F;include&#x2F;cudnn*.h &#x2F;usr&#x2F;local&#x2F;cuda&#x2F;lib64&#x2F;libcudnn*</p>
+<h1 id="nvidia-hpc-sdk-FFTW"><a href="#nvidia-hpc-sdk-FFTW" class="headerlink" title="nvidia hpc sdk FFTW"></a>nvidia hpc sdk FFTW</h1><p>NVIDIA HPC SDK（NVHPC）并不直接包含 FFTW 库，但它包含了一个名为 cuFFT 的库，这是一个在 NVIDIA GPU 上运行的 FFTW 兼容库。</p>
+<p>如果你需要在 NVHPC 中使用 FFTW，你有两个选择：</p>
+<ol>
+<li><p>使用 cuFFT。你可以在你的代码中使用 cuFFT 的 API，这些 API 和 FFTW 的 API 非常相似。你可以在 NVHPC 的安装目录下的 <code>CUDAToolkit/include</code> 目录中找到 cuFFT 的头文件，例如 <code>/opt/nvidia/hpc_sdk/Linux_x86_64/21.3/cuda/11.2/include/cufft.h</code>。</p>
+</li>
+<li><p>自行安装 FFTW。你可以从 FFTW 的官方网站下载 FFTW 的源代码，然后使用 NVHPC 来编译它。你需要在编译 FFTW 时指定 NVHPC 作为编译器，例如 <code>./configure CC=nvc CFLAGS=&#39;-fast -tp=haswell&#39;</code>。</p>
+</li>
+</ol>
+<p>请注意，这些路径可能会根据你的 NVHPC 的安装位置和版本有所不同。你应该根据你的实际情况来修改这些路径。</p>
+<h2 id="cc60-cc70-cc80"><a href="#cc60-cc70-cc80" class="headerlink" title="cc60,cc70,cc80"></a>cc60,cc70,cc80</h2><p>-gpu&#x3D;cc60,cc70,cc80 是一个编译选项，用于指定 NVIDIA 编译器（如 NVCC 或 NVHPC）生成的 GPU 代码应该针对哪些计算能力（Compute Capability）的 GPU 进行优化。</p>
+<p>在这个选项中，cc60、cc70 和 cc80 分别代表计算能力 6.0、7.0 和 8.0 的 GPU。这些计算能力对应于不同的 GPU 架构：</p>
+<p>cc60 对应于 Pascal 架构，例如 GTX 1080。 P100<br>cc70 对应于 Volta 架构，例如 Tesla V100。<br>cc80 对应于 Ampere 架构，例如 RTX 3080。<br>这个选项意味着编译出的程序将包含针对这三种计算能力的 GPU 的优化代码，可以在这些 GPU 上运行。如果你的 GPU 的计算能力不在这个列表中，编译出的程序可能无法在你的 GPU 上运行。</p>
+<h1 id="compile-oneapi-VASP"><a href="#compile-oneapi-VASP" class="headerlink" title="compile oneapi VASP"></a>compile oneapi VASP</h1><p><a target="_blank" rel="noopener" href="https://implant.fs.cvut.cz/vasp-intel-compilation/">https://implant.fs.cvut.cz/vasp-intel-compilation/</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br><span class="line">282</span><br><span class="line">283</span><br><span class="line">284</span><br><span class="line">285</span><br><span class="line">286</span><br><span class="line">287</span><br><span class="line">288</span><br><span class="line">289</span><br><span class="line">290</span><br><span class="line">291</span><br><span class="line">292</span><br><span class="line">293</span><br><span class="line">294</span><br><span class="line">295</span><br><span class="line">296</span><br><span class="line">297</span><br><span class="line">298</span><br><span class="line">299</span><br><span class="line">300</span><br><span class="line">301</span><br><span class="line">302</span><br><span class="line">303</span><br><span class="line">304</span><br><span class="line">305</span><br><span class="line">306</span><br><span class="line">307</span><br><span class="line">308</span><br><span class="line">309</span><br><span class="line">310</span><br><span class="line">311</span><br><span class="line">312</span><br><span class="line">313</span><br><span class="line">314</span><br><span class="line">315</span><br><span class="line">316</span><br><span class="line">317</span><br><span class="line">318</span><br><span class="line">319</span><br><span class="line">320</span><br><span class="line">321</span><br><span class="line">322</span><br><span class="line">323</span><br><span class="line">324</span><br><span class="line">325</span><br><span class="line">326</span><br><span class="line">327</span><br><span class="line">328</span><br><span class="line">329</span><br><span class="line">330</span><br><span class="line">331</span><br><span class="line">332</span><br><span class="line">333</span><br></pre></td><td class="code"><pre><span class="line">Compile VASP (6.4.1) within WSL2 Ubuntu using Intel compilers (oneAPI), supporting MKL accelerator and HDF5</span><br><span class="line">Full description <span class="keyword">for</span> the video: https://youtu.be/_XqB2aADg4Q</span><br><span class="line"></span><br><span class="line">Compiled version: VASP 6.4.1</span><br><span class="line">(10/11/2023)</span><br><span class="line">Contact: lebedmi2@cvut.cz</span><br><span class="line"></span><br><span class="line">Official documentation <span class="keyword">for</span> compiling VASP: https://www.vasp.at/wiki/index.php/Installing_VASP.6.X.X</span><br><span class="line">Official documentation <span class="keyword">for</span> makefiles: https://www.vasp.at/wiki/index.php/Makefile.include</span><br><span class="line"></span><br><span class="line">Tested PC:</span><br><span class="line">Intel(R) Core(TM) i5-14600K 3.50 GHz</span><br><span class="line">RTX 2060 SUPER</span><br><span class="line">Kingston FURY 32GB KIT DDR5 6000MHz CL32 Renegade</span><br><span class="line">WSL2 Ubuntu version: 22.04</span><br><span class="line">Steps:</span><br><span class="line">1) Compile Intel oneAPI Base Toolkit.</span><br><span class="line">2) Compile Intel® HPC Toolkit.</span><br><span class="line">3) Compile OpenMPI using Intel oneAPI compilers.</span><br><span class="line">4) Compile HDF5 using Intel oneAPI compilers to support h5 output format from VASP (useful <span class="keyword">for</span> example when post-processing data with py4vasp)</span><br><span class="line">5) Compile VASP using Intel oneAPI compilers.</span><br><span class="line"> </span><br><span class="line"> </span><br><span class="line">Prerequisites:</span><br><span class="line">Not all are necessary but might be useful: </span><br><span class="line">sudo apt update</span><br><span class="line">sudo apt upgrade</span><br><span class="line">sudo apt-get install build-essential cmake cmake-curses-gui libopenmpi-dev openmpi-bin libfftw3-dev</span><br><span class="line"> </span><br><span class="line">Intel oneAPI Base Toolkit</span><br><span class="line">Download the newest version from https://www.intel.com/content/www/us/en/developer/tools/oneapi/base-toolkit-download.html?operatingsystem=linux&amp;distributions=onlinehttps://developer.nvidia.com/hpc-sdk-downloads:</span><br><span class="line"></span><br><span class="line">wget https://registrationcenter-download.intel.com/akdlm/IRC_NAS/1b2baedd-a757-4a79-8abb-a5bf15adae9a/l_HPCKit_p_2024.0.0.49589.sh</span><br><span class="line">sudo sh ./l_HPCKit_p_2024.0.0.49589.sh</span><br><span class="line">Continue with the installation according to the instructions (accept terms, recommended installation, ignore warnings about GUI and <span class="built_in">continue</span>, skip Enclipse configuration).</span><br><span class="line"></span><br><span class="line">Activate the oneAPI with: </span><br><span class="line"></span><br><span class="line"><span class="built_in">source</span> /opt/intel/oneapi/setvars.sh</span><br><span class="line">Add MKL to the ~/.bashrc:</span><br><span class="line"></span><br><span class="line">nano ~/.bashrc</span><br><span class="line"><span class="built_in">export</span> PATH=/opt/intel/oneapi/mkl/2024.0:<span class="variable">$PATH</span></span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=/opt/intel/oneapi/mkl/2024.0/lib/intel64:<span class="variable">$LD_LIBRARY_PATH</span></span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=/opt/intel/oneapi/compiler/2024.0/lib:<span class="variable">$LD_LIBRARY_PATH</span></span><br><span class="line"> </span><br><span class="line">Intel® HPC Toolkit</span><br><span class="line">Download the newest version from https://www.intel.com/content/www/us/en/developer/tools/oneapi/hpc-toolkit-download.html?operatingsystem=linux&amp;distributions=online:</span><br><span class="line"></span><br><span class="line">wget https://registrationcenter-download.intel.com/akdlm/IRC_NAS/1b2baedd-a757-4a79-8abb-a5bf15adae9a/l_HPCKit_p_2024.0.0.49589.sh</span><br><span class="line">sudo sh ./l_HPCKit_p_2024.0.0.49589.sh</span><br><span class="line">Activate the oneAPI with: </span><br><span class="line"></span><br><span class="line"><span class="built_in">source</span> /opt/intel/oneapi/setvars.sh</span><br><span class="line"> </span><br><span class="line">OpenMPI compiled with oneAPI</span><br><span class="line">Download OpenMPI (use wget <span class="built_in">command</span> or download from here https://www.open-mpi.org/software/ompi/v5.0/) and compile:</span><br><span class="line"></span><br><span class="line">wget https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.0.tar.gz</span><br><span class="line"><span class="built_in">mkdir</span> OpenMPI_Intel</span><br><span class="line">tar xvzf openmpi-5.0.0.tar.gz -C OpenMPI_Intel</span><br><span class="line"><span class="built_in">cd</span> OpenMPI_Intel/openmpi-5.0.0</span><br><span class="line"><span class="built_in">mkdir</span> build</span><br><span class="line">./configure CC=icx CXX=icpx FC=ifort F77=ifort OMPI_CC=icx OMPI_CXX=icpx OMPI_FC=ifort OMPI_F77=ifort --prefix=/home/lebedmi2/SOFTWARE/OpenMPI/openmpi_intel/openmpi-5.0.0/build</span><br><span class="line">make install -j</span><br><span class="line">Activate it (either write the following into the last line of bashrc <span class="keyword">for</span> permanent activation or write it directly into the console <span class="keyword">for</span> temporal activation):</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> PATH=/home/lebedmi2/SOFTWARE/OpenMPI/OpenMPI_Intel/openmpi-5.0.0/build/bin:<span class="variable">$PATH</span></span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=/home/lebedmi2/SOFTWARE/OpenMPI/OpenMPI_Intel/openmpi-5.0.0/build/lib:<span class="variable">$LD_LIBRARY_PATH</span></span><br><span class="line"> </span><br><span class="line">HDF5 compiled with oneAPI</span><br><span class="line">Create a new folder <span class="built_in">where</span> HDF5 will be compiled:</span><br><span class="line"></span><br><span class="line"><span class="built_in">mkdir</span> HDF5_Intel</span><br><span class="line"><span class="built_in">cd</span> HDF5_Intel</span><br><span class="line">Download into this folder Cmake version of HDF5 from https://www.hdfgroup.org/downloads/hdf5/source-code/<span class="comment">#:</span></span><br><span class="line"></span><br><span class="line">tar xvzf CMake-hdf5-1.14.3.tar.gz</span><br><span class="line"><span class="built_in">cd</span> CMake-hdf5-1.14.3/</span><br><span class="line">Compile LIBAEC and ZLib downloaded with HDF5:</span><br><span class="line"></span><br><span class="line">tar xvzf LIBAEC.tar.gz</span><br><span class="line">tar xvzf ZLib.tar.gz</span><br><span class="line"><span class="built_in">cd</span> libaec-v1.0.6</span><br><span class="line"><span class="built_in">mkdir</span> build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">cmake ..</span><br><span class="line">sudo make install</span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line"><span class="built_in">cd</span> zlib-1.3</span><br><span class="line"><span class="built_in">mkdir</span> build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">cmake ..</span><br><span class="line">sudo make install</span><br><span class="line">Add libsz.so to path:</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=/usr/local/lib:<span class="variable">$LD_LIBRARY_PATH</span></span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line">Copy hdf5-1.14.3 <span class="built_in">source</span> to the HDF5_Intel <span class="built_in">dir</span>:</span><br><span class="line"></span><br><span class="line"><span class="built_in">cp</span> -r hdf5-1.14.3/ ..</span><br><span class="line">In HDF5_Intel <span class="built_in">dir</span>, make a new directory called “myhdfstuff”. Without this called folder, compilation is problematic:</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ..</span><br><span class="line"><span class="built_in">mkdir</span> myhdfstuff</span><br><span class="line">Copy the <span class="built_in">source</span> files <span class="keyword">in</span> hdf5-1.14.3 to myhdfstuff:</span><br><span class="line"></span><br><span class="line"><span class="built_in">cp</span> -r hdf5-1.14.3/ myhdfstuff/</span><br><span class="line">Build HDF5:</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> myhdfstuff</span><br><span class="line"><span class="built_in">mkdir</span> build</span><br><span class="line"><span class="built_in">cd</span> build</span><br><span class="line">cmake -G <span class="string">&quot;Unix Makefiles&quot;</span> -DBUILD_SHARED_LIBS:BOOL=ON -DHDF5_BUILD_FORTRAN=YES -DHDF5_BUILD_TOOLS:BOOL=ON -DCMAKE_C_COMPILER=icx ../hdf5-1.14.3 </span><br><span class="line">cmake --build . --config Release -j</span><br><span class="line">cpack -C Release CPackConfig.cmake</span><br><span class="line">./HDF5-1.14.3-Linux.sh </span><br><span class="line">Scroll down with enter, accept license with “y”, and write “n” to have it installed <span class="keyword">in</span> the build directory.</span><br><span class="line">Before running the simulations with this version, make sure to either permanently or temporally <span class="built_in">export</span> HDF5 directory to system variables:</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> PATH=/home/lebedmi2/SOFTWARE/HDF5_Intel/myhdfstuff/build/HDF_Group/HDF5/1.14.3/bin:<span class="variable">$PATH</span></span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=/home/lebedmi2/SOFTWARE/HDF5_Intel/myhdfstuff/build/HDF_Group/HDF5/1.14.3/lib:<span class="variable">$LD_LIBRARY_PATH</span></span><br><span class="line"> </span><br><span class="line">VASP compiled with oneAPI and MKL support</span><br><span class="line">tar xvzf vasp.6.4.1.tgz</span><br><span class="line"><span class="built_in">mv</span> vasp.6.4.1 vasp.6.4.1_Intel_MKL</span><br><span class="line"><span class="built_in">cd</span> vasp.6.4.1_Intel_MKL</span><br><span class="line"><span class="built_in">cd</span> vasp.6.4.1</span><br><span class="line">To run commands without sudo (otherwise you could face problems with paths, see below this section), give rights to the currect user <span class="keyword">for</span> the vasp.6.4.1 folder (change only the username ‚lebedmi2‘ <span class="keyword">in</span> the following <span class="built_in">command</span>. You can check name of the user with <span class="built_in">command</span> ‚<span class="built_in">whoami</span>‚):</span><br><span class="line"></span><br><span class="line">sudo <span class="built_in">chown</span> -R lebedmi2 .</span><br><span class="line">Create makefile.include file:</span><br><span class="line"></span><br><span class="line">nano makefile.include</span><br><span class="line">Into makefile.include, copy here from: makefile.include.intel_ompi_mkl_omp_acc (https://www.vasp.at/wiki/index.php/Makefile.include.intel_ompi_mkl_omp or find it <span class="keyword">in</span> <span class="built_in">arch</span> folder of your VASP)..</span><br><span class="line"></span><br><span class="line">In makefile.include, <span class="built_in">set</span> the paths to to MKL (MKLROOT) and HDF5 (HDF5_ROOT). You must also change icc to icx and icpc to icpx. icc and icpc are depreceated and no longer included <span class="keyword">in</span> newer versions of oneAPI.</span><br><span class="line"></span><br><span class="line">MKLROOT    ?= /opt/intel/oneapi/mkl/2024.0</span><br><span class="line">HDF5_ROOT  ?= /home/lebedmi2/SOFTWARE/HDF5_Intel/myhdfstuff/build/HDF_Group/HDF5/1.14.3</span><br><span class="line">CC_LIB = icx</span><br><span class="line">CXX_PARS = icpx</span><br><span class="line">Compile vasp:</span><br><span class="line"></span><br><span class="line">make DEPS=1 -j</span><br><span class="line">It will take some time. If no error appeared, check <span class="keyword">if</span> all libraries are correctly <span class="built_in">set</span> and none are missing:</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> bin</span><br><span class="line">ldd vasp_std</span><br><span class="line">Export number of threads to bashrc:</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> OMP_NUM_THREADS=2</span><br><span class="line">Try <span class="keyword">if</span> the compiled version is working (write the following <span class="built_in">command</span> <span class="keyword">in</span> the same directory <span class="built_in">where</span> the makefile.include is. It should give computed values and no errors):</span><br><span class="line"></span><br><span class="line">make <span class="built_in">test</span> -j </span><br><span class="line">If more than one vasp compilation will be installed on the computer, rename the binary:</span><br><span class="line"></span><br><span class="line"><span class="built_in">mv</span> vasp_std vasp_intel</span><br><span class="line">Add path vasp_intel_mkl to bashrc:</span><br><span class="line"></span><br><span class="line"><span class="built_in">export</span> PATH=/home/lebedmi2/SOFTWARE/VASP/vasp.6.4.1_INTEL/vasp.6.4.1/bin:<span class="variable">$PATH</span></span><br><span class="line"> </span><br><span class="line">Run the simulations with VASP Intel, MKL:</span><br><span class="line">Before running the simulations, all the following should be exported (<span class="keyword">if</span> they are not <span class="built_in">set</span> permanently <span class="keyword">in</span> ~/.bashrc). In my <span class="keyword">case</span>:</span><br><span class="line"></span><br><span class="line"><span class="comment">#Intel compilers, libraries</span></span><br><span class="line"><span class="built_in">source</span> /opt/intel/oneapi/setvars.sh</span><br><span class="line"><span class="comment">#OpenMPI compiled with oneAPI</span></span><br><span class="line"><span class="built_in">export</span> PATH=/home/lebedmi2/SOFTWARE/OpenMPI/openmpi_intel/openmpi-5.0.0/build/bin:<span class="variable">$PATH</span></span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=/home/lebedmi2/SOFTWARE/OpenMPI/openmpi_intel/openmpi-5.0.0/build/lib:<span class="variable">$LD_LIBRARY_PATH</span></span><br><span class="line"><span class="comment">#HDF5 compiled with oneApi</span></span><br><span class="line"><span class="built_in">export</span> PATH=/home/lebedmi2/SOFTWARE/HDF5_Intel/myhdfstuff/build/HDF_Group/HDF5/1.14.3/bin:<span class="variable">$PATH</span></span><br><span class="line"><span class="built_in">export</span> LD_LIBRARY_PATH=/home/lebedmi2/SOFTWARE/HDF5_Intel/myhdfstuff/build/HDF_Group/HDF5/1.14.3/lib:<span class="variable">$LD_LIBRARY_PATH</span></span><br><span class="line">Then run with, e.g.:</span><br><span class="line"></span><br><span class="line">mpirun -np 4 vasp_intel </span><br><span class="line">To run on all processors and threads:</span><br><span class="line"></span><br><span class="line">mpirun --use-hwthread -np N vasp_intel</span><br><span class="line">This may not always be effective, as it depends on the simulation settings and size of the simulated system. For example, with 72 Cr atoms, 10 DAV iterations, 3x3x3 k-sampling, and 350 eV Ecut:</span><br><span class="line"></span><br><span class="line">Command	Elapsed time (s)</span><br><span class="line">mpirun -np 1 vasp_intel</span><br><span class="line">mpirun -np 1 vasp_aocc_aocl, AOCC, AOCL on Intel processor</span><br><span class="line">mpirun -np 1 vasp_gcc_mkl, GNU with MKL</span><br><span class="line">mpirun -np 1 vasp_gpu_mkl ,GPU RTX 2060 SUPER	1289</span><br><span class="line">1519</span><br><span class="line">1394</span><br><span class="line">339</span><br><span class="line">mpirun -np 4 vasp_intel	 293</span><br><span class="line"> mpirun -np 7 vasp_intel	 341</span><br><span class="line">mpirun -np N vasp_intel (N = 10)	 326</span><br><span class="line">mpirun –use-hwthread -np N vasp_intel	 251</span><br><span class="line">The last <span class="built_in">command</span> is running as: 20 mpi-ranks, with 2 threads/rank, on 1 nodes</span><br><span class="line">distrk: each k-point on 20 cores, 1 <span class="built_in">groups</span></span><br><span class="line"></span><br><span class="line">Encountered problems</span><br><span class="line">When running the computation on smaller number of cores, I needed to solve the following error by writting into console:</span><br><span class="line"></span><br><span class="line"><span class="built_in">ulimit</span> -s unlimited</span><br><span class="line">It removes the maximum size restriction on the stack memory <span class="keyword">for</span> programs <span class="keyword">in</span> a Unix-like system, allowing them to use as much stack space as needed.</span><br><span class="line"></span><br><span class="line">forrtl: severe (174): SIGSEGV, segmentation fault occurred</span><br><span class="line">Image PC Routine Line Source</span><br><span class="line">libc.so.6 00007F0D603C9520 Unknown Unknown Unknown</span><br><span class="line">vasp_intel 000000000099B52F Unknown Unknown Unknown</span><br><span class="line">vasp_intel 0000000001209389 Unknown Unknown Unknown</span><br><span class="line">vasp_intel 00000000012A28BB Unknown Unknown Unknown</span><br><span class="line">vasp_intel 0000000001DE5F26 Unknown Unknown Unknown</span><br><span class="line">vasp_intel 0000000001DBD0EA Unknown Unknown Unknown</span><br><span class="line">vasp_intel 000000000041CCED Unknown Unknown Unknown</span><br><span class="line">libc.so.6 00007F0D603B0D90 Unknown Unknown Unknown</span><br><span class="line">libc.so.6 00007F0D603B0E40 __libc_start_main Unknown Unknown</span><br><span class="line">vasp_intel 000000000041CC05 Unknown Unknown Unknown</span><br><span class="line">Solving possible problem with PATHs</span><br><span class="line">In my ‚makefile‘ (it is <span class="keyword">in</span> the same location <span class="built_in">where</span> makefile.include is), I added the following at the first line to check <span class="built_in">which</span> environmental paths are accessible during compilation:</span><br><span class="line"></span><br><span class="line">show-path:</span><br><span class="line">      @<span class="built_in">echo</span> <span class="string">&quot;Current PATH: $<span class="variable">$PATH</span>&quot;</span></span><br><span class="line">When executing ‚make‚, it shows the correct paths (including the path to nvfortran).</span><br><span class="line">When executing ‚sudo make‚, it shows:</span><br><span class="line">Current PATH: /usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin</span><br><span class="line">These are pre-set secure PATHs used by sudo, not the ones I have <span class="built_in">set</span> <span class="keyword">in</span> ~/.bashrc needed <span class="keyword">for</span> the compilation. The other way how to check the secure paths is to write ‚sudo <span class="built_in">env</span>‚ and see the row starting with ‚PATH‘.</span><br><span class="line"></span><br><span class="line">To have access to paths <span class="keyword">in</span> ~/.bashrc, I would need to run the compilation without sudo, but doing so results <span class="keyword">in</span> a ‚permission denied‘ error <span class="keyword">for</span> some files.</span><br><span class="line"></span><br><span class="line">You can address this by one of the following options (the first one is the most straightforward):</span><br><span class="line"></span><br><span class="line">1) Change the ownership of the folder with VASP and all its content to the user to be able to run ‚make‘ without sudo:</span><br><span class="line"></span><br><span class="line">sudo <span class="built_in">chown</span> -R lebedmi ~/SOFTWARE/VASP/v.6.4.1/vasp.6.4.1</span><br><span class="line">Change the ‚lebedmi‚ <span class="keyword">for</span> your username (you can check it with <span class="built_in">command</span> ‚<span class="built_in">whoami</span>‘) and modify ‚~/SOFTWARE/VASP/v.6.4.1/vasp.6.4.1‚ to the extracted directory with your VASP. Then you can run the compilation as ‚make DEPS=1 -j4‚).</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">2) First remove preset /mnt/ folders from the environment variables by writingthe following <span class="built_in">command</span> to the last line of bashrc (otherwise I was getting error: <span class="built_in">env</span>: ‘Files/NVIDIA’: No such file or directory):</span><br><span class="line"></span><br><span class="line">nano ~/.bashrc</span><br><span class="line"><span class="built_in">export</span> PATH=$(<span class="built_in">echo</span> <span class="string">&quot;<span class="variable">$PATH</span>&quot;</span> | <span class="built_in">tr</span> <span class="string">&#x27;:&#x27;</span> <span class="string">&#x27;\n&#x27;</span> | grep -v <span class="string">&#x27;/mnt/c&#x27;</span> | <span class="built_in">tr</span> <span class="string">&#x27;\n&#x27;</span> <span class="string">&#x27;:&#x27;</span>)</span><br><span class="line">Save and <span class="built_in">exit</span>, <span class="keyword">then</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">source</span> ~/.bashrc</span><br><span class="line">Now you can compile by running the sudo <span class="built_in">command</span> with ‚<span class="built_in">env</span> PATH=<span class="variable">$PATH</span>‘, e.g.:</span><br><span class="line"></span><br><span class="line">sudo <span class="built_in">env</span> PATH=<span class="variable">$PATH</span> make DEPS=1 -j4</span><br><span class="line">3) Write ‚sudo visudo‘ and on the row starting with ‚Defaults secure_path=“…..‘ add the paths you need to have access when running <span class="built_in">command</span> with ‚sudo‘</span><br><span class="line"></span><br><span class="line"> </span><br><span class="line"></span><br><span class="line">Calculation speed comparison</span><br><span class="line">---&gt; HERE &lt;---</span><br><span class="line">Content of makefile.include <span class="keyword">for</span> VASP Intel MKL compilation:</span><br><span class="line"><span class="comment">#export MKLROOT=/opt/intel/oneapi/mkl/2024.0</span></span><br><span class="line"><span class="comment"># Default precompiler options</span></span><br><span class="line">CPP_OPTIONS = -DHOST=\&quot;LinuxIFC\&quot; \</span><br><span class="line">              -DMPI -DMPI_BLOCK=8000 -Duse_collective \</span><br><span class="line">              -DscaLAPACK \</span><br><span class="line">              -DCACHE_SIZE=4000 \</span><br><span class="line">              -Davoidalloc \</span><br><span class="line">              -Dvasp6 \</span><br><span class="line">              -Duse_bse_te \</span><br><span class="line">              -Dtbdyn \</span><br><span class="line">              -Dfock_dblbuf \</span><br><span class="line">              -D_OPENMP</span><br><span class="line"></span><br><span class="line">CPP         = fpp -f_com=no -free -w0  $*$(FUFFIX) $*$(SUFFIX) $(CPP_OPTIONS)</span><br><span class="line"></span><br><span class="line">FC          = mpif90 -qopenmp</span><br><span class="line">FCL         = mpif90</span><br><span class="line"></span><br><span class="line">FREE        = -free -names lowercase</span><br><span class="line"></span><br><span class="line">FFLAGS      = -assume byterecl -w</span><br><span class="line"></span><br><span class="line">OFLAG       = -O2</span><br><span class="line">OFLAG_IN    = $(OFLAG)</span><br><span class="line">DEBUG       = -O0</span><br><span class="line"></span><br><span class="line">OBJECTS     = fftmpiw.o fftmpi_map.o fftw3d.o fft3dlib.o</span><br><span class="line">OBJECTS_O1 += fftw3d.o fftmpi.o fftmpiw.o</span><br><span class="line">OBJECTS_O2 += fft3dlib.o</span><br><span class="line"></span><br><span class="line"><span class="comment"># For what used to be vasp.5.lib</span></span><br><span class="line">CPP_LIB     = $(CPP)</span><br><span class="line">FC_LIB      = $(FC)</span><br><span class="line">CC_LIB      = icx</span><br><span class="line">CFLAGS_LIB  = -O</span><br><span class="line">FFLAGS_LIB  = -O1</span><br><span class="line">FREE_LIB    = $(FREE)</span><br><span class="line"></span><br><span class="line">OBJECTS_LIB = linpack_double.o</span><br><span class="line"></span><br><span class="line"><span class="comment"># For the parser library</span></span><br><span class="line">CXX_PARS    = icpx</span><br><span class="line">LLIBS       = -lstdc++</span><br><span class="line"></span><br><span class="line"><span class="comment">##</span></span><br><span class="line"><span class="comment">## Customize as of this point! Of course you may change the preceding</span></span><br><span class="line"><span class="comment">## part of this file as well if you like, but it should rarely be</span></span><br><span class="line"><span class="comment">## necessary ...</span></span><br><span class="line"><span class="comment">##</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># When compiling on the target machine itself, change this to the</span></span><br><span class="line"><span class="comment"># relevant target when cross-compiling for another architecture</span></span><br><span class="line">FFLAGS     += -xHOST</span><br><span class="line"></span><br><span class="line"><span class="comment"># Intel MKL (FFTW, BLAS, LAPACK, and scaLAPACK)</span></span><br><span class="line"><span class="comment"># (Note: for Intel Parallel Studio&#x27;s MKL use -mkl instead of -qmkl)</span></span><br><span class="line">FCL        += -qmkl</span><br><span class="line">MKLROOT    ?= /opt/intel/oneapi/mkl/2024.0</span><br><span class="line">LLIBS      += -L$(MKLROOT)/lib/intel64 -lmkl_scalapack_lp64 -lmkl_blacs_openmpi_lp64</span><br><span class="line">INCS        =-I$(MKLROOT)/include/fftw</span><br><span class="line"></span><br><span class="line"><span class="comment"># HDF5-support (optional but strongly recommended)</span></span><br><span class="line">CPP_OPTIONS+= -DVASP_HDF5</span><br><span class="line">HDF5_ROOT  ?= /home/lebedmi2/SOFTWARE/HDF5_Intel/myhdfstuff/build/HDF_Group/HDF5/1.14.3</span><br><span class="line">LLIBS      += -L$(HDF5_ROOT)/lib -lhdf5_fortran</span><br><span class="line">INCS       += -I$(HDF5_ROOT)/include</span><br><span class="line"></span><br><span class="line"><span class="comment"># For the VASP-2-Wannier90 interface (optional)</span></span><br><span class="line"><span class="comment">#CPP_OPTIONS    += -DVASP2WANNIER90</span></span><br><span class="line"><span class="comment">#WANNIER90_ROOT ?= /path/to/your/wannier90/installation</span></span><br><span class="line"><span class="comment">#LLIBS          += -L$(WANNIER90_ROOT)/lib -lwannier</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># For the fftlib library (experimental)</span></span><br><span class="line"><span class="comment">#CPP_OPTION += -Dsysv</span></span><br><span class="line"><span class="comment">#FCL         = mpif90 fftlib.o -qmkl</span></span><br><span class="line"><span class="comment">#CXX_FFTLIB  = icpc -qopenmp -std=c++11 -DFFTLIB_USE_MKL -DFFTLIB_THREADSAFE</span></span><br><span class="line"><span class="comment">#INCS_FFTLIB = -I./include -I$(MKLROOT)/include/fftw</span></span><br><span class="line"><span class="comment">#LIBS       += fftlib</span></span><br><span class="line"> </span><br></pre></td></tr></table></figure>
+<h1 id="oneapi-docker-images"><a href="#oneapi-docker-images" class="headerlink" title="oneapi docker images"></a>oneapi docker images</h1><p><a target="_blank" rel="noopener" href="https://www.intel.com/content/www/us/en/docs/oneapi-hpc-toolkit/get-started-guide-linux/2023-0/using-containers.html">https://www.intel.com/content/www/us/en/docs/oneapi-hpc-toolkit/get-started-guide-linux/2023-0/using-containers.html</a></p>
+<p>docker pull intel&#x2F;oneapi-hpckit<br>docker pull intel&#x2F;oneapi-hpckit:2023.2.1-devel-ubuntu22.04</p>
+<h1 id="compile-HDF5"><a href="#compile-HDF5" class="headerlink" title="compile HDF5"></a>compile HDF5</h1><p>.&#x2F;configure –help<br>.&#x2F;configure –prefix&#x3D;&#x2F;home&#x2F;duguex&#x2F;hdf5 –enable-fortran –enable-parallel –enable-shared CC&#x3D;mpiicc FC&#x3D;mpiifort CXX&#x3D;mpiicpc CFLAGS&#x3D;’-O3 -xHost -ip’ CXXFLAGS&#x3D;’-O3 -xHost -ip’ FCFLAGS&#x3D;’-O3 -xHost -ip’<br>make &amp;&amp; make install</p>
+<p>or </p>
+<p>git clone <a target="_blank" rel="noopener" href="https://github.com/HDFGroup/hdf5.git">https://github.com/HDFGroup/hdf5.git</a><br>.&#x2F;autogen.sh<br>.&#x2F;configure –prefix&#x3D;&#x2F;opt&#x2F;hdf5 –enable-fortran –enable-shared –enable-parallel –with-pic CC&#x3D;mpiicc FC&#x3D;mpiifort CXX&#x3D;mpiicpc CFLAGS&#x3D;”-fPIC -O3 -xHost -ip -fno-alias -align” FFLAGS&#x3D;”-fPIC -O3 -xHost -ip -fno-alias -align” CXXFLAGS&#x3D;”-fPIC -O3 -xHost -ip -fno-alias -align” FFLAGS&#x3D;”-I&#x2F;opt&#x2F;intel&#x2F;oneapi&#x2F;mpi&#x2F;latest&#x2F;include -L&#x2F;opt&#x2F;intel&#x2F;oneapi&#x2F;mpi&#x2F;latest&#x2F;lib”<br>  <!-- --with-szlib=/home/intel/hdf5/szip-2.1 --with-zlib=/home/intel/hdf5/zlib-1.2.7 --><br>make<br>make install<br>make test</p>
+<p>build without szip and zlib</p>
+<p>&#x2F;opt&#x2F;hdf5&#x2F;lib</p>
+<p>export LD_LIBRARY_PATH&#x3D;$LD_LIBRARY_PATH:&#x2F;opt&#x2F;hdf5&#x2F;lib<br>ulimit -s unlimited</p>
+<p>&#x2F;home&#x2F;duguex&#x2F;hdf5-1.12.2&#x2F;lib</p>
+<p>git clone <a target="_blank" rel="noopener" href="https://github.com/HDFGroup/hdf5.git">https://github.com/HDFGroup/hdf5.git</a><br>.&#x2F;autogen.sh<br>.&#x2F;autogen.sh: 83: autoreconf: not found</p>
+<p>sudo apt-get install autoconf</p>
+<p>c++&#x2F;src&#x2F;Makefile.am:25: error: Libtool library used but ‘LIBTOOL’ is undefined</p>
+<p>sudo apt-get install libtool</p>
+<p><a target="_blank" rel="noopener" href="https://support.hdfgroup.org/doc_resource/SZIP/">https://support.hdfgroup.org/doc_resource/SZIP/</a><br><a target="_blank" rel="noopener" href="https://github.com/erdc/szip/blob/master/INSTALL">https://github.com/erdc/szip/blob/master/INSTALL</a></p>
+<p>3.1 Installation with encoder (license may be required)</p>
+<p>Untar the source into an szip-2.1 directory<br>% tar -xvf szip-2.1.tar</p>
+<p>Change directory to the szip-2.1 directory; configure, build, and<br>test for your platform:  </p>
+<p>% cd szip-2.1<br>% .&#x2F;configure –prefix&#x3D;&#x2F;opt&#x2F;szip<br>% make<br>% make check<br>% make install</p>
+<h1 id="wannier90"><a href="#wannier90" class="headerlink" title="wannier90"></a>wannier90</h1><p>cp .&#x2F;config&#x2F;make.inc.ifort .&#x2F;make.inc<br>make </p>
+<p>&#x2F;opt&#x2F;intel&#x2F;mkl&#x2F;lib&#x2F;intel64<br>&#x2F;opt&#x2F;intel&#x2F;oneapi&#x2F;mkl&#x2F;latest&#x2F;lib&#x2F;intel64</p>
+<p>make wannier    build the wannier90.x executable<br>make post       build the postw90.x executable<br>make default    (default) build wannier90.x and postw90.x<br>make lib        build the wannier90 library<br>make w90chk2chk build the w90chk2chk.x utility (see ‘Utility’ section of the user guide)<br>make w90vdw     build the van der Waals code<br>make w90pov     build the ray-tracing code<br>make install    install the built binaries<br>make tests      run test cases<br>make doc        build the documentation<br>make dist       make a tar-ball of the distribution<br>make dist-lite  make a tar-ball of the src and tests only<br>make clean      remove object files etc<br>make veryclean  remove all non-distribution file</p>
+<p>apt install python-is-python3 for make tests</p>
+<p>make install PREFIX&#x3D;&#x2F;opt&#x2F;wannier90</p>
+<p>export LD_LIBRARY_PATH&#x3D;$LD_LIBRARY_PATH:&#x2F;opt&#x2F;wannier90&#x2F;lib<br>export OMP_NUM_THREADS&#x3D;1</p>
+<h1 id="vasp-test-1"><a href="#vasp-test-1" class="headerlink" title="vasp test"></a>vasp test</h1><p>make test_all<br>make cleantest</p>
+<p>VASP_TESTSUITE_RUN_WAN90</p>
+<p>PATH&#x3D;$PATH:&#x2F;opt&#x2F;vasp.6.4.3&#x2F;bin<br>LD_LIBRARY_PATH&#x3D;$LD_LIBRARY_PATH:&#x2F;opt&#x2F;hdf5&#x2F;lib<br>LD_LIBRARY_PATH&#x3D;$LD_LIBRARY_PATH:&#x2F;opt&#x2F;wannier90&#x2F;lib</p>
+<p>export OMP_NUM_THREADS&#x3D;1<br>export LD_LIBRARY_PATH<br>export PATH</p>
+<p>NSIM<br>NCORE<br>OMP<br>NCPU</p>
+<p>singularity run ..&#x2F;vasp_oneapi_6.4.3 mpirun -np 14 -genv I_MPI_PIN_DOMAIN&#x3D;omp -genv I_MPI_PIN&#x3D;yes -genv OMP_NUM_THREADS&#x3D;1 -genv OMP_STACKSIZE&#x3D;4g -genv OMP_PLACES&#x3D;cores -genv OMP_PROC_BIND&#x3D;close -genv I_MPI_DEBUG&#x3D;4 vasp_gam</p>
+<h1 id="compile-oneapi-vasp"><a href="#compile-oneapi-vasp" class="headerlink" title="compile oneapi vasp"></a>compile oneapi vasp</h1><p>nvfortran-Fatal-MKLROOT not found. Please set the environment variable MKLROOT to the location of Intel’s Math Kernel Libraries (the part of the path to the *.so files that precedes ‘lib&#x2F;<arch>‘.)<br>export MKLROOT&#x3D;&#x2F;opt&#x2F;intel&#x2F;oneapi&#x2F;mkl&#x2F;2022.2.0</p>
+<p>make veryclean<br>make DEPS&#x3D;1 -j</p>
+<h1 id="compile-vasp-with-intel-oneapi-container"><a href="#compile-vasp-with-intel-oneapi-container" class="headerlink" title="compile vasp with intel oneapi container"></a>compile vasp with intel oneapi container</h1><p>sudo docker run -it –name&#x3D;vasp_oneapi –shm-size&#x3D;4gb intel&#x2F;oneapi-hpckit:2023.2.1-devel-ubuntu22.04</p>
+<p>sudo docker run -it –name&#x3D;vasp_oneapi –ipc&#x3D;host intel&#x2F;oneapi-hpckit:2023.2.1-devel-ubuntu22.04</p>
+<p>apt install rsync nano lrzsz<br>use intel omp template</p>
+<h1 id="vasp-compiled-by-intel-oneapi-segmentation-fault"><a href="#vasp-compiled-by-intel-oneapi-segmentation-fault" class="headerlink" title="vasp compiled by intel oneapi segmentation fault"></a>vasp compiled by intel oneapi segmentation fault</h1><p>ulimit -s unlimited</p>
+<h1 id="docker-oneapi-mpi-bus-error"><a href="#docker-oneapi-mpi-bus-error" class="headerlink" title="docker oneapi mpi bus error"></a>docker oneapi mpi bus error</h1><p><a target="_blank" rel="noopener" href="https://community.intel.com/t5/Intel-HPC-Toolkit/Issue-with-Running-mpirun-inside-docker-container/m-p/1319107">https://community.intel.com/t5/Intel-HPC-Toolkit/Issue-with-Running-mpirun-inside-docker-container/m-p/1319107</a></p>
+<p>docker pull intel&#x2F;oneapi-hpckit:2023.2.1-devel-ubuntu22.04<br>docker pull intel&#x2F;oneapi-hpckit<br>docker run –shm-size&#x3D;4gb -it intel&#x2F;oneapi-hpckit<br>–ipc&#x3D;host</p>
+<ul>
+<li><code>--ipc=host</code>：这个选项让容器使用主机的 IPC 命名空间。IPC 是 Inter-Process Communication 的缩写，用于进程间通信。这个选项通常用于那些需要与主机共享内存的应用。</li>
+</ul>
+<h1 id="nvidia"><a href="#nvidia" class="headerlink" title="nvidia"></a>nvidia</h1><p>The NVIDIA CUDA compiler<br>nvcc –version</p>
+<p>The nvidia-smi command provides monitoring and management capabilities for each of the following NVIDIA cards<br>nvidia-smi</p>
+<p>docker pull nvcr.io&#x2F;nvidia&#x2F;nvhpc:23.9-devel-cuda_multi-ubuntu22.04<br><a target="_blank" rel="noopener" href="https://catalog.ngc.nvidia.com/orgs/nvidia/containers/nvhpc/tags#">https://catalog.ngc.nvidia.com/orgs/nvidia/containers/nvhpc/tags#</a></p>
+<h1 id="compile-CUDA-For-installing-NVIDIA-HPC-SDK"><a href="#compile-CUDA-For-installing-NVIDIA-HPC-SDK" class="headerlink" title="compile CUDA (For installing NVIDIA HPC SDK)"></a>compile CUDA (For installing NVIDIA HPC SDK)</h1><p>wget <a target="_blank" rel="noopener" href="https://developer.download.nvidia.com/compute/cuda/repos/wsl-ubuntu/x86_64/cuda-wsl-ubuntu.pin">https://developer.download.nvidia.com/compute/cuda/repos/wsl-ubuntu/x86_64/cuda-wsl-ubuntu.pin</a><br>sudo mv cuda-wsl-ubuntu.pin &#x2F;etc&#x2F;apt&#x2F;preferences.d&#x2F;cuda-repository-pin-600<br>wget <a target="_blank" rel="noopener" href="https://developer.download.nvidia.com/compute/cuda/12.0.0/local_installers/cuda-repo-wsl-ubuntu-12-0-local_12.0.0-1_amd64.deb">https://developer.download.nvidia.com/compute/cuda/12.0.0/local_installers/cuda-repo-wsl-ubuntu-12-0-local_12.0.0-1_amd64.deb</a><br>sudo dpkg -i cuda-repo-wsl-ubuntu-12-0-local_12.0.0-1_amd64.deb<br>sudo cp &#x2F;var&#x2F;cuda-repo-wsl-ubuntu-12-0-local&#x2F;cuda-*-keyring.gpg &#x2F;usr&#x2F;share&#x2F;keyrings&#x2F;<br>sudo apt-get update<br>sudo apt-get -y install cuda</p>
+<p>wget <a target="_blank" rel="noopener" href="https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb">https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb</a><br>sudo dpkg -i cuda-keyring_1.1-1_all.deb<br>sudo apt-get update<br>sudo apt-get -y install cuda-toolkit-12-3</p>
+<p>sudo apt-get install -y cuda-drivers</p>
+<p>sudo apt-get install -y nvidia-kernel-open-545<br>sudo apt-get install -y cuda-drivers-545</p>
+<h1 id="compile-NVIDIA-HPC-SDK-should-match"><a href="#compile-NVIDIA-HPC-SDK-should-match" class="headerlink" title="compile NVIDIA HPC SDK (should match)"></a>compile NVIDIA HPC SDK (should match)</h1><p>wget <a target="_blank" rel="noopener" href="https://developer.download.nvidia.com/hpc-sdk/23.1/nvhpc_2023_231_Linux_x86_64_cuda_12.0.tar.gz">https://developer.download.nvidia.com/hpc-sdk/23.1/nvhpc_2023_231_Linux_x86_64_cuda_12.0.tar.gz</a><br>tar xpzf nvhpc_2023_231_Linux_x86_64_cuda_12.0.tar.gz<br>nvhpc_2023_231_Linux_x86_64_cuda_12.0&#x2F;install</p>
+<p>$ curl <a target="_blank" rel="noopener" href="https://developer.download.nvidia.com/hpc-sdk/ubuntu/DEB-GPG-KEY-NVIDIA-HPC-SDK">https://developer.download.nvidia.com/hpc-sdk/ubuntu/DEB-GPG-KEY-NVIDIA-HPC-SDK</a> | sudo gpg –dearmor -o &#x2F;usr&#x2F;share&#x2F;keyrings&#x2F;nvidia-hpcsdk-archive-keyring.gpg<br>$ echo ‘deb [signed-by&#x3D;&#x2F;usr&#x2F;share&#x2F;keyrings&#x2F;nvidia-hpcsdk-archive-keyring.gpg] <a target="_blank" rel="noopener" href="https://developer.download.nvidia.com/hpc-sdk/ubuntu/amd64">https://developer.download.nvidia.com/hpc-sdk/ubuntu/amd64</a> &#x2F;‘ | sudo tee &#x2F;etc&#x2F;apt&#x2F;sources.list.d&#x2F;nvhpc.list<br>$ sudo apt-get update -y<br>$ sudo apt-get install -y nvhpc-23-11-cuda-multi</p>
+<h1 id="gfortran-needed"><a href="#gfortran-needed" class="headerlink" title="gfortran needed"></a>gfortran needed</h1><p>Installing NVIDIA HPC SDK version 23.1 into &#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk<br>ERROR: gfortran not found<br>Making symbolic links in &#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;2023</p>
+<p>If you use the Environment Modules package, that is, the module load command, the NVIDIA HPC SDK includes a script to set up the appropriate module files.</p>
+<p>% module load &#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;modulefiles&#x2F;nvhpc&#x2F;23.1<br>% module load nvhpc&#x2F;23.1</p>
+<p>Alternatively, the shell environment may be initialized to use the HPC SDK.</p>
+<p>In csh, use these commands:</p>
+<p>% setenv MANPATH “$MANPATH”:&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.1&#x2F;compilers&#x2F;man<br>% set path &#x3D; (&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.1&#x2F;compilers&#x2F;bin $path)</p>
+<p>In bash, sh, or ksh, use these commands:</p>
+<p>$ MANPATH&#x3D;$MANPATH:&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.1&#x2F;compilers&#x2F;man; export MANPATH<br>$ PATH&#x3D;&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.1&#x2F;compilers&#x2F;bin:$PATH; export PATH</p>
+<p>Once the 64-bit compilers are available, you can make the OpenMPI<br>commands and man pages accessible using these commands.</p>
+<p>% set path &#x3D; (&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.1&#x2F;comm_libs&#x2F;mpi&#x2F;bin $path)<br>% setenv MANPATH “$MANPATH”:&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.1&#x2F;comm_libs&#x2F;mpi&#x2F;man</p>
+<p>And the equivalent in bash, sh, and ksh:</p>
+<p>$ export PATH&#x3D;&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.1&#x2F;comm_libs&#x2F;mpi&#x2F;bin:$PATH<br>$ export MANPATH&#x3D;$MANPATH:&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.1&#x2F;comm_libs&#x2F;mpi&#x2F;man</p>
+<h2 id="nvidia-openacc-vasp"><a href="#nvidia-openacc-vasp" class="headerlink" title="nvidia openacc vasp"></a>nvidia openacc vasp</h2><p><a target="_blank" rel="noopener" href="https://developer.nvidia.com/cuda-gpus">https://developer.nvidia.com/cuda-gpus</a></p>
+<p>Numerical libraries: FFTW, BLAS, LAPACK, and scaLAPACK. In case you are using the NVIDIA HPC-SDK the only numerical library you will have to install yourself is FFTW. The latter three (BLAS, LAPACK, and scaLAPACK) are shipped with the SDK. Alternatively, you can link against an installation of Intel’s oneAPI MKL library that provides all four.</p>
+<p>apt install rsync libfftw3-dev</p>
+<p>change the version of nvidia cuda toolkit version</p>
+<h1 id="fftw"><a href="#fftw" class="headerlink" title="fftw"></a>fftw</h1><p>Mind: When you compile VASP with OpenMP support and you are not using the FFTs from the Intel-MKL library, you should compile VASP with fftlib. Otherwise, the costs of (planning) the OpenMP-threaded FFTs will become prohibitively large at higher thread counts.</p>
+<p>fftlib (recommended when using OpenMP)<br>When you plan to run VASP on multiple OpenMP threads and you are not using the FFTs from the Intel-MKL library, you should link against fftlib (included in the VASP distribution). To do so, uncomment the corresponding sections in the makefile.include.*_omp files. In makefile.include.gnu_omp, for instance, that would be:</p>
+<h1 id="For-the-fftlib-library-recommended"><a href="#For-the-fftlib-library-recommended" class="headerlink" title="For the fftlib library (recommended)"></a>For the fftlib library (recommended)</h1><p>CPP_OPTIONS+&#x3D; -Dsysv<br>FCL        +&#x3D; fftlib.o<br>CXX_FFTLIB  &#x3D; g++ -fopenmp -std&#x3D;c++11 -DFFTLIB_THREADSAFE<br>INCS_FFTLIB &#x3D; -I.&#x2F;include -I$(FFTW_ROOT)&#x2F;include<br>LIBS       +&#x3D; fftlib<br>LLIBS      +&#x3D; -ldl</p>
+<p>NVROOT      &#x3D;$(shell which nvfortran | awk -F &#x2F;compilers&#x2F;bin&#x2F;nvfortran ‘{ print $$1 }’)</p>
+<h1 id="Software-emulation-of-quadruple-precsion-mandatory"><a href="#Software-emulation-of-quadruple-precsion-mandatory" class="headerlink" title="Software emulation of quadruple precsion (mandatory)"></a>Software emulation of quadruple precsion (mandatory)</h1><p>QD         ?&#x3D; $(NVROOT)&#x2F;compilers&#x2F;extras&#x2F;qd<br>LLIBS      +&#x3D; -L$(QD)&#x2F;lib -lqdmod -lqd<br>INCS       +&#x3D; -I$(QD)&#x2F;include&#x2F;qd<br>export LD_LIBRARY_PATH&#x3D;&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.1&#x2F;compilers&#x2F;extras&#x2F;qd&#x2F;lib:$LD_LIBRARY_PATH<br>run with “mpirun -n 1 &#x2F;home&#x2F;duguex&#x2F;vasp.6.4.0&#x2F;openacc&#x2F;vasp_gam</p>
+<h1 id="nvidia-openacc-vasp-1"><a href="#nvidia-openacc-vasp-1" class="headerlink" title="nvidia openacc vasp"></a>nvidia openacc vasp</h1><p>install singularity docker nvidia-container-toolkit restart docker</p>
+<p>sudo docker run -it –gpus all –shm-size&#x3D;4gb –name vasp_openacc nvcr.io&#x2F;nvidia&#x2F;nvhpc:23.9-devel-cuda_multi-ubuntu22.04</p>
+<p>apt update &amp;&amp; apt upgrade<br>apt install lrzsz nano rsync libfftw3-dev libhdf5-openmpi-dev wannier90</p>
+<p>sudo docker commit vasp_openacc vasp_openacc:6.4.3<br>sudo docker tag vasp_openacc:6.4.3 192.168.1.114:5000&#x2F;vasp_openacc:6.4.3<br>sudo docker push 192.168.1.114:5000&#x2F;vasp_openacc:6.4.3<br>singularity build –sandbox vasp_6.4.3 docker:&#x2F;&#x2F;192.168.1.114:5000&#x2F;vasp_openacc:6.4.3</p>
+<p>tag_name&#x3D;gnu<br>sudo docker commit vasp_$tag_name vasp_$tag_name:6.4.3;sudo docker tag vasp_$tag_name:6.4.3 192.168.1.111:5000&#x2F;vasp_$tag_name:6.4.3;sudo docker push 192.168.1.111:5000&#x2F;vasp_$tag_name:6.4.3;singularity build –sandbox vasp_$tag_name_6.4.3 docker:&#x2F;&#x2F;192.168.1.111:5000&#x2F;vasp_$tag_name:6.4.3</p>
+<p>singularity build –sandbox vasp_gnu_6.4.3 docker:&#x2F;&#x2F;192.168.1.111:5000&#x2F;vasp_gnu:6.4.3</p>
+<h1 id="–ipc-host-failed-for-vasp-run-with-oneapi-container"><a href="#–ipc-host-failed-for-vasp-run-with-oneapi-container" class="headerlink" title="–ipc host failed for vasp run with oneapi container"></a>–ipc host failed for vasp run with oneapi container</h1><p>actually in oneapi containers, ulimit -s unlimited is needed, and for singularity container, ulimit -s unlimited should be set in host instead of in container<br><a target="_blank" rel="noopener" href="https://github.com/apptainer/singularity/issues/5921">https://github.com/apptainer/singularity/issues/5921</a></p>
+<p>IIRC, docker runs similar to the –contain&#x2F;–containall option, in that it creates a new &#x2F;dev structure in the container, where by default Singularity binds in the hosts &#x2F;dev. So the docker –shm-size option should just pass the size&#x3D; option to the &#x2F;dev container mount.</p>
+<p>I can’t see a reason you should be getting that error without something else in play… :&#x2F;</p>
+<p>Are there any cgroups configured that are changing the memory access? @dtrudg @cclerget Are there other things that could limit shared memory access you can think of?</p>
+<p>#!&#x2F;bin&#x2F;bash<br>#SBATCH -J vasp<br>#SBATCH -p compute<br>#SBATCH -n 48<br>#SBATCH -N 1<br>#SBATCH -o %j.log<br>#SBATCH –qos&#x3D;cpu</p>
+<p>module load singularity&#x2F;3.4.1<br>singularity run ~&#x2F;vasp_oneapi_6.4.3.sif mpirun vasp_gam</p>
+<p>90-environment.sh<br>LD_LIBRARY_PATH&#x3D;$LD_LIBRARY_PATH:&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.9&#x2F;compilers&#x2F;extras&#x2F;qd&#x2F;lib<br>LD_LIBRARY_PATH&#x3D;$LD_LIBRARY_PATH:&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.9&#x2F;cuda&#x2F;extras&#x2F;CUPTI&#x2F;lib64</p>
+<p>PATH&#x3D;$PATH:&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.9&#x2F;compilers&#x2F;extras&#x2F;qd&#x2F;bin<br>PATH&#x3D;$PATH:&#x2F;opt&#x2F;vasp.6.4.3&#x2F;bin</p>
+<p>export LD_LIBRARY_PATH<br>export PATH</p>
+<p>export NVHPC&#x3D;&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk<br>export NVHPC_ROOT&#x3D;&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.9</p>
+<p>export OMPI_ALLOW_RUN_AS_ROOT&#x3D;1<br>export OMPI_ALLOW_RUN_AS_ROOT_CONFIRM&#x3D;1</p>
+<p>singularity run –nv ~&#x2F;container&#x2F;vasp_6.4.3.sif mpirun -np 3 –map-by ppr:3:socket:PE&#x3D;4 –bind-to core -x OMP_NUM_THREADS&#x3D;4 -x OMP_STACKSIZE&#x3D;14g -x OMP_PLACES&#x3D;cores -x OMP_PROC_BIND&#x3D;close –report-bindings vasp_gam</p>
+<p>singularity run –nv ~&#x2F;container&#x2F;vasp_6.4.3.sif mpirun -np 3 vasp_gam</p>
+<p>singularity run –nv ~&#x2F;container&#x2F;vasp_6.4.3.sif mpirun -np 3 –map-by ppr:3:socket:PE&#x3D;4 -x OMP_NUM_THREADS&#x3D;4 –report-bindings vasp_gam</p>
+<h1 id="singlarity-container-for-nvidia-openacc-vasp"><a href="#singlarity-container-for-nvidia-openacc-vasp" class="headerlink" title="singlarity container for nvidia openacc vasp"></a>singlarity container for nvidia openacc vasp</h1><p>by compare output of export, the following envirmoment variables should added to .singularity.d&#x2F;env&#x2F;90-environment.sh</p>
+<p>LD_LIBRARY_PATH&#x3D;$LD_LIBRARY_PATH:&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.9&#x2F;compilers&#x2F;extras&#x2F;qd&#x2F;lib<br>LD_LIBRARY_PATH&#x3D;$LD_LIBRARY_PATH:&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.9&#x2F;cuda&#x2F;extras&#x2F;CUPTI&#x2F;lib64</p>
+<p>vasp_gam: error while loading shared libraries: libmkl_intel_lp64.so.2: cannot open shared object file: No such file or directory</p>
+<p>LD_LIBRARY_PATH&#x3D;$LD_LIBRARY_PATH:&#x2F;opt&#x2F;intel&#x2F;oneapi&#x2F;mkl&#x2F;2023.2.0&#x2F;lib&#x2F;intel64</p>
+<p>PATH&#x3D;$PATH:&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.9&#x2F;compilers&#x2F;extras&#x2F;qd&#x2F;bin<br>PATH&#x3D;$PATH:&#x2F;opt&#x2F;vasp.6.4.2&#x2F;bin</p>
+<p>export LD_LIBRARY_PATH<br>export PATH</p>
+<p>export MKLROOT&#x3D;&#x2F;opt&#x2F;intel&#x2F;oneapi&#x2F;mkl&#x2F;latest<br>export NVHPC&#x3D;&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk<br>export NVHPC_ROOT&#x3D;&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.9</p>
+<p>export OMP_NUM_THREADS&#x3D;1<br>export OMP_NUM_THREADS&#x3D;2<br>export OMP_NUM_THREADS&#x3D;3<br>export OMP_NUM_THREADS&#x3D;4<br>export OMP_NUM_THREADS&#x3D;14<br>export OMPI_ALLOW_RUN_AS_ROOT&#x3D;1<br>export OMPI_ALLOW_RUN_AS_ROOT_CONFIRM&#x3D;1</p>
+<h1 id="90-environment-sh"><a href="#90-environment-sh" class="headerlink" title="90-environment.sh"></a>90-environment.sh</h1><p>#!&#x2F;bin&#x2F;sh</p>
+<h1 id="Custom-environment-shell-code-should-follow"><a href="#Custom-environment-shell-code-should-follow" class="headerlink" title="Custom environment shell code should follow"></a>Custom environment shell code should follow</h1><p>LD_LIBRARY_PATH&#x3D;$LD_LIBRARY_PATH:&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.9&#x2F;compilers&#x2F;extras&#x2F;qd&#x2F;lib<br>LD_LIBRARY_PATH&#x3D;$LD_LIBRARY_PATH:&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.9&#x2F;cuda&#x2F;extras&#x2F;CUPTI&#x2F;lib64</p>
+<p>PATH&#x3D;$PATH:&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.9&#x2F;compilers&#x2F;extras&#x2F;qd&#x2F;bin<br>PATH&#x3D;$PATH:&#x2F;opt&#x2F;vasp.6.4.2&#x2F;bin</p>
+<p>export LD_LIBRARY_PATH<br>export PATH</p>
+<p>export MKLROOT&#x3D;&#x2F;opt&#x2F;intel&#x2F;oneapi&#x2F;mkl&#x2F;latest<br>export NVHPC&#x3D;&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk<br>export NVHPC_ROOT&#x3D;&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.9</p>
+<p>export OMP_NUM_THREADS&#x3D;1<br>export OMPI_ALLOW_RUN_AS_ROOT&#x3D;1<br>export OMPI_ALLOW_RUN_AS_ROOT_CONFIRM&#x3D;1</p>
+<h1 id="install-vasp-aocc-zen2-with-spack"><a href="#install-vasp-aocc-zen2-with-spack" class="headerlink" title="install vasp aocc zen2 with spack"></a>install vasp aocc zen2 with spack</h1><h2 id="install-spack"><a href="#install-spack" class="headerlink" title="install spack"></a>install spack</h2><p>apt update &amp;&amp; apt upgrade;<br>apt install build-essential ca-certificates coreutils curl environment-modules gfortran git gpg lsb-release python3 python3-distutils python3-venv unzip zip;<br>cd &#x2F;opt;<br>git clone -c feature.manyFiles&#x3D;true <a target="_blank" rel="noopener" href="https://github.com/spack/spack.git">https://github.com/spack/spack.git</a>;<br>. ~&#x2F;spack&#x2F;share&#x2F;spack&#x2F;setup-env.sh;</p>
+<h2 id="spack-install-aocc"><a href="#spack-install-aocc" class="headerlink" title="spack install aocc"></a>spack install aocc</h2><p>spack install aocc +license-agreed;</p>
+<h2 id="spack-install-vasp"><a href="#spack-install-vasp" class="headerlink" title="spack install vasp"></a>spack install vasp</h2><p>spack load aocc<br>spack compiler find<br>spack install -j 8 vasp +scalapack +openmp +fftlib %aocc ^amdfftw ^amdblis threads&#x3D;openmp ^amdlibflame ^amdscalapack ^openmpi fabrics&#x3D;auto</p>
+<h2 id="env-setting"><a href="#env-setting" class="headerlink" title="env setting"></a>env setting</h2><p>#. ~&#x2F;container&#x2F;vasp_zen2&#x2F;opt&#x2F;spack&#x2F;share&#x2F;spack&#x2F;setup-env.sh<br>spack load vasp</p>
+<h1 id="Running-multiple-OpenMP-threads-per-MPI-rank"><a href="#Running-multiple-OpenMP-threads-per-MPI-rank" class="headerlink" title="Running multiple OpenMP threads per MPI rank"></a>Running multiple OpenMP threads per MPI rank</h1><p>In principle, running VASP on n MPI ranks with m OpenMP threads per rank is as simple as:</p>
+<p>export OMP_NUM_THREADS&#x3D;<m> ; mpirun -np <n> <your-vasp-executable><br>Here, the mpirun part of the command depends on the flavor of MPI one uses and has to be replaced appropriately. Below, we will only discuss the use of OpenMPI and IntelMPI.</p>
+<p>For proper performance, it is crucial to ensure that the MPI ranks, and the associated OpenMP threads they spawn, are placed optimally onto the physical cores of the node(s), and are pinned to these cores. As an example (for a typical Intel Xeon-like architecture): Let us assume we plan to run on 2 nodes, each with 16 physical cores. These 16 cores per node are further divided into 2 packages (aka sockets) of 8 cores each. The cores on a socket share access to a block of memory and in addition, they may access the memory associated with the other package on their node via a so-called crossbar switch. The latter, however, comes at a (slight) performance penalty.</p>
+<p>In the aforementioned situation, a possible placement of MPI ranks and OpenMP threads would for instance be the following: place 2 MPI ranks on each package (i.e., 8 MPI ranks in total) and have each MPI rank spawn 4 OpenMP threads on the same package. These OpenMP threads will all have fast access to the memory associated with their package, and will not have to access memory through the crossbar switch.</p>
+<p>To achieve this we have to tell both the OpenMP runtime library as well as the MPI library what to do.</p>
+<p>Warning: In the above we purposely mention physical cores. When your CPU supports hyperthreading (and if this is enabled in the BIOS) there are more logical cores than physical cores (typically a factor 2). As a rule of thumb: makes sure that the total number of MPI ranks × OMP_NUM_THREADS (in the above: m×n) does not exceed the total number of physical cores (i.e., do not oversubscribe the nodes). In general VASP runs do not benefit from oversubscription.<br>For the OpenMP runtime<br>Tell the OpenMP runtime it may spawn 4 threads per MPI rank:</p>
+<p>export OMP_NUM_THREADS&#x3D;4<br>and that it should bind the threads to the physical cores, and put them onto cores that are as close as possible to the core that is running the corresponding MPI rank (and OpenMP master thread):</p>
+<p>export OMP_PLACES&#x3D;cores<br>export OMP_PROC_BIND&#x3D;close<br>In addition to taking care of thread placement, it is often necessary to increase the size of the private stack of the OpenMP threads (to 256 or even 512 Mbytes), since the default is in many cases too small for VASP to run, and will cause segmentation faults:</p>
+<p>export OMP_STACKSIZE&#x3D;512m<br>Mind: The Intel OpenMP-runtime library (libiomp5.so) offers an alternative set of environment variables to control OpenMP-thread placement, stacksize etc.</p>
+<h1 id="Mapping-of-process-to-hardware-resources"><a href="#Mapping-of-process-to-hardware-resources" class="headerlink" title="Mapping of process to hardware resources"></a>Mapping of process to hardware resources</h1><p>For AMD EPYC processors it is recommended to use a single rank per L3 cache and set OMP_NUM_THREADS to the number of cores per L3 cache. Below is the example for 4th Gen EPYC processors with 8 cores per L3 cache, hence using OMP_NUM_THREADS&#x3D;8<br>export NUM_CORES&#x3D;$(( $(nproc) &#x2F; 2 ))<br>export OMP_NUM_THREADS&#x3D;4<br>NUM_MPI_RANKS&#x3D;$(( $NUM_CORES &#x2F; $OMP_NUM_THREADS ))</p>
+<h1 id="Running-VASP-1"><a href="#Running-VASP-1" class="headerlink" title="Running VASP"></a>Running VASP</h1><p>mpirun -np $NUM_MPI_RANKS –map-by ppr:1:l3cache:pe&#x3D;$OMP_NUM_THREADS –report-bindings vasp_gam</p>
+<h2 id="Using-OpenMPI"><a href="#Using-OpenMPI" class="headerlink" title="Using OpenMPI"></a>Using OpenMPI</h2><p>Now start 8 MPI ranks (-np 8), with the following placement specification: 2 ranks&#x2F;socket, assigning 4 subsequent cores to each rank (–map-by ppr:2:socket:PE&#x3D;4), and bind them to their physical cores (–bind-to core):</p>
+<p>mpirun -np 8 –map-by ppr:2:socket:PE&#x3D;4 –bind-to core <your-vasp-executable><br>Or all of the above wrapped into a single command:</p>
+<p>mpirun -np 8 –map-by ppr:2:socket:PE&#x3D;4 –bind-to core <br>              -x OMP_NUM_THREADS&#x3D;4 -x OMP_STACKSIZE&#x3D;512m <br>              -x OMP_PLACES&#x3D;cores -x OMP_PROC_BIND&#x3D;close <br>              –report-bindings <your-vasp-executable><br>where the –report-bindings is optional but a good idea to use at least once to check whether the rank and thread placement is as intended.</p>
+<p>singularity run –nv ~&#x2F;container&#x2F;vasp_acc mpirun -np 2 –map-by ppr:1:socket:PE&#x3D;4 –bind-to core -x OMP_NUM_THREADS&#x3D;4 -x OMP_STACKSIZE&#x3D;10g -x OMP_PLACES&#x3D;cores -x OMP_PROC_BIND&#x3D;close –report-bindings vasp_gam</p>
+<p>singularity run –nv ~&#x2F;vasp_gpu mpirun -np 1 –map-by ppr:1:socket:PE&#x3D;4 –bind-to core -x OMP_NUM_THREADS&#x3D;4 -x OMP_STACKSIZE&#x3D;4g -x OMP_PLACES&#x3D;cores -x OMP_PROC_BIND&#x3D;close –report-bindings vasp_gam</p>
+<p>singularity run –nv ~&#x2F;vasp_gpu nvidia-smi</p>
+<p>In our example, the above will assure that the OpenMP threads each MPI rank spawns reside on the same package&#x2F;socket, and pins both the MPI ranks as well as the OpenMP threads to specific cores. This is crucial for performance.</p>
+<h2 id="Using-IntelMPI"><a href="#Using-IntelMPI" class="headerlink" title="Using IntelMPI"></a>Using IntelMPI</h2><p>Tell MPI to reserve a domain of OMP_NUM_THREADS cores for each rank</p>
+<p>export I_MPI_PIN_DOMAIN&#x3D;omp<br>and pin the MPI ranks to the cores</p>
+<p>export I_MPI_PIN&#x3D;yes<br>Then start VASP on 8 MPI ranks</p>
+<p>mpirun -np 8 <your-vasp-executable><br>In case one uses Intel MPI, things are fortunately a bit less involved. Distributing 8 MPI-ranks over 2 nodes with 16 physical cores each (2 sockets per node) allowing for 4 OpenMP threads per MPI-rank is as simple as:</p>
+<p>mpirun -np 8 -genv I_MPI_PIN&#x3D;yes -genv I_MPI_PIN_DOMAIN&#x3D;omp -genv I_MPI_DEBUG&#x3D;4<br>Or all of the above wrapped up into a single command:</p>
+<p>mpirun -np 8 -genv I_MPI_PIN_DOMAIN&#x3D;omp -genv I_MPI_PIN&#x3D;yes -genv OMP_NUM_THREADS&#x3D;4 -genv OMP_STACKSIZE&#x3D;512m -genv OMP_PLACES&#x3D;cores -genv OMP_PROC_BIND&#x3D;close -genv I_MPI_DEBUG&#x3D;4 <your-vasp-executable></p>
+<p>ulimit -s unlimited</p>
+<p>singularity run ~&#x2F;container&#x2F;vasp_intel_2690v2 mpirun -np 20 -genv I_MPI_PIN_DOMAIN&#x3D;omp -genv I_MPI_PIN&#x3D;yes -genv OMP_NUM_THREADS&#x3D;1 -genv OMP_STACKSIZE&#x3D;512m -genv OMP_PLACES&#x3D;cores -genv OMP_PROC_BIND&#x3D;close -genv I_MPI_DEBUG&#x3D;4 vasp_gam</p>
+<p>mpirun -np 14 -genv I_MPI_PIN_DOMAIN&#x3D;omp -genv I_MPI_PIN&#x3D;yes -genv OMP_NUM_THREADS&#x3D;1 -genv OMP_STACKSIZE&#x3D;4g -genv OMP_PLACES&#x3D;cores -genv OMP_PROC_BIND&#x3D;close -genv I_MPI_DEBUG&#x3D;4 vasp_gam</p>
+<p>where the -genv I_MPI_DEBUG&#x3D;4 is optional but a good idea to use at least once to check whether the rank and thread placement is as intended.</p>
+<p>In our example, the above will assure that the OpenMP threads each MPI rank spawns reside on the same package&#x2F;socket, and pins both the MPI ranks as well as the OpenMP threads to specific cores. This is crucial for performance.</p>
+<h2 id="MPI-versus-MPI-OpenMP-the-main-difference"><a href="#MPI-versus-MPI-OpenMP-the-main-difference" class="headerlink" title="MPI versus MPI&#x2F;OpenMP: the main difference"></a>MPI versus MPI&#x2F;OpenMP: the main difference</h2><p>By default VASP distributes work and data over the MPI ranks on a per-orbital basis (in a round-robin fashion): Bloch orbital 1 resides on rank 1, orbital 2 on rank 2. and so on. Concurrently, however, the work and data may be further distributed in the sense that not a single, but a group of MPI ranks, is responsible for the optimization (and related FFTs) of a particular orbital. In the pure MPI version of VASP, this is specified by means of the NCORE tag.</p>
+<p>For instance, to distribute each individual Bloch orbital over 4 MPI ranks, one specifies:</p>
+<p>NCORE &#x3D; 4<br>The main difference between the pure MPI and the hybrid MPI&#x2F;OpenMP version of VASP is that the latter will not distribute a single Bloch orbital over multiple MPI ranks but will distribute the work on a single Bloch orbital over multiple OpenMP threads.</p>
+<p>As such one does not set NCORE&#x3D;4 in the INCAR file but starts VASP with 4 OpenMP-threads&#x2F;MPI-rank.</p>
+<p>Warning: The hybrid MPI&#x2F;OpenMP version of VASP will internally set NCORE&#x3D;1, regardless of what was specified in the INCAR file, when it detects it has been started on more than one OpenMP thread.</p>
+<h1 id="docker-vasp-warning"><a href="#docker-vasp-warning" class="headerlink" title="docker vasp warning"></a>docker vasp warning</h1><hr>
+<p>WARNING: Open MPI tried to bind a process but failed.  This is a<br>warning only; your job will continue, though performance may<br>be degraded.</p>
+<p>  Local host:        d2ea6c9add4f<br>  Application name:  &#x2F;opt&#x2F;vasp.6.4.2&#x2F;testsuite&#x2F;..&#x2F;bin&#x2F;vasp_std<br>  Error message:     failed to bind memory<br>  Location:          ..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;orte&#x2F;mca&#x2F;rtc&#x2F;hwloc&#x2F;rtc_hwloc.c:447</p>
+<h2 id="might-be-the-issue-of-docker-https-github-com-open-mpi-ompi-issues-7368"><a href="#might-be-the-issue-of-docker-https-github-com-open-mpi-ompi-issues-7368" class="headerlink" title="might be the issue of docker https://github.com/open-mpi/ompi/issues/7368"></a>might be the issue of docker <a target="_blank" rel="noopener" href="https://github.com/open-mpi/ompi/issues/7368">https://github.com/open-mpi/ompi/issues/7368</a></h2><p>[LOG_CAT_ML] You must specify a valid HCA device by setting:<br>-x HCOLL_MAIN_IB&#x3D;&lt;dev_name:port&gt; or -x UCX_NET_DEVICES&#x3D;&lt;dev_name:port&gt;.<br>If no device was specified for HCOLL (or the calling library), automatic device detection will be run.<br>In case of unfounded HCA device please contact your system administrator.</p>
+<p>[d2ea6c9add4f:38517] Error: ..&#x2F;..&#x2F;..&#x2F;..&#x2F;..&#x2F;ompi&#x2F;mca&#x2F;coll&#x2F;hcoll&#x2F;coll_hcoll_module.c:310 - mca_coll_hcoll_comm_query() Hcol library init failed</p>
+<p> running    4 mpi-ranks, with    2 threads&#x2F;rank, on    1 nodes<br> distrk:  each k-point on    2 cores,    2 groups<br> distr:  one band on    1 cores,    2 groups<br> OpenACC runtime initialized …    1 GPUs detected<br> WARNING: INIT_ACC: several MPI-ranks need to share a GPU, which is not<br>     supported by NCCL. The use of NCCL will be switched off. To avoid this,<br>     reduce the number of MPI-ranks: #-of-ranks &lt;&#x3D; #-of-GPUs (on every node!).</p>
+<p>[d2ea6c9add4f:38510] 3 more processes have sent help message help-orte-odls-default.txt &#x2F; memory not bound<br>[d2ea6c9add4f:38510] Set MCA parameter “orte_base_help_aggregate” to 0 to see all help &#x2F; error messages</p>
+<h1 id="avx-test"><a href="#avx-test" class="headerlink" title="avx test"></a>avx test</h1><p>avx avx2 avx512</p>
+<p>#SBATCH -n 6<br>#SBATCH -N 1<br>#SBATCH –gres&#x3D;gpu:p100:3<br>#SBATCH -o %j.log</p>
+<p>singularity run –nv &#x2F;home&#x2F;duguex&#x2F;container&#x2F;vasp_6.4.3_openacc_p100_7940x.sif mpirun -np 3 -x OMP_NUM_THREADS&#x3D;1 vasp_gam</p>
+<p>is good</p>
+<h1 id="kunpeng-920-vasp-hyperfine"><a href="#kunpeng-920-vasp-hyperfine" class="headerlink" title="kunpeng 920 vasp hyperfine"></a>kunpeng 920 vasp hyperfine</h1><p>LEFG is good, LHYPERFINE is bad<br>       N       E                     dE             d eps       ncg     rms          rms(c)<br>*** Error in <code>vasp_gam&#39;: free(): invalid pointer: 0x0000000044f69970 *** *** Error in </code>vasp_gam’: double free or corruption (!prev): 0x000000001953bb30 ***<br>&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; Backtrace: &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;<br>&#x2F;lib64&#x2F;libc.so.6(+0x7d1ec)[0x40000f33d1ec]<br>vasp_gam[0x657bc0]</p>
+<h1 id="显著影响速度"><a href="#显著影响速度" class="headerlink" title="显著影响速度"></a>显著影响速度</h1><p>NUPDOWN&#x3D;2</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/vasp/" rel="tag"># vasp</a>
+              <a href="/tags/compile/" rel="tag"># compile</a>
+              <a href="/tags/AMD/" rel="tag"># AMD</a>
+              <a href="/tags/EPYC/" rel="tag"># EPYC</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/06/15/vasp/" rel="prev" title="vasp_tags">
+                  <i class="fa fa-angle-left"></i> vasp_tags
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/06/15/bmc/" rel="next" title="bmc">
+                  bmc <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Mingzhe Liu</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

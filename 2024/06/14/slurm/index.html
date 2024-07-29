@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"tobedetermined.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="Simple Linux Utility for Resource Management (SLURM) is an open-source, fault-tolerant, and highly scalable cluster management and job scheduling system for large and small Linux clusters. It is used">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Cluster via Slurm">
+<meta property="og:url" content="http://tobedetermined.com/2024/06/14/slurm/index.html">
+<meta property="og:site_name" content="TODO">
+<meta property="og:description" content="Simple Linux Utility for Resource Management (SLURM) is an open-source, fault-tolerant, and highly scalable cluster management and job scheduling system for large and small Linux clusters. It is used">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-14T02:36:43.000Z">
+<meta property="article:modified_time" content="2024-07-29T16:45:21.013Z">
+<meta property="article:author" content="Mingzhe Liu">
+<meta property="article:tag" content="cluster">
+<meta property="article:tag" content="slurm">
+<meta property="article:tag" content="ubuntu">
+<meta property="article:tag" content="lsf">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://tobedetermined.com/2024/06/14/slurm/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://tobedetermined.com/2024/06/14/slurm/","path":"2024/06/14/slurm/","title":"Cluster via Slurm"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Cluster via Slurm | TODO</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">TODO</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Install-slurm-for-ubuntu-22-04-LTS"><span class="nav-number">1.</span> <span class="nav-text">Install slurm for ubuntu 22.04 LTS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Configure-slurm"><span class="nav-number">2.</span> <span class="nav-text">Configure slurm</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#template-on-127-0-0-1-8000"><span class="nav-number">2.1.</span> <span class="nav-text">template on 127.0.0.1:8000</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Copy%E7%BD%91%E9%A1%B5%E7%94%9F%E6%88%90%E7%9A%84%E5%86%85%E5%AE%B9"><span class="nav-number">2.2.</span> <span class="nav-text">Copy网页生成的内容</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Edit-slurm-conf"><span class="nav-number">2.3.</span> <span class="nav-text">Edit slurm.conf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#slurm-conf-example"><span class="nav-number">2.4.</span> <span class="nav-text">slurm.conf example</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Start-daemons"><span class="nav-number">2.5.</span> <span class="nav-text">Start daemons</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Patch-Slurm-Cgroup-Integration"><span class="nav-number">3.</span> <span class="nav-text">Patch Slurm Cgroup Integration</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A6%82%E4%BD%95%E7%A6%81%E6%AD%A2slurm%E4%BD%BF%E7%94%A8%E8%B6%85%E7%BA%BF%E7%A8%8B"><span class="nav-number">4.</span> <span class="nav-text">如何禁止slurm使用超线程</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Config-slurm-for-node-with-gpu-resources"><span class="nav-number">5.</span> <span class="nav-text">Config slurm for node with gpu resources</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Node-drain"><span class="nav-number">6.</span> <span class="nav-text">Node drain</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Munge-decode-failed"><span class="nav-number">7.</span> <span class="nav-text">Munge decode failed</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CPU-%E6%9E%B6%E6%9E%84"><span class="nav-number">8.</span> <span class="nav-text">CPU 架构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#hwloc-%E5%92%8C-hwloc-nox-%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="nav-number">8.1.</span> <span class="nav-text">hwloc 和 hwloc-nox 的区别</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Slurm-and-LSF-node-status"><span class="nav-number">9.</span> <span class="nav-text">Slurm and LSF node status</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#top-via-hold-and-release"><span class="nav-number">10.</span> <span class="nav-text">top via hold and release</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mingzhe Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/duguex" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;duguex" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:duguex@126.com" title="E-Mail → mailto:duguex@126.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://tobedetermined.com/2024/06/14/slurm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mingzhe Liu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TODO">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="Cluster via Slurm | TODO">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Cluster via Slurm
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-06-14 10:36:43" itemprop="dateCreated datePublished" datetime="2024-06-14T10:36:43+08:00">2024-06-14</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-07-30 00:45:21" itemprop="dateModified" datetime="2024-07-30T00:45:21+08:00">2024-07-30</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><p>Simple Linux Utility for Resource Management (SLURM) is an open-source, fault-tolerant, and highly scalable cluster management and job scheduling system for large and small Linux clusters. It is used by many of the world’s supercomputers and high-performance computing (HPC) clusters to manage resources, schedule jobs, and monitor the status of the cluster.</p>
+<h1 id="Install-slurm-for-ubuntu-22-04-LTS"><a href="#Install-slurm-for-ubuntu-22-04-LTS" class="headerlink" title="Install slurm for ubuntu 22.04 LTS"></a>Install slurm for ubuntu 22.04 LTS</h1><p>slurm contains two deamon:<br>slurmd: 完成计算节点的任务（启动任务、监控任务、分层通信）<br>slurmctld: 完成管理节点的任务（故障切换、资源监控、队列管理、作业调度）</p>
+<p>For compute node:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt install slurm-wlm slurmd</span><br></pre></td></tr></table></figure>
+<p>For control node:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt install slurm-wlm slurmctld</span><br></pre></td></tr></table></figure>
+<p>For Both:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update &amp;&amp; sudo apt install slurm-wlm slurmd slurmctld</span><br></pre></td></tr></table></figure>
+
+<p>在旧版本的Ubuntu上安装slurm时，通常需要安装一个名为slurm-llnl的软件包。但Ubuntu 22.04 LTS 的软件源不包含slurm-llnl，强行安装就会报出如下的错误：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install slurm-llnl</span><br></pre></td></tr></table></figure>
+<p>Reading package lists… Done<br>Building dependency tree… Done<br>Reading state information… Done<br>E: Unable to locate package slurm-llnl</p>
+<h1 id="Configure-slurm"><a href="#Configure-slurm" class="headerlink" title="Configure slurm"></a>Configure slurm</h1><h2 id="template-on-127-0-0-1-8000"><a href="#template-on-127-0-0-1-8000" class="headerlink" title="template on 127.0.0.1:8000"></a>template on 127.0.0.1:8000</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dpkg -L slurmctld | grep slurm-wlm-configurator.html</span><br><span class="line"><span class="built_in">cd</span> /usr/share/doc/slurmctld</span><br><span class="line">python3 -m http.server</span><br></pre></td></tr></table></figure>
+
+<h2 id="Copy网页生成的内容"><a href="#Copy网页生成的内容" class="headerlink" title="Copy网页生成的内容"></a>Copy网页生成的内容</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">touch</span> /etc/slurm/slurm.conf</span><br><span class="line">sudo nano /etc/slurm/slurm.conf</span><br></pre></td></tr></table></figure>
+
+<h2 id="Edit-slurm-conf"><a href="#Edit-slurm-conf" class="headerlink" title="Edit slurm.conf"></a>Edit <a target="_blank" rel="noopener" href="https://slurm.schedmd.com/slurm.conf.html">slurm.conf</a></h2><p>For compute node, run</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">slurmd -C</span><br></pre></td></tr></table></figure>
+<p>and get the output</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">NodeName=duguex-EG341W-G21 CPUs=28 Boards=1 SocketsPerBoard=1 CoresPerSocket=14 ThreadsPerCore=2 RealMemory=64056</span><br><span class="line">UpTime=1-16:06:10</span><br></pre></td></tr></table></figure>
+
+<p>slurm.conf的内容除了node和partition的名称不区分大小写。在配置文件中，”#” 后面的任何文本都被视为注释直到该行的结束。更改配置文件后，Slurm 守护进程重启，守护进程接收到 SIGHUP 信号，或执行 “scontrol reconfigure” 命令后，更改才会生效，除非另有说明。更改 TCP 监听设置将需要重启守护进程。</p>
+<p>如果一行以 “Include” 开头，后面跟着空格，然后是一个文件名，那么该文件将与当前配置文件一起内联包含。对于大型或复杂的系统，可能会发现多个配置文件更容易管理，并且可以重用一些文件（参见 INCLUDE MODIFIERS 以获取更多详细信息）。</p>
+<p>关于文件权限的注意事项：</p>
+<p>slurm.conf 文件必须对所有 Slurm 用户可读，因为它被许多 Slurm 命令使用。在 slurm.conf 文件中定义的其他文件，如日志文件和作业会计文件，可能需要由用户 “SlurmUser” 创建&#x2F;拥有才能成功访问。使用 “chown” 和 “chmod” 命令来适当地设置所有权和权限。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 最好SlurmUser=root，权限最高，填写日志文件不会由于权限问题报错</span></span><br><span class="line">SlurmUser=root</span><br><span class="line"><span class="comment"># any name you like</span></span><br><span class="line">ClusterName=duguex_workstation</span><br><span class="line"><span class="comment"># hostname of the control node</span></span><br><span class="line">SlurmctldHost=duguex3060</span><br><span class="line"><span class="comment"># ref the output of `slurmd -C` above</span></span><br><span class="line">NodeName=duguex3060 Sockets=1 CoresPerSocket=12 ThreadsPerCore=2 State=UNKNOWN</span><br><span class="line">PartitionName=compute Nodes=ALL Default=YES MaxTime=INFINITE State=UP</span><br></pre></td></tr></table></figure>
+<h2 id="slurm-conf-example"><a href="#slurm-conf-example" class="headerlink" title="slurm.conf example"></a>slurm.conf example</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># slurm.conf file generated by configurator easy.html.</span></span><br><span class="line"><span class="comment"># Put this file on all nodes of your cluster.</span></span><br><span class="line"><span class="comment"># See the slurm.conf man page for more information.</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">ClusterName=duguex_server</span><br><span class="line">SlurmctldHost=duguex-NF5588M3</span><br><span class="line">GresTypes=gpu</span><br><span class="line"></span><br><span class="line"><span class="comment"># 在 Slurm 配置文件中，`MpiDefault` 是一个设置项，用于指定默认的 MPI（Message Passing Interface）实现。MPI 是一种用于并行计算的通信协议，允许多个进程之间进行数据交换。在你的代码 `MpiDefault=none` 中，`none` 表示没有默认的 MPI 实现被指定。这意味着，除非用户在提交作业时明确指定了 MPI 类型，否则 Slurm 不会自动为作业选择或加载任何 MPI 库。这个设置可能适用于那些不需要 MPI 或者有多种 MPI 实现可供选择的集群。在这种情况下，用户需要在他们的作业脚本或环境模块中明确加载和使用特定的 MPI 库。</span></span><br><span class="line">MpiDefault=none</span><br><span class="line"><span class="comment">#MpiParams=ports=#-#</span></span><br><span class="line"><span class="comment"># 指定了 Slurm 如何跟踪作业中的进程。`proctrack/cgroup` 表示使用 Linux 的 cgroup（control group）机制来跟踪进程。cgroup 可以提供精确的进程跟踪，并且可以限制、记录或隔离进程组的资源使用情况。</span></span><br><span class="line">ProctrackType=proctrack/cgroup</span><br><span class="line"><span class="comment"># 决定了当节点恢复正常运行后，是否自动将其返回到服务中。`1` 表示当节点从 DOWN、DRAIN 或 FAIL 状态恢复后，会自动将其返回到服务中，使其可以接受新的作业。</span></span><br><span class="line">ReturnToService=1</span><br><span class="line"><span class="comment"># 指定了存储 Slurm 控制守护进程（slurmctld）的 PID（Process ID）的文件的位置。在这个例子中，PID 文件的位置是 `/run/slurmctld.pid`。这个文件通常用于管理守护进程，例如检查守护进程是否在运行，或者发送信号给守护进程。</span></span><br><span class="line">SlurmctldPidFile=/run/slurmctld.pid</span><br><span class="line"><span class="comment">#SlurmctldPort=6817</span></span><br><span class="line"><span class="comment"># 指定了存储 Slurm 节点守护进程（slurmd）的 PID（Process ID）的文件的位置。在一个 Slurm 集群中，每个计算节点上都会运行一个 slurmd 进程。这个进程负责接收和执行来自 Slurm 控制守护进程（slurmctld）的命令，例如启动作业、取消作业等。通过这个 PID 文件，系统管理员可以方便地管理 slurmd 进程。</span></span><br><span class="line">SlurmdPidFile=/run/slurmd.pid</span><br><span class="line"><span class="comment">#SlurmdPort=6818</span></span><br><span class="line"><span class="comment"># 指定了 Slurm 节点守护进程（slurmd）的临时文件目录。在这个目录中，slurmd 会存储一些运行时的临时文件，例如作业的标准输出和标准错误的临时副本。</span></span><br><span class="line">SlurmdSpoolDir=/var/lib/slurm/slurmd</span><br><span class="line"><span class="comment"># 指定了运行 Slurm 守护进程（包括 slurmctld 和 slurmd）的用户。在这个例子中，Slurm 守护进程是以 root 用户运行的。请注意，运行 Slurm 守护进程的用户需要有足够的权限来访问和管理 Slurm 的各种资源和文件。在大多数情况下，这个用户应该是一个专门为 Slurm 创建的系统用户，而不是 root 用户，以减少安全风险。</span></span><br><span class="line">SlurmUser=root</span><br><span class="line"><span class="comment">#SlurmdUser=root</span></span><br><span class="line"><span class="comment"># 指定了 Slurm 控制守护进程（slurmctld）保存集群状态信息的位置。在这个位置，slurmctld 会定期保存集群的状态信息，包括节点的状态、作业的状态等。如果 slurmctld 重启，它会从这个位置读取最后保存的状态信息，以恢复集群的状态。</span></span><br><span class="line">StateSaveLocation=/var/lib/slurm/slurmctld</span><br><span class="line"><span class="comment"># 指定了 Slurm 使用的交换机类型。`switch/none` 表示不使用任何特定的交换机类型。这个设置通常用于那些不需要特定交换机支持的集群，例如使用以太网的集群。</span></span><br><span class="line">SwitchType=switch/none</span><br><span class="line"><span class="comment"># 指定了 Slurm 用于管理作业中的任务的插件。`task/affinity` 插件会尝试将任务绑定到特定的 CPU 或内存，以提高性能。这个设置对于那些需要优化 CPU 或内存使用的高性能计算作业可能很有用。</span></span><br><span class="line">TaskPlugin=task/affinity</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># TIMERS</span></span><br><span class="line"><span class="comment">#KillWait=30</span></span><br><span class="line"><span class="comment">#MinJobAge=300</span></span><br><span class="line"><span class="comment">#SlurmctldTimeout=120</span></span><br><span class="line"><span class="comment">#SlurmdTimeout=300</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># SCHEDULING</span></span><br><span class="line"><span class="comment"># 指定了 Slurm 使用的调度器类型。`sched/backfill` 是一种调度策略，它会尝试在不延迟已经在队列中的作业的前提下，找到空闲的资源来运行其他的作业。这种策略可以提高集群的资源利用率。</span></span><br><span class="line">SchedulerType=<span class="built_in">sched</span>/backfill</span><br><span class="line"><span class="comment"># 指定了 Slurm 用于选择节点和管理资源的插件。`select/cons_tres` 插件支持基于多种类型的资源（如 CPU、内存、GPU 等）的一致性（即不能超额使用）资源选择和管理。</span></span><br><span class="line">SelectType=<span class="keyword">select</span>/cons_tres</span><br><span class="line"><span class="comment"># 提供了额外的参数来配置 `SelectType` 插件。`CR_Core_Memory` 表示在选择节点和分配资源时，会考虑到每个节点的核心（CPU）和内存的使用情况。这可以帮助 Slurm 更有效地管理和分配集群的资源。</span></span><br><span class="line">SelectTypeParameters=CR_Core_Memory</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># LOGGING AND ACCOUNTING</span></span><br><span class="line"><span class="comment"># 指定了 Slurm 用于存储作业和集群使用情况统计信息的插件。`accounting_storage/none` 表示不使用任何特定的存储插件。这意味着 Slurm 不会保存任何作业或集群的使用情况统计信息。</span></span><br><span class="line">AccountingStorageType=accounting_storage/none</span><br><span class="line"><span class="comment"># 指定 Slurm 收集作业的资源使用情况信息的频率。</span></span><br><span class="line"><span class="comment">#JobAcctGatherFrequency=30</span></span><br><span class="line"><span class="comment"># 指定了 Slurm 用于收集作业的资源使用情况信息的插件。`jobacct_gather/none` 表示不使用任何特定的收集插件。这意味着 Slurm 不会收集任何作业的资源使用情况信息。</span></span><br><span class="line">JobAcctGatherType=jobacct_gather/none</span><br><span class="line"><span class="comment"># 指定 Slurm 控制守护进程（slurmctld）的调试信息级别。</span></span><br><span class="line"><span class="comment">#SlurmctldDebug=info</span></span><br><span class="line"><span class="comment"># 指定了 slurmctld 的日志文件的位置。这些日志文件包含了守护进程的运行信息，可以用于诊断问题或了解守护进程的运行状况。</span></span><br><span class="line">SlurmctldLogFile=/var/log/slurm/slurmctld.log</span><br><span class="line"><span class="comment"># 指定 Slurm 节点守护进程（slurmd）的调试信息级别。</span></span><br><span class="line"><span class="comment">#SlurmdDebug=info</span></span><br><span class="line"><span class="comment"># 指定了 slurmd 的日志文件的位置。这些日志文件包含了守护进程的运行信息，可以用于诊断问题或了解守护进程的运行状况。</span></span><br><span class="line">SlurmdLogFile=/var/log/slurm/slurmd.log</span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line"><span class="comment"># COMPUTE NODES</span></span><br><span class="line"><span class="comment"># GresTypes=gpu</span></span><br><span class="line"><span class="comment"># NodeName=duguex3060 Gres=gpu:1 Sockets=1 CoresPerSocket=12 ThreadsPerCore=2 State=UNKNOWN</span></span><br><span class="line"><span class="comment"># 定义了一个名为 `duguex3060` 的计算节点。该节点有 12 个 CPU，每个插槽有 1 个 CPU，每个 CPU 有 12 个核心，每个核心有 1 个线程。节点的初始状态被设置为 `UNKNOWN`，这意味着 Slurm 需要通过 ping 或其他方式来确定节点的实际状态。</span></span><br><span class="line">NodeName=7R12-0 NodeAddr=192.168.1.111 CPUs=48 RealMemory=128647 Sockets=1 CoresPerSocket=48 ThreadsPerCore=1 State=UNKNOWN</span><br><span class="line">NodeName=p100-0 Gres=gpu:p100:2 CPUs=20 RealMemory=128859 Sockets=2 CoresPerSocket=10 ThreadsPerCore=1 State=UNKNOWN</span><br><span class="line"><span class="comment"># 定义了一个名为 `cpu` 的分区。该分区包含所有的节点（`Nodes=ALL`），并且被设置为默认分区（`Default=YES`）。在这个分区中，作业的最大运行时间被设置为无限（`MaxTime=INFINITE`），这意味着作业可以运行任意长的时间。分区的初始状态被设置为 `UP`，这意味着分区是可用的，可以接受新的作业。</span></span><br><span class="line">PartitionName=7R12 Nodes=7R12-0 Default=YES MaxTime=INFINITE State=UP</span><br><span class="line">PartitionName=p100 Nodes=p100-0 MaxTime=INFINITE State=UP</span><br></pre></td></tr></table></figure>
+
+<p>a short version for slurm.conf</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">ClusterName=duguex_server</span><br><span class="line">SlurmctldHost=duguex-NF5588M3</span><br><span class="line">GresTypes=gpu</span><br><span class="line">MpiDefault=none</span><br><span class="line">ProctrackType=proctrack/cgroup</span><br><span class="line">ReturnToService=1</span><br><span class="line">SlurmctldPidFile=/run/slurmctld.pid</span><br><span class="line">SlurmdPidFile=/run/slurmd.pid</span><br><span class="line">SlurmdSpoolDir=/var/lib/slurm/slurmd</span><br><span class="line">SlurmUser=root</span><br><span class="line">StateSaveLocation=/var/lib/slurm/slurmctld</span><br><span class="line">SwitchType=switch/none</span><br><span class="line">TaskPlugin=task/affinity</span><br><span class="line">SchedulerType=<span class="built_in">sched</span>/backfill</span><br><span class="line">SelectType=<span class="keyword">select</span>/cons_tres</span><br><span class="line">SelectTypeParameters=CR_CPU</span><br><span class="line">AccountingStorageType=accounting_storage/none</span><br><span class="line">JobAcctGatherType=jobacct_gather/none</span><br><span class="line">SlurmctldLogFile=/var/log/slurm/slurmctld.log</span><br><span class="line">SlurmdLogFile=/var/log/slurm/slurmd.log</span><br><span class="line">NodeName=duguex-NF5588M3 CPUs=20 Boards=1 SocketsPerBoard=2 CoresPerSocket=10 ThreadsPerCore=1 RealMemory=128859 State=UNKNOWN</span><br><span class="line">NodeName=duguex-MZ31-AR0-HZ NodeAddr=192.168.1.111 CPUs=48 Boards=1 SocketsPerBoard=1 CoresPerSocket=48 ThreadsPerCore=1 RealMemory=128647 State=UNKNOWN</span><br><span class="line">NodeName=duguex-EG341W-G21 NodeAddr=192.168.1.114 Gres=gpu:p100:3 CPUs=14 Boards=1 SocketsPerBoard=1 CoresPerSocket=14 ThreadsPerCore=1 RealMemory=64056 State=UNKNOWN</span><br><span class="line">NodeName=duguex-MR91-FS0 NodeAddr=192.168.1.122 CPUs=40 Boards=1 SocketsPerBoard=2 CoresPerSocket=20 ThreadsPerCore=1 RealMemory=192031 State=UNKNOWN</span><br><span class="line">PartitionName=2690v2 Nodes=duguex-NF5588M3 MaxTime=INFINITE State=UP</span><br><span class="line">PartitionName=7R12 Nodes=duguex-MZ31-AR0-HZ Default=YES MaxTime=INFINITE State=UP</span><br><span class="line">PartitionName=p100 Nodes=duguex-EG341W-G21 MaxTime=INFINITE State=UP</span><br><span class="line">PartitionName=6138 Nodes=duguex-MR91-FS0 MaxTime=INFINITE State=UP</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="Start-daemons"><a href="#Start-daemons" class="headerlink" title="Start daemons"></a>Start daemons</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> slurmctld --now</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> slurmd --now</span><br><span class="line"></span><br><span class="line">sudo systemctl status slurmctld</span><br><span class="line">sudo systemctl status slurmd</span><br></pre></td></tr></table></figure>
+
+<h1 id="Patch-Slurm-Cgroup-Integration"><a href="#Patch-Slurm-Cgroup-Integration" class="headerlink" title="Patch Slurm Cgroup Integration"></a>Patch Slurm Cgroup Integration</h1><p>By default, there Slurm cannot work with Cgroup well. If we start Slurm service right now, we may receive this error shown below.</p>
+<p>[2024-04-05T19:45:57.807] error: cgroup namespace ‘freezer’ not mounted. aborting<br>[2024-04-05T19:45:57.807] error: unable to create freezer cgroup namespace<br>[2024-04-05T19:45:57.807] error: Couldn’t load specified plugin name for proctrack&#x2F;cgroup: Plugin init() callback failed<br>[2024-04-05T19:45:57.807] error: cannot create proctrack context for proctrack&#x2F;cgroup<br>[2024-04-05T19:45:57.807] error: slurmd initialization failed</p>
+<p>error: cgroup namespace ‘freezer’ not mounted. aborting</p>
+<p>Therefore, by pasting the following content to &#x2F;etc&#x2F;slurm&#x2F;cgroup.conf on compute nodes, this issue can be fixed.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CgroupAutomount=<span class="built_in">yes</span></span><br><span class="line"><span class="comment"># ConstrainCores=yes</span></span><br><span class="line"><span class="comment"># ConstrainDevices=yes</span></span><br><span class="line"><span class="comment"># TaskAffinity=yes</span></span><br><span class="line"><span class="comment"># ConstrainRAMSpace=yes</span></span><br><span class="line"><span class="comment"># CgroupReleaseAgentDir=&quot;/etc/slurm/cgroup&quot; </span></span><br><span class="line">CgroupMountpoint=/sys/fs/cgroup</span><br></pre></td></tr></table></figure>
+<p>这段代码是从 Slurm 的 cgroup 配置文件中选取的一部分，其中包含了几个设置项：</p>
+<ol>
+<li><code>CgroupAutomount=yes</code>：这个设置项指定了 Slurm 是否应该自动挂载需要的 cgroup 子系统。<code>yes</code> 表示 Slurm 会自动挂载需要的子系统。这可以简化 cgroup 子系统的管理，但是需要确保 Slurm 有足够的权限来挂载文件系统。</li>
+<li><code>ConstrainCores=yes</code> 和 <code>ConstrainDevices=yes</code>：这两个设置项指定了 Slurm 是否应该限制作业对 CPU 核心和设备的使用。<code>yes</code> 表示 Slurm 会限制作业只能使用分配给它的核心和设备。这可以防止作业占用过多的资源，影响其他作业的运行。</li>
+<li><code>#TaskAffinity=yes</code>：这个设置项被注释掉了，所以不会生效。如果取消注释，它会指定 Slurm 是否应该尽量让作业的各个任务在同一核心上运行。<code>yes</code> 表示 Slurm 会尽量让作业的各个任务在同一核心上运行。这可以提高缓存利用率，提高作业的运行效率。</li>
+<li><code>ConstrainRAMSpace=yes</code>：这个设置项指定了 Slurm 是否应该限制作业对 RAM 的使用。<code>yes</code> 表示 Slurm 会限制作业只能使用分配给它的 RAM。这可以防止作业占用过多的内存，影响其他作业的运行。</li>
+<li><code>CgroupReleaseAgentDir=&quot;/etc/slurm/cgroup&quot;</code>：这个设置项指定了 cgroup 释放代理的目录。当一个 cgroup 变为空（即没有任何进程在使用它）时，Slurm 会运行这个目录中的脚本来清理 cgroup。</li>
+<li><code>CgroupMountpoint=/sys/fs/cgroup</code>：这个设置项指定了 cgroup 文件系统的挂载点。Slurm 会在这个位置查找和管理 cgroup 子系统。</li>
+</ol>
+<p>a short version for cgroup.conf</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CgroupMountpoint=/sys/fs/cgroup</span><br><span class="line">CgroupAutomount=<span class="built_in">yes</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="如何禁止slurm使用超线程"><a href="#如何禁止slurm使用超线程" class="headerlink" title="如何禁止slurm使用超线程"></a>如何禁止slurm使用超线程</h1><p>有两种选择：</p>
+<ol>
+<li>在compute node 主板bios中禁用超线程</li>
+<li>在<a target="_blank" rel="noopener" href="https://slurm.schedmd.com/slurm.conf.html">slurm.conf</a>中设置<br>这里只讨论第二种方法</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">SelectTypeParameters = CR_CPU</span><br></pre></td></tr></table></figure>
+<p>CR_CPU允许多个任务运行在同一个节点, CR_Core_Memory默认一个任务运行在一个节点上。</p>
+<p>CR_CPU<br>CPUs are consumable resources. Configure the number of CPUs on each node, which may be equal to the count of cores or hyper-threads on the node depending upon the desired minimum resource allocation. The node’s Boards, Sockets, CoresPerSocket and ThreadsPerCore may optionally be configured and result in job allocations which have improved locality; however doing so will prevent more than one job from being allocated on each core.<br>CR_CPU_Memory<br>CPUs and memory are consumable resources. Configure the number of CPUs on each node, which may be equal to the count of cores or hyper-threads on the node depending upon the desired minimum resource allocation. The node’s Boards, Sockets, CoresPerSocket and ThreadsPerCore may optionally be configured and result in job allocations which have improved locality; however doing so will prevent more than one job from being allocated on each core. Setting a value for DefMemPerCPU is strongly recommended.<br>CR_Core<br>Cores are consumable resources. On nodes with hyper-threads, each thread is counted as a CPU to satisfy a job’s resource requirement, but multiple jobs are not allocated threads on the same core. The count of CPUs allocated to a job is rounded up to account for every CPU on an allocated core. This will also impact total allocated memory when –mem-per-cpu is used to be multiply of total number of CPUs on allocated cores.</p>
+<h1 id="Config-slurm-for-node-with-gpu-resources"><a href="#Config-slurm-for-node-with-gpu-resources" class="headerlink" title="Config slurm for node with gpu resources"></a>Config slurm for node with <a target="_blank" rel="noopener" href="https://slurm.schedmd.com/gres.html">gpu resources</a></h1><p>Generally, you need to do the following steps to configure Slurm for a node with GPU resources:</p>
+<ul>
+<li>Define the generic resources (GRES) types in the slurm.conf file on the master node. For example, you can use GresTypes&#x3D;gpu to enable GPU scheduling.</li>
+<li>Specify the number and type of GPUs available on each compute node in the slurm.conf file or the gres.conf file on the compute nodes. For example, you can use Gres&#x3D;gpu:tesla:2 to indicate that the node has two Tesla GPUs.</li>
+<li>Restart the Slurm daemons on the master and compute nodes for the changes to take effect.</li>
+<li>Request the GPUs for your job using the –gres or –gpus options in your submit script or command. For example, you can use –gres&#x3D;gpu:1 or –gpus&#x3D;1 to request one GPU per node.</li>
+</ul>
+<p>请注意，你需要具有管理员权限才能修改 <code>slurm.conf</code> 和 <code>gres.conf</code> 文件，并且修改后需要重启 SLURM 服务以使配置生效。</p>
+<ol>
+<li>在 <code>slurm.conf</code> 文件中，定义 Gres（Generic Resources）类型为 gpu。例如：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GresTypes=gpu</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>在 <code>slurm.conf</code> 文件中，为每个节点定义可用的 GPU 数量。例如，如果你的节点名为 node1，且有 2 个 GPU，你可以这样定义：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NodeName=node1 Gres=gpu:2</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>在 <code>gres.conf</code> 文件中，为每个 GPU 定义详细信息。例如：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Name=gpu File=/dev/nvidia0</span></span><br><span class="line"><span class="comment"># Name=gpu File=/dev/nvidia1</span></span><br><span class="line">Name=gpu Type=p100 File=/dev/nvidia[0-2]</span><br></pre></td></tr></table></figure>
+
+<p>AutoDetect<br>启用的硬件检测机制以实现自动GRES配置。目前，选项有：<br>nrt<br>自动检测 AWS Trainium&#x2F;Inferentia 设备。<br>nvml<br>自动检测 NVIDIA GPU。需要 NVIDIA 管理库 (NVML)。<br>off<br>不自动检测任何 GPU。用于覆盖其他选项。<br>oneapi<br>自动检测 Intel GPU。需要 Intel 图形计算运行时以及 oneAPI Level Zero 和 OpenCL 驱动程序 (oneapi)。<br>rsmi<br>自动检测 AMD GPU。需要 ROCm 系统管理接口 (ROCm SMI) 库。<br>AutoDetect 可以单独一行，这样它将默认全局应用于 gres.conf 中的所有行。此外，AutoDetect 可以与 NodeName 结合使用，只应用于某些节点。节点特定的 AutoDetect 将优先于全局 AutoDetect。每个节点只需要指定一次节点特定的 AutoDetect。如果对同一节点多次指定，它们必须都是相同的值。要在设置了全局 AutoDetect 的情况下取消节点的 AutoDetect，只需在节点特定的 GRES 行中将其设置为 “off”。例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">NodeName=tux3 AutoDetect=off Name=gpu File=/dev/nvidia[0-3]</span><br></pre></td></tr></table></figure>
+<p>AutoDetect 不能用于云节点。AutoDetect 将自动检测文件、核心、链接和任何其他硬件。如果在使用 AutoDetect 时指定了诸如 File、Cores 或 Links 等参数，那么指定的值将用于对自动检测的值进行合理性检查。如果存在不匹配，那么节点的状态将被设置为无效，并且节点将被排除。</p>
+<ol start="4">
+<li>在提交作业时，使用 <code>--gres=gpu:n</code> 参数来请求 GPU 资源，其中 n 是你需要的 GPU 数量。例如：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sbatch --gres=gpu:1 my_script.sh</span><br></pre></td></tr></table></figure>
+
+<p>a short version for gres.conf</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># AutoDetect=nvml</span></span><br><span class="line">Name=gpu Type=p100 File=/dev/nvidia[0-2]</span><br></pre></td></tr></table></figure>
+<h1 id="Node-drain"><a href="#Node-drain" class="headerlink" title="Node drain"></a>Node drain</h1><p>在 Slurm 中，节点可能会被设置为 “drain” 状态，这意味着该节点不会接受新的作业，但仍会完成已经开始的作业。这通常是由于节点需要维护或者存在问题。先看log</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">cat</span> /var/log/slurm/slurmctld.log</span><br><span class="line">sudo <span class="built_in">cat</span> /var/log/slurm/slurmd.log </span><br></pre></td></tr></table></figure>
+
+<ol>
+<li>你可以使用 <code>sinfo</code> 命令来查看节点的状态：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sinfo -N -l</span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li>如果节点处于 “drain” 状态，你可以使用 <code>scontrol</code> 命令来查看更多的信息，例如：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">scontrol show node duguex-MZ31-AR0-HZ</span><br><span class="line">scontrol show node duguex-EG341W-G21</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>如果节点的问题已经解决，你可以使用 <code>scontrol</code> 命令来更新节点的状态，例如：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo scontrol update NodeName=duguex-MZ31-AR0-HZ State=RESUME</span><br><span class="line">sudo scontrol update NodeName=duguex-EG341W-G21 State=RESUME</span><br><span class="line"></span><br><span class="line">sudo scontrol update NodeName=duguex-MR91-FS0-1 State=RESUME</span><br><span class="line">sudo scontrol update NodeName=duguex-MR91-FS0-3 State=RESUME</span><br></pre></td></tr></table></figure>
+<p><code>State=RESUME</code> 将节点的状态设置为 “resume”，这意味着节点将开始接受新的作业。</p>
+<h1 id="Munge-decode-failed"><a href="#Munge-decode-failed" class="headerlink" title="Munge decode failed"></a>Munge decode failed</h1><p>Munge 是一个轻量级的身份验证服务，用于在网络应用中创建和验证凭据。它的主要目的是在不安全的网络环境中提供进程间的身份验证。Munge 通过加密技术确保凭据的安全性，防止被篡改或伪造。Munge 用于 Slurm 集群管理系统中，以确保集群内部通信的安全。当 Slurm 的各个组件（如 slurmd 守护进程、sbatch 命令等）相互通信时，Munge 用于验证通信双方的身份。这是通过在发送方生成一个加密的凭据，并在接收方对其进行验证来实现的。如果凭据有效，接收方就可以确认发送方的身份，并继续进行安全通信。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Apr 05 20:02:55 duguex-NF5588M3 slurmctld[2780]: slurmctld: error: Nodes duguex-MZ31-AR0-HZ,duguex-NF5588M3 not responding</span><br><span class="line">Apr 05 20:11:51 duguex-NF5588M3 slurmctld[2780]: slurmctld: Node duguex-NF5588M3 now responding</span><br><span class="line">Apr 05 20:12:55 duguex-NF5588M3 slurmctld[2780]: slurmctld: error: Nodes duguex-MZ31-AR0-HZ,duguex-NF5588M3 not responding</span><br><span class="line">Apr 05 20:12:59 duguex-NF5588M3 slurmctld[2780]: slurmctld: error: Munge decode failed: Invalid credential</span><br><span class="line">Apr 05 20:12:59 duguex-NF5588M3 slurmctld[2780]: slurmctld: auth/munge: _print_cred: ENCODED: Thu Jan 01 08:00:00 1970</span><br><span class="line">Apr 05 20:12:59 duguex-NF5588M3 slurmctld[2780]: slurmctld: auth/munge: _print_cred: DECODED: Thu Jan 01 08:00:00 1970</span><br></pre></td></tr></table></figure>
+<p>这个错误表明 Slurm 在尝试解析节点 “duguex-NF5588M3” 的地址时遇到了问题。这可能是由于网络问题，或者是因为这个节点的主机名没有正确配置在 DNS 或者 <code>/etc/hosts</code> 文件中。以下是一些可能的解决步骤：</p>
+<ol>
+<li>检查网络连接：确保你的网络连接是正常的，特别是 DNS 服务器是否可以正常访问。</li>
+<li>检查 DNS 配置：如果你的节点是通过 DNS 来解析的，确保 DNS 服务器中有这个节点的正确记录。</li>
+<li>检查 <code>/etc/hosts</code> 文件：如果你的节点是通过 <code>/etc/hosts</code> 文件来解析的，确保这个文件中有这个节点的正确记录。例如，如果 “duguex-NF5588M3” 的 IP 地址是 192.168.1.100，你应该在 <code>/etc/hosts</code> 文件中添加如下行：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">192.168.1.100 duguex-NF5588M3</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>/etc/hosts</code> 文件中，每一行都定义了一个或多个主机名到 IP 地址的映射。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4</span><br><span class="line">::1         localhost localhost.localdomain localhost6 localhost6.localdomain6</span><br><span class="line">192.168.71.37 mgt01 mgt01.hpc.com </span><br><span class="line">192.168.71.1 c01 c01.hpc.com </span><br><span class="line">192.168.71.36 c36 c36.hpc.com </span><br><span class="line">192.168.71.38 login01 login01.hpc.com </span><br><span class="line"></span><br><span class="line">192.168.1.100 duguex-NF5588M3</span><br><span class="line">192.168.1.111 duguex-MZ31-AR0-HZ</span><br></pre></td></tr></table></figure>
+<p>在这个例子中，IP 地址 <code>10.10.106.242</code> 被映射到了两个主机名：<code>login02-ib0</code> 和 <code>login02-ib0.df19.scc.ustc.edu.cn</code>。这意味着，当系统尝试解析这两个主机名时，它会将它们解析为 <code>10.10.106.242</code> 这个 IP 地址。这种映射通常用于在没有 DNS 服务器的情况下解析主机名，或者覆盖 DNS 服务器的解析结果。例如，你可以在 <code>/etc/hosts</code> 文件中添加一行来将一个域名映射到本地 IP 地址，以便在开发网站时测试。</p>
+<p><code>127.0.0.1</code> 和 <code>127.0.1.1</code> 都是 IP 地址，属于 IPv4 的本地回环地址（loopback address）范围内。本地回环地址用于网络软件测试以及系统内部通信，不会被路由到网络上。</p>
+<ul>
+<li><p><strong>127.0.0.1</strong> 是最常用的本地回环地址，通常被称为 <code>localhost</code>。它用于指代设备自身。当你尝试连接到 <code>127.0.0.1</code> 时，实际上是在尝试连接到本机上的网络服务。这个地址通常用于测试网络服务是否在本机上正常运行。</p>
+</li>
+<li><p><strong>127.0.1.1</strong> 通常在某些 Linux 发行版中使用，特别是当主机名不能通过外部DNS解析时，它被用作设备的静态主机名的解析地址。这个地址的使用并不像 <code>127.0.0.1</code> 那样普遍，它的具体用途可能因操作系统的配置和网络设置的不同而有所差异。</p>
+</li>
+</ul>
+<p><strong>主要区别</strong>：</p>
+<ul>
+<li><strong>用途</strong>：<code>127.0.0.1</code> 广泛用作通用的本地回环地址，而 <code>127.0.1.1</code> 在特定情况下用于解析特定的主机名。</li>
+<li><strong>普遍性</strong>：<code>127.0.0.1</code> 几乎在所有网络应用中都被认为是标准的本地回环地址，而 <code>127.0.1.1</code> 的使用更加特定且不那么普遍。</li>
+</ul>
+<p>尽管它们有不同的用途和普遍性，但它们都属于本地回环地址范围，用于设备内部的网络通信，而不是外部通信。</p>
+<ol>
+<li>检查 Munge 服务：确保 Munge 服务在所有的节点上都已经启动。你可以使用 <code>systemctl status munge</code> 命令来检查 Munge 服务的状态。</li>
+<li>检查 Munge 密钥：确保所有的节点都使用了相同的 Munge 密钥。你可以在 <code>/etc/munge/munge.key</code> 文件中找到这个密钥。</li>
+<li>重新生成 Munge 密钥：如果你怀疑密钥可能已经被破坏，你可以在主节点上使用 <code>create-munge-key</code> 命令重新生成密钥，然后将新的密钥复制到所有的节点上。</li>
+<li>重新启动 Slurm 和 Munge：在修改了配置或者密钥之后，你需要使用 <code>systemctl restart munge</code> 和 <code>systemctl restart slurmd</code> 命令重新启动 Munge 和 Slurm。</li>
+</ol>
+<p>Munge 密钥用于在 Slurm 集群中的节点之间进行身份验证。以下是如何使用 Munge 密钥的基本步骤：</p>
+<ol>
+<li>在主节点上生成 Munge 密钥。你可以使用 <code>dd</code> 命令来生成一个新的密钥：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">dd</span> <span class="keyword">if</span>=/dev/urandom bs=1 count=1024 &gt; /etc/munge/munge.key</span><br></pre></td></tr></table></figure>
+
+<p>这个命令会生成一个 1024 字节的随机密钥，并将其保存到 <code>/etc/munge/munge.key</code> 文件中。</p>
+<ol start="2">
+<li>将 Munge 密钥复制到所有的节点。你可以使用 <code>scp</code> 命令来复制密钥：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp /etc/munge/munge.key username@node:/etc/munge/</span><br></pre></td></tr></table></figure>
+
+<p>   这个命令会将密钥复制到 <code>node</code> 这个节点的 <code>/etc/munge/</code> 目录中。你需要将 <code>username</code> 和 <code>node</code> 替换为实际的用户名和节点名。</p>
+<ol start="3">
+<li>在所有的节点上设置 Munge 密钥的权限。Munge 密钥文件的权限应该设置为 400，所有者应该是 Munge 用户：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo <span class="built_in">chown</span> munge: /etc/munge/munge.key</span><br><span class="line">sudo <span class="built_in">chmod</span> 400 /etc/munge/munge.key</span><br></pre></td></tr></table></figure>
+
+<ol start="4">
+<li>在所有的节点上启动 Munge 服务。你可以使用 <code>systemctl</code> 命令来启动 Munge 服务：</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl start munge</span><br></pre></td></tr></table></figure>
+
+<p>请注意，你需要确保所有的节点都使用了相同的 Munge 密钥。如果节点之间的密钥不一致，它们将无法进行身份验证。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo mungekey --verbose</span><br><span class="line">scp /etc/munge/munge.key duguex@192.168.1.111:/etc/munge/</span><br><span class="line">scp /etc/munge/munge.key duguex@192.168.1.114:/etc/munge/</span><br><span class="line">sudo systemctl restart munge slurmd slurmctld</span><br></pre></td></tr></table></figure>
+
+<p>“UNK” 是 Slurm 中的一个节点状态，表示 “Unknown”。当 Slurm 控制器无法确定一个节点的状态时，就会将其状态设置为 “UNK”。以下是一些可能导致节点状态为 “UNK” 的原因：</p>
+<ol>
+<li>节点无法访问：如果 Slurm 控制器无法通过网络访问到一个节点，它就会将这个节点的状态设置为 “UNK”。这可能是由于网络问题，或者节点已经关闭。</li>
+<li>Slurmd 服务未运行：Slurmd 是在每个节点上运行的 Slurm 守护进程。如果一个节点上的 Slurmd 服务没有运行，Slurm 控制器就无法确定这个节点的状态。</li>
+<li>身份验证失败：Slurm 使用 Munge 进行身份验证。如果身份验证失败，例如由于 Munge 密钥不一致，Slurm 控制器就无法确定节点的状态。</li>
+</ol>
+<h1 id="CPU-架构"><a href="#CPU-架构" class="headerlink" title="CPU 架构"></a>CPU 架构</h1><h2 id="hwloc-和-hwloc-nox-的区别"><a href="#hwloc-和-hwloc-nox-的区别" class="headerlink" title="hwloc 和 hwloc-nox 的区别"></a><a target="_blank" rel="noopener" href="https://www.open-mpi.org/software/hwloc/v2.10/">hwloc</a> 和 hwloc-nox 的区别</h2><p><code>hwloc</code> 和 <code>hwloc-nox</code> 都是硬件定位库（Hardware Locality，hwloc）的包。这个库提供了一个抽象的视图，用于描述计算节点的硬件拓扑，包括处理器、缓存、内存和设备等。<code>hwloc</code> 包包含了一个名为 <code>lstopo</code> 的工具，这个工具可以生成描述硬件拓扑的图形或文本输出。为了生成图形输出，<code>lstopo</code> 需要依赖一些图形库，如 Cairo 和 libX11。<code>hwloc-nox</code> 包是 <code>hwloc</code> 的一个变体，它不包含对这些图形库的依赖。因此，<code>hwloc-nox</code> 包中的 <code>lstopo</code> 工具只能生成文本输出，不能生成图形输出。如果你的系统没有图形环境，或者你不需要 <code>lstopo</code> 的图形输出功能，你可以选择安装 <code>hwloc-nox</code> 包。否则，你应该安装 <code>hwloc</code> 包。</p>
+<p>.&#x2F;configure<br>make all<br>make install PREFIX&#x3D;&#x2F;home&#x2F;phys&#x2F;duguex&#x2F;hwloc not working<br>make install DESTDIR&#x3D;&#x2F;home&#x2F;phys&#x2F;duguex&#x2F;hwloc working<br>LD_LIBRARY_PATH&#x3D;$LD_LIBRARY_PATH:&#x2F;home&#x2F;phys&#x2F;duguex&#x2F;hwloc&#x2F;usr&#x2F;local&#x2F;lib<br>export LD_LIBRARY_PATH</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">lstopo</span><br></pre></td></tr></table></figure>
+
+<p>lscpu<br>&#x2F;home&#x2F;phys&#x2F;duguex&#x2F;hwloc&#x2F;usr&#x2F;local&#x2F;bin&#x2F;lstopo<br><a target="_blank" rel="noopener" href="https://compare-intel-kunpeng.readthedocs.io/zh-cn/latest/attachment.html#kunpeng-lstop">https://compare-intel-kunpeng.readthedocs.io/zh-cn/latest/attachment.html#kunpeng-lstop</a></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Machine (126GB total)</span><br><span class="line">  Package L<span class="comment">#0</span></span><br><span class="line">    NUMANode L<span class="comment">#0 (P#0 126GB)</span></span><br><span class="line">    L3 L<span class="comment">#0 (16MB)</span></span><br><span class="line">      L2 L<span class="comment">#0 (512KB) + L1d L#0 (32KB) + L1i L#0 (32KB) + Core L#0</span></span><br><span class="line">        PU L<span class="comment">#0 (P#0)</span></span><br><span class="line">        PU L<span class="comment">#1 (P#48)</span></span><br><span class="line">      L2 L<span class="comment">#1 (512KB) + L1d L#1 (32KB) + L1i L#1 (32KB) + Core L#1</span></span><br><span class="line">        PU L<span class="comment">#2 (P#1)</span></span><br><span class="line">        PU L<span class="comment">#3 (P#49)</span></span><br><span class="line">      L2 L<span class="comment">#2 (512KB) + L1d L#2 (32KB) + L1i L#2 (32KB) + Core L#2</span></span><br><span class="line">        PU L<span class="comment">#4 (P#2)</span></span><br><span class="line">        PU L<span class="comment">#5 (P#50)</span></span><br><span class="line">      L2 L<span class="comment">#3 (512KB) + L1d L#3 (32KB) + L1i L#3 (32KB) + Core L#3</span></span><br><span class="line">        PU L<span class="comment">#6 (P#3)</span></span><br><span class="line">        PU L<span class="comment">#7 (P#51)</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="Slurm-and-LSF-node-status"><a href="#Slurm-and-LSF-node-status" class="headerlink" title="Slurm and LSF node status"></a>Slurm and LSF node status</h1><p>在 Slurm 中，你可以使用 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sinfo</span><br></pre></td></tr></table></figure>
+<p>命令来查看集群的状态，包括可用的节点。在命令行中输入以下命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sinfo -Nel</span><br></pre></td></tr></table></figure>
+<p>这个命令会列出每个节点的详细信息，包括节点所属的分区。</p>
+<p>slurm版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sinfo -V</span><br></pre></td></tr></table></figure>
+<p>GPU 使用情况</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sinfo -o <span class="string">&quot;%N %G&quot;</span></span><br><span class="line">squeue -o <span class="string">&quot;%j %u %t %D %C %b&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>在 LSF 中，你可以使用</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bhosts</span><br></pre></td></tr></table></figure>
+<p>使用 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">bhosts -w</span><br><span class="line">bqueues -l queue_name -u qif</span><br></pre></td></tr></table></figure>
+<p>命令来查看节点和队列的详细信息。</p>
+<h1 id="top-via-hold-and-release"><a href="#top-via-hold-and-release" class="headerlink" title="top via hold and release"></a>top via hold and release</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="built_in">id</span>=`squeue -u duguex -t PD -o %i | <span class="built_in">tr</span> <span class="string">&#x27;\n&#x27;</span> <span class="string">&#x27; &#x27;</span> | sed <span class="string">&#x27;s/JOBID //&#x27;</span>`;scontrol hold <span class="variable">$id</span> ; scontrol release <span class="variable">$@</span>; scontrol release <span class="variable">$id</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">id</span>=`squeue -u duguex -t PD -o %i | <span class="built_in">tr</span> <span class="string">&#x27;\n&#x27;</span> <span class="string">&#x27; &#x27;</span> | sed <span class="string">&#x27;s/JOBID //&#x27;</span>`;scontrol hold <span class="variable">$id</span> ; scontrol release 1774764; scontrol release <span class="variable">$id</span></span><br></pre></td></tr></table></figure>
+<p>suspend-resume<br>hold-release</p>
+<p>bsub &lt; ~&#x2F;rc-tmp&#x2F;vasp_$<a href="mailto:&#x31;&#64;&#115;&#x6d;&#97;&#108;&#x6c;&#111;&#x70;&#97;&#46;&#115;&#104;">&#x31;&#64;&#115;&#x6d;&#97;&#108;&#x6c;&#111;&#x70;&#97;&#46;&#115;&#104;</a></p>
+<p>双路节点需要<br>#SBATCH –cpus-per-task&#x3D;2</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/cluster/" rel="tag"># cluster</a>
+              <a href="/tags/slurm/" rel="tag"># slurm</a>
+              <a href="/tags/ubuntu/" rel="tag"># ubuntu</a>
+              <a href="/tags/lsf/" rel="tag"># lsf</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/06/14/blog/" rel="next" title="Build a blog">
+                  Build a blog <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Mingzhe Liu</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

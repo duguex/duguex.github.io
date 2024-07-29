@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"tobedetermined.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="chatglmgit clone https:&#x2F;&#x2F;github.com&#x2F;THUDM&#x2F;ChatGLM-6Bcurl -s https:&#x2F;&#x2F;packagecloud.io&#x2F;install&#x2F;repositories&#x2F;github&#x2F;git-lfs&#x2F;script.deb.sh | sudo bashsudo apt-get install git-lfs 在ChatGLM-6B 目录里面创建一个model的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="llm">
+<meta property="og:url" content="http://tobedetermined.com/2024/06/15/llm/index.html">
+<meta property="og:site_name" content="TODO">
+<meta property="og:description" content="chatglmgit clone https:&#x2F;&#x2F;github.com&#x2F;THUDM&#x2F;ChatGLM-6Bcurl -s https:&#x2F;&#x2F;packagecloud.io&#x2F;install&#x2F;repositories&#x2F;github&#x2F;git-lfs&#x2F;script.deb.sh | sudo bashsudo apt-get install git-lfs 在ChatGLM-6B 目录里面创建一个model的">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-15T14:55:06.000Z">
+<meta property="article:modified_time" content="2024-07-29T16:45:20.876Z">
+<meta property="article:author" content="Mingzhe Liu">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://tobedetermined.com/2024/06/15/llm/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://tobedetermined.com/2024/06/15/llm/","path":"2024/06/15/llm/","title":"llm"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>llm | TODO</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">TODO</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#chatglm"><span class="nav-number">1.</span> <span class="nav-text">chatglm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#chatglm-1"><span class="nav-number">2.</span> <span class="nav-text">chatglm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E5%8D%A1%E6%8E%A8%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">多卡推理</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%97%A8%E7%9A%84%E8%80%B3%E6%9C%B5"><span class="nav-number">4.</span> <span class="nav-text">门的耳朵</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#glm4"><span class="nav-number">5.</span> <span class="nav-text">glm4</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#use-vllm"><span class="nav-number">6.</span> <span class="nav-text">use vllm</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vllm-0-4-3"><span class="nav-number">7.</span> <span class="nav-text">vllm&gt;&#x3D;0.4.3</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#vllm-is-supporting-P100-now"><span class="nav-number">8.</span> <span class="nav-text">vllm is supporting P100 now</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#ollama"><span class="nav-number">9.</span> <span class="nav-text">ollama</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Claude-3-5-Sonnet-GPT4o"><span class="nav-number">10.</span> <span class="nav-text">Claude 3.5 Sonnet - GPT4o</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#chatollama-ollama"><span class="nav-number">11.</span> <span class="nav-text">chatollama+ ollama</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mingzhe Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/duguex" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;duguex" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:duguex@126.com" title="E-Mail → mailto:duguex@126.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://tobedetermined.com/2024/06/15/llm/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mingzhe Liu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TODO">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="llm | TODO">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          llm
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-06-15 22:55:06" itemprop="dateCreated datePublished" datetime="2024-06-15T22:55:06+08:00">2024-06-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-07-30 00:45:20" itemprop="dateModified" datetime="2024-07-30T00:45:20+08:00">2024-07-30</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="chatglm"><a href="#chatglm" class="headerlink" title="chatglm"></a>chatglm</h1><p>git clone <a target="_blank" rel="noopener" href="https://github.com/THUDM/ChatGLM-6B">https://github.com/THUDM/ChatGLM-6B</a><br>curl -s <a target="_blank" rel="noopener" href="https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh">https://packagecloud.io/install/repositories/github/git-lfs/script.deb.sh</a> | sudo bash<br>sudo apt-get install git-lfs</p>
+<p>在ChatGLM-6B 目录里面创建一个model的文件夹<br>git clone <a target="_blank" rel="noopener" href="https://huggingface.co/THUDM/chatglm-6b-int4">https://huggingface.co/THUDM/chatglm-6b-int4</a></p>
+<p>pip install -r requirements.txt<br>pip install gradio&#x3D;&#x3D;3.50.0</p>
+<p>执行 vim web_demo.py 修改文档目录中的 web_demo.py文件,修改其中的两处代码中的路径，将原始的“THUDM&#x2F;ChatGLM-6B”替为当前的模型路径”model&#x2F;chatglm-6b-int4“，：<br>tokenizer &#x3D; AutoTokenizer.from_pretrained(“model&#x2F;chatglm-6b-int4”, trust_remote_code&#x3D;True)<br>model &#x3D; AutoModel.from_pretrained(“model&#x2F;chatglm-6b-int4”, trust_remote_code&#x3D;True).half().cuda()</p>
+<p>7、修改web_demo.py文件中最后，启动文件时，产生公共链接的参数，将share&#x3D;False,改为share&#x3D;True</p>
+<p>demo.queue().launch(share&#x3D;True, inbrowser&#x3D;True)<br>8、安装cudatoolkit，执行</p>
+<p>conda install cudatoolkit&#x3D;11.7 -c nvidia<br>conda install cudatoolkit -c nvidia<br>如不成功，则更换安装源，执行</p>
+<p>conda install -c conda-forge cudatoolkit</p>
+<p>执行python web_demo.py，启动服务<br>可以在本地电脑浏览器上用http:&#x2F;&#x2F;你服务器的ip:7860上查看，也可以点击生成的公用URL查看效果</p>
+<p>Could not create share link. Missing file: &#x2F;opt&#x2F;conda&#x2F;envs&#x2F;chatglm&#x2F;lib&#x2F;python3.11&#x2F;site-packages&#x2F;gradio&#x2F;frpc_linux_amd64_v0.2. </p>
+<p>Please check your internet connection. This can happen if your antivirus software blocks the download of this file. You can install manually by following these steps: </p>
+<ol>
+<li>Download this file: <a target="_blank" rel="noopener" href="https://cdn-media.huggingface.co/frpc-gradio-0.2/frpc_linux_amd64">https://cdn-media.huggingface.co/frpc-gradio-0.2/frpc_linux_amd64</a></li>
+<li>Rename the downloaded file to: frpc_linux_amd64_v0.2</li>
+<li>Move the file to this location: &#x2F;opt&#x2F;conda&#x2F;envs&#x2F;chatglm&#x2F;lib&#x2F;python3.11&#x2F;site-packages&#x2F;gradio</li>
+</ol>
+<p>curl -O <a target="_blank" rel="noopener" href="https://cdn-media.huggingface.co/frpc-gradio-0.2/frpc_linux_amd64">https://cdn-media.huggingface.co/frpc-gradio-0.2/frpc_linux_amd64</a></p>
+<p>chmod +x frpc_linux_amd64_v0.2</p>
+<p>python -c “import torch; print(torch.cuda.is_available())”</p>
+<p>Maximum length 参数</p>
+<p>通常用于限制输入序列的最大长度，因为 ChatGLM-6B 是 2048 长度推理的，一般这个保持默认就行，太大可能会导致性能下降。</p>
+<p>Top P 参数</p>
+<p>Top P 参数是指在生成文本等任务中，选择可能性最高的前 P 个词的概率累加和。这个参数被称为 Top P，也称为 Nucleus Sampling。</p>
+<p>例如，如果将 Top P 参数设置为 0.7，那么模型会选择可能性排名超过 70% 的词进行采样。这样可以保证生成的文本准确性较高，但可能会缺之多样性。相反，如果将 Top P 参教设置为 0.3，则会选择可能性超过 30% 的词进行采样，这可能会导致生成义本的准确性下降，但能够更好地增加多样性。</p>
+<p>Temperature 参数</p>
+<p>Temperature 参数通常用于调整 softmax 函数的输出，用于增加或减少模型对不类别的置信度。具体来说，softmax 函数将模型对每个类别的预测转换为概率分布。Temperature 参数可以看作是一个缩放因子，它可以增加或减少 softmax 函数输出中每个类别的置信度。</p>
+<p>比如将 Temperature 设置为 0.05 和 0.95 的主要区别在于，T&#x3D;0.05 会使得模型更加自信，更加倾向于选择概率最大的类别作为输出，而 T&#x3D;0.95 会使得模型更加不确定，更加倾向于输出多个类别的概率值较大。</p>
+<h1 id="chatglm-1"><a href="#chatglm-1" class="headerlink" title="chatglm"></a>chatglm</h1><p><a target="_blank" rel="noopener" href="https://huggingface.co/THUDM">https://huggingface.co/THUDM</a><br><a target="_blank" rel="noopener" href="https://github.com/THUDM/ChatGLM-6B">https://github.com/THUDM/ChatGLM-6B</a><br><a target="_blank" rel="noopener" href="https://www.bilibili.com/read/cv22991124/">https://www.bilibili.com/read/cv22991124/</a></p>
+<h1 id="多卡推理"><a href="#多卡推理" class="headerlink" title="多卡推理"></a>多卡推理</h1><p><a target="_blank" rel="noopener" href="https://github.com/jia-zhuang/pytorch-multi-gpu-training">https://github.com/jia-zhuang/pytorch-multi-gpu-training</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/BIT_666/article/details/132538581">https://blog.csdn.net/BIT_666/article/details/132538581</a><br><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2365232">https://cloud.tencent.com/developer/article/2365232</a><br><a target="_blank" rel="noopener" href="https://blog.csdn.net/baidu_38270845/article/details/105823344">https://blog.csdn.net/baidu_38270845/article/details/105823344</a><br><a target="_blank" rel="noopener" href="https://github.com/ChuangLee/ChatGLM-6B-multiGPU">https://github.com/ChuangLee/ChatGLM-6B-multiGPU</a></p>
+<h1 id="门的耳朵"><a href="#门的耳朵" class="headerlink" title="门的耳朵"></a>门的耳朵</h1><p><a target="_blank" rel="noopener" href="https://space.bilibili.com/508414342?spm_id_from=333.788.0.0">https://space.bilibili.com/508414342?spm_id_from=333.788.0.0</a></p>
+<h1 id="glm4"><a href="#glm4" class="headerlink" title="glm4"></a>glm4</h1><p>GLM-4-9B 是智谱 AI 推出的最新一代预训练模型 GLM-4 系列中的开源版本。 在语义、数学、推理、代码和知识等多方面的数据集测评中， GLM-4-9B 及其人类偏好对齐的版本 GLM-4-9B-Chat 均表现出超越 Llama-3-8B 的卓越性能。除了能进行多轮对话，GLM-4-9B-Chat 还具备网页浏览、代码执行、自定义工具调用（Function Call）和长文本推理（支持最大 128K 上下文）等高级功能。本代模型增加了多语言支持，支持包括日语，韩语，德语在内的 26 种语言。我们还推出了支持 1M 上下文长度（约 200 万中文字符）的 GLM-4-9B-Chat-1M 模型和基于 GLM-4-9B 的多模态模型 GLM-4V-9B。GLM-4V-9B 具备 1120 * 1120 高分辨率下的中英双语多轮对话能力，在中英文综合能力、感知推理、文字识别、图表理解等多方面多模态评测中，GLM-4V-9B 表现出超越 GPT-4-turbo-2024-04-09、Gemini 1.0 Pro、Qwen-VL-Max 和 Claude 3 Opus 的卓越性能。</p>
+<p>install conda pip git-lfs</p>
+<p>git lfs install<br>git clone <a target="_blank" rel="noopener" href="https://www.modelscope.cn/ZhipuAI/glm-4-9b.git">https://www.modelscope.cn/ZhipuAI/glm-4-9b.git</a><br>git clone <a target="_blank" rel="noopener" href="https://www.modelscope.cn/ZhipuAI/glm-4-9b-chat-1m.git">https://www.modelscope.cn/ZhipuAI/glm-4-9b-chat-1m.git</a><br>git clone <a target="_blank" rel="noopener" href="https://www.modelscope.cn/ZhipuAI/glm-4v-9b.git">https://www.modelscope.cn/ZhipuAI/glm-4v-9b.git</a><br>git clone <a target="_blank" rel="noopener" href="https://www.modelscope.cn/ZhipuAI/glm-4-9b-chat.git">https://www.modelscope.cn/ZhipuAI/glm-4-9b-chat.git</a></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/THUDM/GLM-4">https://github.com/THUDM/GLM-4</a><br>git clone <a target="_blank" rel="noopener" href="https://github.com/THUDM/GLM-4.git">https://github.com/THUDM/GLM-4.git</a></p>
+<p>ref <a target="_blank" rel="noopener" href="https://github.com/datawhalechina/self-llm">https://github.com/datawhalechina/self-llm</a></p>
+<!-- #MODEL_PATH = os.environ.get('MODEL_PATH', 'THUDM/glm-4-9b-chat')
+MODEL_PATH = os.environ.get('MODEL_PATH', '/home/duguex/glm4/glm-4-9b-chat')
+pip install tiktoken
+pip install accelerate -->
+
+<p>最低硬件要求<br>如果您希望运行官方提供的最基础代码 (transformers 后端) 您需要：</p>
+<p>Python &gt;&#x3D; 3.10<br>内存不少于 32 GB<br>如果您希望运行官方提供的本文件夹的所有代码，您还需要：</p>
+<p>Linux 操作系统 (Debian 系列最佳)<br>大于 8GB 显存的，支持 CUDA 或者 ROCM 并且支持 BF16 推理的 GPU 设备。(FP16 精度无法训练，推理有小概率出现问题)<br>安装依赖</p>
+<p>pip install -r requirements.txt<br>基础功能调用<br>除非特殊说明，本文件夹所有 demo 并不支持 Function Call 和 All Tools 等进阶用法</p>
+<p>使用 transformers 后端代码<br>使用命令行与 GLM-4-9B 模型进行对话。<br>python trans_cli_demo.py # GLM-4-9B-Chat<br>python trans_cli_vision_demo.py # GLM-4V-9B<br>使用 Gradio 网页端与 GLM-4-9B-Chat 模型进行对话。<br>python trans_web_demo.py<br>使用 Batch 推理。<br>python cli_batch_request_demo.py<br>使用 vLLM 后端代码<br>使用命令行与 GLM-4-9B-Chat 模型进行对话。<br>python vllm_cli_demo.py<br>自行构建服务端，并使用 OpenAI API 的请求格式与 GLM-4-9B-Chat 模型进行对话。本 demo 支持 Function Call 和 All Tools功能。<br>启动服务端：</p>
+<p>python openai_api_server.py<br>客户端请求：</p>
+<p>python openai_api_request.py<br>压力测试<br>用户可以在自己的设备上使用本代码测试模型在 transformers后端的生成速度:</p>
+<p>python trans_stress_test.py</p>
+<h1 id="use-vllm"><a href="#use-vllm" class="headerlink" title="use vllm"></a>use vllm</h1><h1 id="vllm-0-4-3"><a href="#vllm-0-4-3" class="headerlink" title="vllm&gt;&#x3D;0.4.3"></a>vllm&gt;&#x3D;0.4.3</h1><p>vllm 对ray最低版本有要求,而ray没有支持最新的python版本，python&#x3D;3.11.9 instead of python12</p>
+<p>AssertionError: CUDA_HOME is not set<br>需要安装cuda，cuda版本与显卡驱动版本一致<br>这个错误信息表明，你的环境变量 <code>CUDA_HOME</code> 没有被设置。<code>CUDA_HOME</code> 是一个环境变量，通常用于指向 CUDA 安装的位置。CUDA 是 NVIDIA 开发的一个平台，用于进行高性能的并行计算。</p>
+<p>你可以通过以下步骤来设置 <code>CUDA_HOME</code>：</p>
+<ol>
+<li><p>找到 CUDA 的安装位置。在许多 Linux 系统上，CUDA 通常安装在 <code>/usr/local/cuda</code>。</p>
+</li>
+<li><p>打开终端，运行以下命令来设置 <code>CUDA_HOME</code> 环境变量（假设 CUDA 安装在 <code>/usr/local/cuda</code>）：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> CUDA_HOME=/usr/local/cuda</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>为了让这个设置在每次打开新的终端时都生效，你可以将上面的 <code>export</code> 命令添加到你的 shell 配置文件中，例如 <code>~/.bashrc</code> 或 <code>~/.zshrc</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">echo</span> <span class="string">&#x27;export CUDA_HOME=/usr/local/cuda&#x27;</span> &gt;&gt; ~/.bashrc</span><br></pre></td></tr></table></figure>
+
+<p>然后，运行 <code>source ~/.bashrc</code> 来使改动立即生效。</p>
+</li>
+</ol>
+<p>请注意，你需要根据你的 CUDA 实际的安装位置来设置 <code>CUDA_HOME</code>。如果你不确定 CUDA 的安装位置，你可以尝试运行 <code>which nvcc</code> 命令，这个命令会显示 <code>nvcc</code>（CUDA 的编译器）的路径，这个路径通常可以用来确定 CUDA 的安装位置。目录不包含&#x2F;bin</p>
+<p>如果你通过 <code>pip</code> 安装了 CUDA 相关的 Python 包（如 <code>torch</code> 或 <code>cupy</code>），那么 CUDA 库本身通常会被安装在这些 Python 包的目录中，而不是在系统级别的目录（如 <code>/usr/local/cuda</code>）中。</p>
+<p>export CUDA_HOME&#x3D;&#x2F;usr&#x2F;local&#x2F;cuda</p>
+<p>wget <a target="_blank" rel="noopener" href="https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb">https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb</a><br>sudo dpkg -i cuda-keyring_1.1-1_all.deb<br>sudo apt-get update<br>sudo apt-get -y install cuda</p>
+<p>wget <a target="_blank" rel="noopener" href="https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-ubuntu2204.pin">https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-ubuntu2204.pin</a><br>sudo mv cuda-ubuntu2204.pin &#x2F;etc&#x2F;apt&#x2F;preferences.d&#x2F;cuda-repository-pin-600<br>wget <a target="_blank" rel="noopener" href="https://developer.download.nvidia.com/compute/cuda/12.2.2/local_installers/cuda-repo-ubuntu2204-12-2-local_12.2.2-535.104.05-1_amd64.deb">https://developer.download.nvidia.com/compute/cuda/12.2.2/local_installers/cuda-repo-ubuntu2204-12-2-local_12.2.2-535.104.05-1_amd64.deb</a><br>sudo dpkg -i cuda-repo-ubuntu2204-12-2-local_12.2.2-535.104.05-1_amd64.deb<br>sudo cp &#x2F;var&#x2F;cuda-repo-ubuntu2204-12-2-local&#x2F;cuda-*-keyring.gpg &#x2F;usr&#x2F;share&#x2F;keyrings&#x2F;<br>sudo apt-get update<br>sudo apt-get install cuda</p>
+<p>如果你想撤销 <code>sudo dpkg -i cuda-keyring_1.1-1_all.deb</code> 这个操作，你可以使用 <code>dpkg -r</code> 或 <code>dpkg --remove</code> 命令来移除 <code>cuda-keyring</code> 包。以下是具体的命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -r cuda-keyring</span><br></pre></td></tr></table></figure>
+
+<p>这个命令会移除 <code>cuda-keyring</code> 包，但它不会移除该包的配置文件。如果你想完全移除该包，包括其配置文件，你可以使用 <code>dpkg -P</code> 或 <code>dpkg --purge</code> 命令：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -P cuda-keyring</span><br></pre></td></tr></table></figure>
+
+<p>请注意，这些命令只会移除 <code>cuda-keyring</code> 包，它们不会移除该包的依赖或者该包安装的其他文件。如果你需要完全移除 CUDA，你可能需要使用其他的方法，例如使用 NVIDIA 提供的卸载脚本。</p>
+<h1 id="vllm-is-supporting-P100-now"><a href="#vllm-is-supporting-P100-now" class="headerlink" title="vllm is supporting P100 now"></a>vllm is supporting P100 now</h1><p>need change dtype from bfloat16 to float16</p>
+<p>ValueError: Bfloat16 is only supported on GPUs with compute capability of at least 8.0. Your Tesla P100-PCIE-16GB GPU has compute capability 6.0. You can use float16 instead by explicitly setting the<code>dtype</code> flag in CLI, for example: –dtype&#x3D;half.</p>
+<h1 id="ollama"><a href="#ollama" class="headerlink" title="ollama"></a>ollama</h1><p>ollama run llama3:70b<br>ollama basepath</p>
+<h1 id="Claude-3-5-Sonnet-GPT4o"><a href="#Claude-3-5-Sonnet-GPT4o" class="headerlink" title="Claude 3.5 Sonnet - GPT4o"></a>Claude 3.5 Sonnet - GPT4o</h1><p>ollama + chatbox &#x2F;open-webui(多模态)<br>huggingface(gguf) + chatbox<br>api调用是什么</p>
+<p>obsidian 第三方插件 text generator&#x2F; copilot<br>default prompts package</p>
+<p>LM Studio (model scope) v.s. ollama v.s. anythingLLMdesktop</p>
+<p>LLM preferences qwen2 in LM Studio<br>embedder preferences acge in ollama</p>
+<p>微调 unsloth v.s. llama-factory<br>微调 lora</p>
+<p>ollama 是 lama.cpp的套壳 对大并发的支持不好<br>vllm 用于大并发 </p>
+<p>“registry-mirrors”:[“<a target="_blank" rel="noopener" href="https://docker.m.daocloud.io","https//docker.1panel.live%22]">https://docker.m.daocloud.io&quot;,&quot;https://docker.1panel.live&quot;]</a></p>
+<p>chatollama:<br>redis-1        | 1:C 02 Jul 2024 01:57:03.863 # WARNING Memory overcommit must be enabled! Without it, a background save or replication may fail under low memory condition. Being disabled, it can also cause failures without low memory condition, see <a target="_blank" rel="noopener" href="https://github.com/jemalloc/jemalloc/issues/1328">https://github.com/jemalloc/jemalloc/issues/1328</a>. </p>
+<p>To fix this issue add ‘vm.overcommit_memory &#x3D; 1’ to &#x2F;etc&#x2F;sysctl.conf and then reboot or run the command ‘sysctl vm.overcommit_memory&#x3D;1’ for this to take effect.</p>
+<h1 id="chatollama-ollama"><a href="#chatollama-ollama" class="headerlink" title="chatollama+ ollama"></a>chatollama+ ollama</h1><p>chatollama in docker:</p>
+<p>docker-compose.yml</p>
+<p>services:<br>  chromadb:<br>    image: chromadb&#x2F;chroma<br>    ports:<br>      - “8000:8000”<br>    restart: always<br>    volumes:<br>      - chromadb_volume:&#x2F;chroma&#x2F;chroma</p>
+<p>  chatollama:<br>    environment:<br>      - CHROMADB_URL&#x3D;<a target="_blank" rel="noopener" href="http://chromadb:8000/">http://chromadb:8000</a><br>      - DATABASE_URL&#x3D;file:&#x2F;app&#x2F;sqlite&#x2F;chatollama.sqlite<br>      - REDIS_HOST&#x3D;redis<br>      - COHERE_API_KEY&#x3D;xxxxx<br>      - COHERE_MODEL&#x3D;ms-marco-MiniLM-L-6-v2<br>      - COHERE_BASE_URL&#x3D;<a target="_blank" rel="noopener" href="http://peanutshell:8000/v1">http://peanutshell:8000/v1</a><br>    image: 0001coder&#x2F;chatollama:latest<br>    pull_policy: always<br>    #extra_hosts:<br>    #  - “host.docker.internal:host-gateway”<br>    ports:<br>      - “3000:3000”<br>    restart: always<br>    volumes:<br>      - ~&#x2F;.chatollama:&#x2F;app&#x2F;sqlite</p>
+<p>  redis:<br>    image: redis:latest<br>    restart: always<br>    volumes:<br>      - redis_data:&#x2F;data</p>
+<p>  peanutshell:<br>    image: ghcr.io&#x2F;sugarforever&#x2F;peanut-shell:latest<br>    volumes:<br>      - hf_data:&#x2F;root&#x2F;.cache</p>
+<p>volumes:<br>  chromadb_volume:<br>  redis_data:<br>  hf_data:</p>
+<p>ollama in host</p>
+<p>Setting environment variables on Linux<br>If Ollama is run as a systemd service, environment variables should be set using systemctl:</p>
+<p>Edit the systemd service by calling systemctl edit ollama.service. This will open an editor.</p>
+<p>For each environment variable, add a line Environment under section [Service]:</p>
+<p>[Service]<br>Environment&#x3D;”OLLAMA_HOST&#x3D;0.0.0.0”<br>Save and exit.</p>
+<p>Reload systemd and restart Ollama:</p>
+<p>systemctl daemon-reload<br>systemctl restart ollama</p>
+<p>then change ollama host ip in chatollama website to host ip (192.168.1.114:11434)</p>
+<p>add HF_ENDPOINT&#x3D;<a target="_blank" rel="noopener" href="https://hf-mirror.com/">https://hf-mirror.com</a> to docker-compose.yml<br>i dont know which service, so i add it to all services<br>to solve “We couldn’t connect to ‘<a target="_blank" rel="noopener" href="https://huggingface.co/">https://huggingface.co</a>‘ to load this file “<br>maybe due to langchain </p>
+<p>services:<br>  chromadb:<br>    environment:<br>      - HF_ENDPOINT&#x3D;<a target="_blank" rel="noopener" href="https://hf-mirror.com/">https://hf-mirror.com</a><br>    image: chromadb&#x2F;chroma<br>    ports:<br>      - “8000:8000”<br>    restart: always<br>    volumes:<br>      - chromadb_volume:&#x2F;chroma&#x2F;chroma</p>
+<p>  chatollama:<br>    environment:<br>      - CHROMADB_URL&#x3D;<a target="_blank" rel="noopener" href="http://chromadb:8000/">http://chromadb:8000</a><br>      - DATABASE_URL&#x3D;file:&#x2F;app&#x2F;sqlite&#x2F;chatollama.sqlite<br>      - REDIS_HOST&#x3D;redis<br>      - COHERE_API_KEY&#x3D;xxxxx<br>      - COHERE_MODEL&#x3D;ms-marco-MiniLM-L-6-v2<br>      - COHERE_BASE_URL&#x3D;<a target="_blank" rel="noopener" href="http://peanutshell:8000/v1">http://peanutshell:8000/v1</a><br>      - HF_ENDPOINT&#x3D;<a target="_blank" rel="noopener" href="https://hf-mirror.com/">https://hf-mirror.com</a><br>    image: 0001coder&#x2F;chatollama:latest<br>    pull_policy: always<br>    #extra_hosts:<br>    #  - “host.docker.internal:host-gateway”<br>    ports:<br>      - “3000:3000”<br>    restart: always<br>    volumes:<br>      - ~&#x2F;.chatollama:&#x2F;app&#x2F;sqlite</p>
+<p>  redis:<br>    environment:<br>      - HF_ENDPOINT&#x3D;<a target="_blank" rel="noopener" href="https://hf-mirror.com/">https://hf-mirror.com</a><br>    image: redis:latest<br>    restart: always<br>    volumes:<br>      - redis_data:&#x2F;data</p>
+<p>  peanutshell:<br>    environment:<br>      - HF_ENDPOINT&#x3D;<a target="_blank" rel="noopener" href="https://hf-mirror.com/">https://hf-mirror.com</a><br>    image: ghcr.io&#x2F;sugarforever&#x2F;peanut-shell:latest<br>    volumes:<br>      - hf_data:&#x2F;root&#x2F;.cache</p>
+<p>volumes:<br>  chromadb_volume:<br>  redis_data:<br>  hf_data:</p>
+<p>the file in the knowledge base should not be too large (40M), otherwise it will fail to load</p>
+<p>due to chroma?<br>[nuxt] [request error] [unhandled] [500] Invalid string length</p>
+<p><a target="_blank" rel="noopener" href="https://techdiylife.github.io/blog/blog.html?category1=c01&blogid=0060">https://techdiylife.github.io/blog/blog.html?category1=c01&amp;blogid=0060</a><br><a target="_blank" rel="noopener" href="https://github.com/ollama/ollama/blob/main/docs/linux.md">https://github.com/ollama/ollama/blob/main/docs/linux.md</a><br>目录索引</p>
+<p>升级Ollama并试用 Gemma2<br>Ollama安装<br>步骤一：下载模型<br>步骤二：升级Ollama<br>步骤三：运行Gemma2模型<br>试用Gemma2共学问题<br>升级Ollama并试用 Gemma2<br>Ollama安装<br>如果你没有安装ollama，请参考下面的文档进行安装：<br>ollama应用全面解析：20个问题精通ollama</p>
+<p>步骤一：下载模型<br>$ ollama run gemma2 # 9B模型<br>$ ollama run gemma2:27b # 7B模型</p>
+<p>alt text<br>Error: exception error loading model architecture: unknown model architecture: ‘gemma2’</p>
+<p>步骤二：升级Ollama<br>官方参考文档：<a target="_blank" rel="noopener" href="https://github.com/ollama/ollama/blob/main/docs/linux.md">https://github.com/ollama/ollama/blob/main/docs/linux.md</a><br>install安装脚本操作步骤说明：<br><a target="_blank" rel="noopener" href="https://techdiylife.github.io/blog/blog.html?category1=c02&blogid=0036">https://techdiylife.github.io/blog/blog.html?category1=c02&amp;blogid=0036</a></p>
+<p>确认Ollama版本，最新为 0.1.48 （截至2024.07.01）<br>$ ollama -v<br>ollama version is 0.1.29<br>下载ollama<br>$ curl -L <a target="_blank" rel="noopener" href="https://ollama.com/download/ollama-linux-amd64">https://ollama.com/download/ollama-linux-amd64</a> -o ollama<br>alt text</p>
+<p>确认当前ollama的安装位置</p>
+<p>$ which ollama<br>&#x2F;usr&#x2F;local&#x2F;bin&#x2F;ollama<br>替换安装文件</p>
+<p>$ chmod +x ollama<br>$ sudo mv ollama &#x2F;usr&#x2F;sbin&#x2F;bin&#x2F;<br>重启服务</p>
+<p>$ sudo systemctl restart ollama<br>如果不重启服务，将会看到如下提示：</p>
+<p>$ ollama -v<br>ollama version is 0.1.29<br>Warning: client version is 0.1.48<br>步骤三：运行Gemma2模型<br>ollama run gemma2<br>试用Gemma2共学问题<br>任务1：在本地运行Gemma2模型，9B或者27B （使用Ollama，或者你熟悉的任何本地模型部署，运行工具）<br>任务2：问几个你感兴趣的问题，并与Qwen2，Llama3，GLM4-9b等同规模模型进行对比<br>任务3：了解Gemma2的性能如何？ 尤其是与Qwen2，GLM4相比性能如何？<br>任务4：了解Gemma2模型的主要改进有哪些？ 使用了什么技术，训练数据，网络结构有哪些变化？</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/06/15/misc/" rel="prev" title="misc">
+                  <i class="fa fa-angle-left"></i> misc
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/06/16/qe/" rel="next" title="qe">
+                  qe <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Mingzhe Liu</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

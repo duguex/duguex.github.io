@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222"><meta name="generator" content="Hexo 7.2.0">
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha256-XOqroi11tY4EFQMR9ZYwZWKj5ZXiftSx36RRuC3anlA=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"tobedetermined.com","root":"/","images":"/images","scheme":"Muse","darkmode":false,"version":"8.20.0","exturl":false,"sidebar":{"position":"left","width_expanded":320,"width_dual_column":240,"display":"always","padding":18,"offset":12},"hljswrap":true,"copycode":{"enable":true,"style":null},"fold":{"enable":false,"height":500},"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"menu_item":"fadeInDown","post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+
+    <meta name="description" content="ubuntu container install qe and westinstallapt install cmake nano git build-essential gfortran libopenblas-dev libfftw3-dev libscalapack-openmpi-dev libopenmpi-dev wget python3-dev python3-pip lrzsz p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="qe">
+<meta property="og:url" content="http://tobedetermined.com/2024/06/16/qe/index.html">
+<meta property="og:site_name" content="TODO">
+<meta property="og:description" content="ubuntu container install qe and westinstallapt install cmake nano git build-essential gfortran libopenblas-dev libfftw3-dev libscalapack-openmpi-dev libopenmpi-dev wget python3-dev python3-pip lrzsz p">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-06-15T16:48:30.000Z">
+<meta property="article:modified_time" content="2024-07-29T16:45:20.980Z">
+<meta property="article:author" content="Mingzhe Liu">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://tobedetermined.com/2024/06/16/qe/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://tobedetermined.com/2024/06/16/qe/","path":"2024/06/16/qe/","title":"qe"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>qe | TODO</title>
+  
+
+
+
+
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <div class="column">
+      <header class="header" itemscope itemtype="http://schema.org/WPHeader"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <p class="site-title">TODO</p>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger" aria-label="Search" role="button">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu"><li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a></li><li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>About</a></li><li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a></li>
+  </ul>
+</nav>
+
+
+
+
+</header>
+        
+  
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ubuntu-container-install-qe-and-west"><span class="nav-number">1.</span> <span class="nav-text">ubuntu container install qe and west</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#install"><span class="nav-number">1.1.</span> <span class="nav-text">install</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#environment-variable"><span class="nav-number">1.2.</span> <span class="nav-text">environment variable</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#compile-qe"><span class="nav-number">2.</span> <span class="nav-text">compile qe</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#tutorial-wget-replace-http-www-with-https"><span class="nav-number">2.1.</span> <span class="nav-text">tutorial wget replace http:&#x2F;&#x2F;www with https:&#x2F;&#x2F;</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#test"><span class="nav-number">2.2.</span> <span class="nav-text">test</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-westpy"><span class="nav-number">3.</span> <span class="nav-text">install westpy</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#build-singularity-container"><span class="nav-number">4.</span> <span class="nav-text">build singularity container</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#test-singularity-container"><span class="nav-number">5.</span> <span class="nav-text">test singularity container</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#install-qbox-in-centos8-container"><span class="nav-number">6.</span> <span class="nav-text">install qbox in centos8 container</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#switch-centos-repo-to-vault"><span class="nav-number">6.1.</span> <span class="nav-text">switch centos repo to vault</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#use-template-for-centos7"><span class="nav-number">6.2.</span> <span class="nav-text">use template for centos7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#build-singularity-container-and-test"><span class="nav-number">6.3.</span> <span class="nav-text">build singularity container and test</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#qbox-potential"><span class="nav-number">6.4.</span> <span class="nav-text">qbox potential</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#run-qe-and-west"><span class="nav-number">7.</span> <span class="nav-text">run qe and west</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#westpy-error-with-Collection-class-in-signac-package"><span class="nav-number">8.</span> <span class="nav-text">westpy error with Collection class in signac package</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#compile-template-for-west"><span class="nav-number">9.</span> <span class="nav-text">compile template for west</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#ALCF-Polaris"><span class="nav-number">9.1.</span> <span class="nav-text">ALCF-Polaris</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Mingzhe Liu</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">22</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/duguex" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;duguex" rel="noopener me" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:duguex@126.com" title="E-Mail → mailto:duguex@126.com" rel="noopener me" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+        </div>
+      </div>
+    </div>
+
+    
+  </aside>
+
+
+    </div>
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://tobedetermined.com/2024/06/16/qe/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Mingzhe Liu">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="TODO">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="post" itemscope itemtype="http://schema.org/CreativeWork">
+      <meta itemprop="name" content="qe | TODO">
+      <meta itemprop="description" content="">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          qe
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2024-06-16 00:48:30" itemprop="dateCreated datePublished" datetime="2024-06-16T00:48:30+08:00">2024-06-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar-check"></i>
+      </span>
+      <span class="post-meta-item-text">Edited on</span>
+      <time title="Modified: 2024-07-30 00:45:20" itemprop="dateModified" datetime="2024-07-30T00:45:20+08:00">2024-07-30</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody"><h1 id="ubuntu-container-install-qe-and-west"><a href="#ubuntu-container-install-qe-and-west" class="headerlink" title="ubuntu container install qe and west"></a>ubuntu container install qe and west</h1><h2 id="install"><a href="#install" class="headerlink" title="install"></a>install</h2><p>apt install cmake nano git build-essential gfortran libopenblas-dev libfftw3-dev libscalapack-openmpi-dev libopenmpi-dev wget python3-dev python3-pip lrzsz python-is-python3</p>
+<p>git clone -b ‘qe-7.2’ –single-branch –depth 1 <a target="_blank" rel="noopener" href="https://gitlab.com/QEF/q-e.git">https://gitlab.com/QEF/q-e.git</a> qe-7.2<br>cd qe-7.2<br>git clone -b ‘v5.5.0’ –single-branch –depth 1 <a target="_blank" rel="noopener" href="http://greatfire.uchicago.edu/west-public/West.git">http://greatfire.uchicago.edu/west-public/West.git</a> West<br>.&#x2F;configure -enable-openmp</p>
+<p>–enable-parallel	compile for parallel (MPI) execution if possible (yes)<br>–enable-openmp	compile for OpenMP execution if possible (no)<br>–enable-static	produce static executables, arger but more portable (no)<br>–enable-shared	produce objects that are suitable for shared libraries (no)<br>–enable-debug	compile with debug flags (no)<br>–enable-pedantic	compile with gfortran pedantic flags on (no)<br>–enable-signals	enable signal trapping (no)</p>
+<p>make all -j 8<br>cd West<br>edit Pytools&#x2F;Makefile, replace install: with - pip install .<br>make conf PYT&#x3D;python3 PYT_LDFLAGS&#x3D;”<code>python3-config --ldflags --embed</code>“<br>make all -j 8</p>
+<h2 id="environment-variable"><a href="#environment-variable" class="headerlink" title="environment variable"></a>environment variable</h2><p>export PATH&#x3D;$PATH:&#x2F;opt&#x2F;qe-7.2&#x2F;bin<br>export OMPI_ALLOW_RUN_AS_ROOT&#x3D;1<br>export OMPI_ALLOW_RUN_AS_ROOT_CONFIRM&#x3D;1</p>
+<h1 id="compile-qe"><a href="#compile-qe" class="headerlink" title="compile qe"></a>compile qe</h1><p>module load libxc&#x2F;4.3.4_intel2017update4 hdf5&#x2F;1.10.5&#x2F;intel2018.update3<br>&#x2F;home&#x2F;phys&#x2F;qif&#x2F;qe-7.0</p>
+<p>&#x2F;opt&#x2F;libxc&#x2F;4.3.4_intel2017update4<br>&#x2F;opt&#x2F;hdf5&#x2F;1.10.5&#x2F;intel&#x2F;2018.3.222</p>
+<p>.&#x2F;configure MPIF90&#x3D;mpiifort CC&#x3D;icc F77&#x3D;ifort –with-scalapack&#x3D;intel –with-libxc&#x3D;yes –with-libxc-prefix&#x3D;&#x2F;home&#x2F;phys&#x2F;qif&#x2F;libxc&#x2F;4.3.4 –with-libxc-include&#x3D;&#x2F;home&#x2F;phys&#x2F;qif&#x2F;libxc&#x2F;4.3.4&#x2F;include –with-hdf5&#x3D;yes –with-hdf5-libs&#x3D;&#x2F;home&#x2F;phys&#x2F;qif&#x2F;hdf5&#x2F;1.12.2_2019&#x2F;lib –with-hdf5-include&#x3D;&#x2F;home&#x2F;phys&#x2F;qif&#x2F;hdf5&#x2F;1.12.2_2019&#x2F;include</p>
+<p>.&#x2F;configure –prefix&#x3D;&#x2F;home&#x2F;phys&#x2F;qif&#x2F;libxc&#x2F;4.3.4 FC&#x3D;ifort CC&#x3D;icc</p>
+<p>make<br>make check<br>make install</p>
+<p>vasp hdf5</p>
+<p>&#x2F;home&#x2F;phys&#x2F;qif&#x2F;hdf&#x2F;1.12.2<br>&#x2F;home&#x2F;phys&#x2F;qif&#x2F;qe-7.0&#x2F;bin&#x2F;pw.x</p>
+<p>mpiifort -O2 -assume byterecl -g -traceback -nomodule -fpp -D__DFTI -D__LIBXC -D__MPI -D__SCALAPACK -D__HDF5 -I&#x2F;home&#x2F;phys&#x2F;qif&#x2F;qe-6.7&#x2F;&#x2F;include -I&#x2F;home&#x2F;phys&#x2F;qif&#x2F;qe-6.7&#x2F;&#x2F;FoX&#x2F;finclude -I&#x2F;opt&#x2F;intel&#x2F;compilers_and_libraries_2017.4.196&#x2F;linux&#x2F;mkl&#x2F;include -I&#x2F;home&#x2F;phys&#x2F;qif&#x2F;libxc&#x2F;4.2.3&#x2F;include -I&#x2F;home&#x2F;phys&#x2F;qif&#x2F;hdf&#x2F;1.12.2&#x2F;include -I&#x2F;home&#x2F;phys&#x2F;qif&#x2F;qe-6.7&#x2F;&#x2F;upflib -I&#x2F;home&#x2F;phys&#x2F;qif&#x2F;qe-6.7&#x2F;&#x2F;Modules -I&#x2F;home&#x2F;phys&#x2F;qif&#x2F;qe-6.7&#x2F;&#x2F;FFTXlib -I&#x2F;home&#x2F;phys&#x2F;qif&#x2F;qe-6.7&#x2F;&#x2F;LAXlib -I&#x2F;home&#x2F;phys&#x2F;qif&#x2F;qe-6.7&#x2F;&#x2F;UtilXlib -I&#x2F;home&#x2F;phys&#x2F;qif&#x2F;qe-6.7&#x2F;&#x2F;FoX&#x2F;finclude -I..&#x2F;ELPA&#x2F;src -c plugin_arguments.f90</p>
+<p>module purge;module load intel&#x2F;2017.update4 intelmpi&#x2F;2017.update4 mkl&#x2F;2017.update4</p>
+<p>bsub -q test -n 20 -m k802 -o %J.log -e %J.err mpijob “&#x2F;home&#x2F;phys&#x2F;qif&#x2F;qe-6.7&#x2F;bin&#x2F;pw.x&lt;pw.in”<br>bsub -q smallopa -n 56 -o %J.log -e %J.err mpijob “&#x2F;home&#x2F;phys&#x2F;qif&#x2F;qe-6.7&#x2F;bin&#x2F;pw.x&lt;pw.in”<br>bsub -q test -n 20 -m k802 -o %J.log -e %J.err mpijob “&#x2F;home&#x2F;phys&#x2F;qif&#x2F;qe-6.7&#x2F;bin&#x2F;gipaw.x&lt;hy.in” &gt;hy.out<br>bsub -q test -n 20 -o %J.log mpijob “pw.x&lt;pwscf.in” &gt; pwscf.out<br>#bsub -q ckduan -n 24 -o %J.log -e %J.err mpijob pyzfs –wfcfmt qeh5<br>#bsub -q ckduan -n 24 -o %J.log -e %J.err mpirun pyzfs –wfcfmt qeh5<br>bsub -q smallopa -n 56 -o %J.log -e %J.err mpiexec pyzfs –wfcfmt qeh5 –prefix cr<br>bsub -q test -n 20 -m k802 -o %J.log -e %J.err mpijob “&#x2F;home&#x2F;phys&#x2F;qif&#x2F;qe-6.7&#x2F;bin&#x2F;pw.x&lt;pw.in” &gt;pw.out</p>
+<p>bsub -q ckduan -n 24 -o %J.log mpirun python run.py </p>
+<p>.&#x2F;configure –prefix&#x3D;&#x2F;home&#x2F;phys&#x2F;qif&#x2F;hdf5&#x2F;1.12.2_2019 –enable-fortran –enable-parallel –enable-shared CC&#x3D;mpiicc FC&#x3D;mpiifort CXX&#x3D;mpiicpc</p>
+<p>libhdf5.a<br>libhdf5.la<br>libhdf5.settings<br>libhdf5.so<br>libhdf5.so.200<br>libhdf5.so.200.2.0</p>
+<p>libhdf5_fortran.a<br>libhdf5_fortran.la<br>libhdf5_fortran.so<br>libhdf5_fortran.so.200<br>libhdf5_fortran.so.200.1.1</p>
+<p>libhdf5_hl.a<br>libhdf5_hl.la<br>libhdf5_hl.so<br>libhdf5_hl.so.200<br>libhdf5_hl.so.200.1.0</p>
+<p>libhdf5_hl_fortran.a<br>libhdf5_hl_fortran.so</p>
+<p>libhdf5hl_fortran.a<br>libhdf5hl_fortran.la<br>libhdf5hl_fortran.so<br>libhdf5hl_fortran.so.200<br>libhdf5hl_fortran.so.200.0.2</p>
+<p>-lhdf5hl_fortran -lhdf5_hl -lhdf5_fortran -lhdf5</p>
+<h2 id="tutorial-wget-replace-http-www-with-https"><a href="#tutorial-wget-replace-http-www-with-https" class="headerlink" title="tutorial wget replace http://www with https:&#x2F;&#x2F;"></a>tutorial wget replace <a target="_blank" rel="noopener" href="http://www/">http://www</a> with https:&#x2F;&#x2F;</h2><p><a target="_blank" rel="noopener" href="https://west-code.org/doc/training/nv_diamond/wfreq.json">https://west-code.org/doc/training/nv_diamond/wfreq.json</a>  good<br><a target="_blank" rel="noopener" href="http://www.west-code.org/doc/training/nv_diamond/wfreq.in">http://www.west-code.org/doc/training/nv_diamond/wfreq.in</a> not good</p>
+<p>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/silane/pw.in">https://west-code.org/doc/training/silane/pw.in</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/silane/wstat.in">https://west-code.org/doc/training/silane/wstat.in</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/silane/wstat.json">https://west-code.org/doc/training/silane/wstat.json</a> -O silane.wstat.save&#x2F;wstat.json<br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/silane/wfreq.in">https://west-code.org/doc/training/silane/wfreq.in</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/silane/wfreq.json">https://west-code.org/doc/training/silane/wfreq.json</a> -O silane.wfreq.save&#x2F;wfreq.json</p>
+<p>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/silane/wfreq_spec.in">https://west-code.org/doc/training/silane/wfreq_spec.in</a></p>
+<p>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/nv_diamond/pw.in">https://west-code.org/doc/training/nv_diamond/pw.in</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/nv_diamond/wstat.in">https://west-code.org/doc/training/nv_diamond/wstat.in</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/nv_diamond/wfreq.in">https://west-code.org/doc/training/nv_diamond/wfreq.in</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/nv_diamond/wfreq.json">https://west-code.org/doc/training/nv_diamond/wfreq.json</a> -O nv_diamond.wfreq.save&#x2F;wfreq.json<br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/nv_diamond/westpp.in">https://west-code.org/doc/training/nv_diamond/westpp.in</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/nv_diamond/nv_diamond.westpp.save.tar.gz">https://west-code.org/doc/training/nv_diamond/nv_diamond.westpp.save.tar.gz</a></p>
+<p>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/nv_diamond_63/pw.in">https://west-code.org/doc/training/nv_diamond_63/pw.in</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/nv_diamond_63/wstat.in">https://west-code.org/doc/training/nv_diamond_63/wstat.in</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/nv_diamond_63/wfreq.in">https://west-code.org/doc/training/nv_diamond_63/wfreq.in</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/nv_diamond_63/wfreq.json">https://west-code.org/doc/training/nv_diamond_63/wfreq.json</a> -O west.wfreq.save&#x2F;wfreq.json</p>
+<p>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/nv_diamond_63/westpp.json">https://west-code.org/doc/training/nv_diamond_63/westpp.json</a> -O west.westpp.save&#x2F;westpp.json<br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/nv_diamond_63/westpp_2.json">https://west-code.org/doc/training/nv_diamond_63/westpp_2.json</a> -O west.westpp.save&#x2F;westpp.json</p>
+<p>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/C60_pdep/pw.in">https://west-code.org/doc/training/C60_pdep/pw.in</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/C60_pdep/nscf.in">https://west-code.org/doc/training/C60_pdep/nscf.in</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/C60_pdep/wstat.in">https://west-code.org/doc/training/C60_pdep/wstat.in</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/C60_pdep/wbse_init.in">https://west-code.org/doc/training/C60_pdep/wbse_init.in</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/C60_pdep/wbse.in">https://west-code.org/doc/training/C60_pdep/wbse.in</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/C60_pdep/wfreq.json">https://west-code.org/doc/training/C60_pdep/wfreq.json</a> -O west.wfreq.save&#x2F;wfreq.json<br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/C60_pdep/wbse.json">https://west-code.org/doc/training/C60_pdep/wbse.json</a> -O west.wbse.save&#x2F;wbse.json</p>
+<p>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/C60/pw.in">https://west-code.org/doc/training/C60/pw.in</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/C60/nscf.in">https://west-code.org/doc/training/C60/nscf.in</a></p>
+<p>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/C60/qb.in">https://west-code.org/doc/training/C60/qb.in</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/C60/qb2.in">https://west-code.org/doc/training/C60/qb2.in</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/C60/wstat.in">https://west-code.org/doc/training/C60/wstat.in</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/C60/wfreq.in">https://west-code.org/doc/training/C60/wfreq.in</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/C60/wbse_init.in">https://west-code.org/doc/training/C60/wbse_init.in</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/C60/wbse.in">https://west-code.org/doc/training/C60/wbse.in</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/C60/wbse.json">https://west-code.org/doc/training/C60/wbse.json</a> -O west.wbse.save&#x2F;wbse.json</p>
+<p>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/nv_diamond_63/pw.in">https://west-code.org/doc/training/nv_diamond_63/pw.in</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/nv_diamond_63/pp.in">https://west-code.org/doc/training/nv_diamond_63/pp.in</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/nv_diamond_63/wfreq.in">https://west-code.org/doc/training/nv_diamond_63/wfreq.in</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/nv_diamond_63/wfreq.json">https://west-code.org/doc/training/nv_diamond_63/wfreq.json</a> -O west.wfreq.save&#x2F;wfreq.json<br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/nv_diamond_63/wfct_K001_B087.cube">https://west-code.org/doc/training/nv_diamond_63/wfct_K001_B087.cube</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/nv_diamond_63/wfct_K001_B122.cube">https://west-code.org/doc/training/nv_diamond_63/wfct_K001_B122.cube</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/nv_diamond_63/wfct_K001_B123.cube">https://west-code.org/doc/training/nv_diamond_63/wfct_K001_B123.cube</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/nv_diamond_63/wfct_K001_B126.cube">https://west-code.org/doc/training/nv_diamond_63/wfct_K001_B126.cube</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/nv_diamond_63/wfct_K001_B127.cube">https://west-code.org/doc/training/nv_diamond_63/wfct_K001_B127.cube</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/nv_diamond_63/wfct_K001_B128.cube">https://west-code.org/doc/training/nv_diamond_63/wfct_K001_B128.cube</a></p>
+<p>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/nv_diamond_63/wfreq.in">https://west-code.org/doc/training/nv_diamond_63/wfreq.in</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/nv_diamond_63/wfreq.json">https://west-code.org/doc/training/nv_diamond_63/wfreq.json</a> -O west.wfreq.save&#x2F;wfreq.json<br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/nv_diamond_63/wfreq.in">https://west-code.org/doc/training/nv_diamond_63/wfreq.in</a><br>wget -N -q <a target="_blank" rel="noopener" href="https://west-code.org/doc/training/nv_diamond_63/wfreq.json">https://west-code.org/doc/training/nv_diamond_63/wfreq.json</a> -O west.wfreq.save&#x2F;wfreq.json</p>
+<h2 id="test"><a href="#test" class="headerlink" title="test"></a>test</h2><p>mpirun -np 48 –map-by ppr:48:socket:PE&#x3D;1 –bind-to core -x OMP_NUM_THREADS&#x3D;1 -x OMP_STACKSIZE&#x3D;2g -x OMP_PLACES&#x3D;cores -x OMP_PROC_BIND&#x3D;close –report-bindings pw.x -i pw.in | tee pw.out<br>mpirun -np 48 –map-by ppr:48:socket:PE&#x3D;1 –bind-to core -x OMP_NUM_THREADS&#x3D;1 -x OMP_STACKSIZE&#x3D;2g -x OMP_PLACES&#x3D;cores -x OMP_PROC_BIND&#x3D;close –report-bindings wstat.x -nimage 48 -npool 1 -nbgrp 1 -i wstat.in | tee wstat.out<br>mpirun -np 12 –map-by ppr:12:socket:PE&#x3D;4 –bind-to core -x OMP_NUM_THREADS&#x3D;4 -x OMP_STACKSIZE&#x3D;10g -x OMP_PLACES&#x3D;cores -x OMP_PROC_BIND&#x3D;close –report-bindings wfreq.x -nimage 3 -npool 2 -nbgrp 2 -i wfreq.in | tee wfreq.out</p>
+<h1 id="install-westpy"><a href="#install-westpy" class="headerlink" title="install westpy"></a>install westpy</h1><p>pip install .</p>
+<h1 id="build-singularity-container"><a href="#build-singularity-container" class="headerlink" title="build singularity container"></a>build singularity container</h1><p>sudo docker commit west2 west:5.5.0<br>sudo docker tag west:5.5.0 192.168.1.111:5000&#x2F;west:5.5.0<br>sudo docker push 192.168.1.111:5000&#x2F;west:5.5.0</p>
+<p>docker tag vasp_gpu:12.3.86 172.29.10.87:5000&#x2F;vasp_gpu:12.3.86<br>docker push 172.29.10.87:5000&#x2F;vasp_gpu:12.3.86</p>
+<h1 id="test-singularity-container"><a href="#test-singularity-container" class="headerlink" title="test singularity container"></a>test singularity container</h1><p>singularity run ~&#x2F;container&#x2F;west mpirun -np 48 –map-by ppr:48:socket:PE&#x3D;1 –bind-to core -x OMP_NUM_THREADS&#x3D;1 -x OMP_STACKSIZE&#x3D;2g -x OMP_PLACES&#x3D;cores -x OMP_PROC_BIND&#x3D;close –report-bindings &#x2F;opt&#x2F;qe-7.2&#x2F;bin&#x2F;pw.x -i pw.in | tee pw.out</p>
+<p>singularity run ~&#x2F;container&#x2F;west mpirun -np 48 –map-by ppr:48:socket:PE&#x3D;1 –bind-to core -x OMP_NUM_THREADS&#x3D;1 -x OMP_STACKSIZE&#x3D;2g -x OMP_PLACES&#x3D;cores -x OMP_PROC_BIND&#x3D;close –report-bindings &#x2F;opt&#x2F;qe-7.2&#x2F;bin&#x2F;wstat.x -nimage 48 -i wstat.in | tee wstat.out</p>
+<p>singularity run ~&#x2F;container&#x2F;west mpirun -np 48 –map-by ppr:48:socket:PE&#x3D;1 –bind-to core -x OMP_NUM_THREADS&#x3D;1 -x OMP_STACKSIZE&#x3D;2g -x OMP_PLACES&#x3D;cores -x OMP_PROC_BIND&#x3D;close –report-bindings wfreq.x -i wfreq_spec.in | tee wfreq_spec.out</p>
+<p>singularity run ~&#x2F;container&#x2F;west python plot.py</p>
+<h1 id="install-qbox-in-centos8-container"><a href="#install-qbox-in-centos8-container" class="headerlink" title="install qbox in centos8 container"></a>install qbox in centos8 container</h1><p>sudo docker run -it –name qbox centos</p>
+<h2 id="switch-centos-repo-to-vault"><a href="#switch-centos-repo-to-vault" class="headerlink" title="switch centos repo to vault"></a>switch centos repo to vault</h2><p>sed -i -e “s&#x2F;mirrorlist&#x3D;&#x2F;#mirrorlist&#x3D;&#x2F;g” &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Linux-<em>.repo;<br>sed -i -e “s&#x2F;#baseurl&#x3D;&#x2F;baseurl&#x3D;&#x2F;g” &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Linux-</em>.repo;<br>sed -i -e “s&#x2F;mirror.centos.org&#x2F;vault.centos.org&#x2F;g” &#x2F;etc&#x2F;yum.repos.d&#x2F;CentOS-Linux-*.repo;</p>
+<p>yum clean all<br>yum makecache<br>yum update</p>
+<p>yum install epel-release<br>yum install xerces-c xerces-c-devel<br>yum install lrzsz make bc<br>yum install openmpi openmpi-devel<br>export PATH&#x3D;$PATH:&#x2F;usr&#x2F;lib64&#x2F;openmpi&#x2F;bin<br>yum install lapack<br>dnf –enablerepo&#x3D;powertools -y install lapack-devel<br>yum install fftw fftw-devel<br>yum install scalapack-common scalapack-openmpi scalapack-openmpi-devel scalapack-openmpi-static<br>yum install libuuid libuuid-devel</p>
+<p>git clone <a target="_blank" rel="noopener" href="https://github.com/qboxcode/qbox-public.git">https://github.com/qboxcode/qbox-public.git</a></p>
+<h2 id="use-template-for-centos7"><a href="#use-template-for-centos7" class="headerlink" title="use template for centos7"></a>use template for centos7</h2><p> PLT&#x3D;Linux_x8664</p>
+<p> PLTOBJECTS &#x3D; readTSC.o</p>
+<p> CXX&#x3D;mpicxx<br> LD&#x3D;$(CXX)</p>
+<p> PLTFLAGS +&#x3D; -DIA32 -D_LARGEFILE_SOURCE <br>             -D_FILE_OFFSET_BITS&#x3D;64 -DUSE_MPI -DSCALAPACK -DADD_ <br>             -DAPP_NO_THREADS -DXML_USE_NO_THREADS -DUSE_XERCES <br>             -DXERCESC_3 -DMPICH_IGNORE_CXX_SEEK -DUSE_UUID</p>
+<p> FFT&#x3D;FFTW3</p>
+<p>ifeq ($(FFT),FFTW2)<br> PLTFLAGS +&#x3D; -DUSE_FFTW2<br> LIBS +&#x3D; -lfftw<br>endif</p>
+<p>ifeq ($(FFT),FFTW3)<br> PLTFLAGS +&#x3D; -DUSE_FFTW3<br> PLTFLAGS +&#x3D; -DFFTW3_2D<br> LIBS +&#x3D; -lfftw3<br>endif</p>
+<p>ifeq ($(FFT),ESSL)<br>$(error ESSL library not available)<br>endif</p>
+<p>ifeq ($(FFT),NOLIB)<br> PLTFLAGS +&#x3D; -DFFT_NOLIB<br>endif</p>
+<p> CXXFLAGS&#x3D; -g -O3 -Wunused -D$(PLT) $(INCLUDE) $(PLTFLAGS) $(DFLAGS)<br> LIBS +&#x3D; -lpthread -lxerces-c -lscalapack -llapack -lblas -luuid<br> LDFLAGS &#x3D; $(LIBPATH) $(LIBS)</p>
+<p>cd src<br>cp ..&#x2F;build&#x2F;centos7.mk <myplatform>.mk<br>export TARGET&#x3D;<myplatform><br>make -j 8</p>
+<h2 id="build-singularity-container-and-test"><a href="#build-singularity-container-and-test" class="headerlink" title="build singularity container and test"></a>build singularity container and test</h2><p>sudo docker commit qbox qbox:rel1_76_1 &amp;&amp; sudo docker tag qbox:rel1_76_1 192.168.1.111:5000&#x2F;qbox:rel1_76_1 &amp;&amp; sudo docker push 192.168.1.111:5000&#x2F;qbox:rel1_76_1</p>
+<p>singularity run ~&#x2F;container&#x2F;qbox mpirun -np 2 –map-by ppr:2:socket:PE&#x3D;1 –bind-to core -x OMP_NUM_THREADS&#x3D;1 -x OMP_STACKSIZE&#x3D;20g -x OMP_PLACES&#x3D;cores -x OMP_PROC_BIND&#x3D;close –report-bindings qb si64gs.i | tee si64gs.r</p>
+<p>singularity run ~&#x2F;container&#x2F;qbox mpirun -np 48 –map-by ppr:48:socket:PE&#x3D;1 –bind-to core -x OMP_NUM_THREADS&#x3D;1 -x OMP_STACKSIZE&#x3D;2g -x OMP_PLACES&#x3D;cores -x OMP_PROC_BIND&#x3D;close –report-bindings qb &lt; qb.in | tee qb.out</p>
+<h2 id="qbox-potential"><a href="#qbox-potential" class="headerlink" title="qbox potential"></a>qbox potential</h2><p>available at <a target="_blank" rel="noopener" href="http://quantum-simulation.org/index.htm">http://quantum-simulation.org/index.htm</a></p>
+<h1 id="run-qe-and-west"><a href="#run-qe-and-west" class="headerlink" title="run qe and west"></a>run qe and west</h1><p>singularity run ~&#x2F;container&#x2F;west mpirun -np 48 –map-by ppr:48:socket:PE&#x3D;1 –bind-to core -x OMP_NUM_THREADS&#x3D;1 -x OMP_STACKSIZE&#x3D;2g -x OMP_PLACES&#x3D;cores -x OMP_PROC_BIND&#x3D;close –report-bindings pw.x -i pw.in | tee pw.out</p>
+<p>singularity run ~&#x2F;container&#x2F;west mpirun -np 48 –map-by ppr:48:socket:PE&#x3D;1 –bind-to core -x OMP_NUM_THREADS&#x3D;1 -x OMP_STACKSIZE&#x3D;2g -x OMP_PLACES&#x3D;cores -x OMP_PROC_BIND&#x3D;close –report-bindings wstat.x -ni 3 -i wstat.in | tee wstat.out</p>
+<p>singularity run ~&#x2F;container&#x2F;west mpirun -np 48 –map-by ppr:48:socket:PE&#x3D;1 –bind-to core -x OMP_NUM_THREADS&#x3D;1 -x OMP_STACKSIZE&#x3D;2g -x OMP_PLACES&#x3D;cores -x OMP_PROC_BIND&#x3D;close –report-bindings wfreq.x -ni 3 -i wfreq.in | tee wfreq.out</p>
+<p>singularity run ~&#x2F;container&#x2F;west mpirun -np 48 –map-by ppr:48:socket:PE&#x3D;1 –bind-to core -x OMP_NUM_THREADS&#x3D;1 -x OMP_STACKSIZE&#x3D;2g -x OMP_PLACES&#x3D;cores -x OMP_PROC_BIND&#x3D;close –report-bindings westpp.x -ni 3 -i westpp.in | tee westpp.out</p>
+<h1 id="westpy-error-with-Collection-class-in-signac-package"><a href="#westpy-error-with-Collection-class-in-signac-package" class="headerlink" title="westpy error with Collection class in signac package"></a>westpy error with Collection class in signac package</h1><p>signac remove Collection class in 2.0</p>
+<p>conda install -c anaconda pip<br>pip install signac&#x3D;&#x3D;1.8.0</p>
+<h1 id="compile-template-for-west"><a href="#compile-template-for-west" class="headerlink" title="compile template for west"></a>compile template for west</h1><h2 id="ALCF-Polaris"><a href="#ALCF-Polaris" class="headerlink" title="ALCF-Polaris"></a>ALCF-Polaris</h2><p>Polaris is a GPU-accelerated supercomputer located at Argonne National Laboratory, maintained by ALCF.</p>
+<p>$ ssh <username>@polaris.alcf.anl.gov<br>Building WEST<br>WEST executables can be compiled using the following script (tested on June 14, 2023):</p>
+<p>$ cat build_west.sh<br>#!&#x2F;bin&#x2F;bash</p>
+<p>module load nvhpc&#x2F;23.3<br>module load cray-libsci&#x2F;21.08.1.2<br>module load cray-python&#x2F;3.9.12.1</p>
+<p>export MPICH_GPU_SUPPORT_ENABLED&#x3D;1<br>export CUDA_HOME&#x3D;&#x2F;opt&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.3&#x2F;cuda&#x2F;11.8</p>
+<p>.&#x2F;configure –with-cuda&#x3D;$CUDA_HOME –with-cuda-runtime&#x3D;11.8 –with-cuda-cc&#x3D;80</p>
+<p>#Manually edit make.inc:</p>
+<p>#DFLAGS &#x3D; -D__PGI -D__CUDA -D__FFTW -D__MPI -D__GPU_MPI<br>#MPIF90 &#x3D; ftn<br>#F90 &#x3D; ftn<br>#CC &#x3D; cc<br>#LD &#x3D; ftn<br>#BLAS_LIBS &#x3D; #leave blank<br>#LAPACK_LIBS &#x3D; #leave blank</p>
+<p>make -j 8 pw</p>
+<p>cd West</p>
+<p>make conf PYT&#x3D;python3 PYT_LDFLAGS&#x3D;”-L&#x2F;opt&#x2F;cray&#x2F;pe&#x2F;python&#x2F;3.9.12.1&#x2F;lib -lpython3.9”<br>make -j 8 all<br>To use the script do:</p>
+<p>$ bash build_west.sh<br>Running WEST Jobs<br>The following is an example executable script run_west.sh to run the wstat.x WEST executable on two nodes of Polaris with 4 MPI ranks and 4 GPUs per node. The <project_name> must be replaced with an active project allocation.</p>
+<p>Important: The following environment variable is needed to work around a bug in ROMIO, Cray MPICH.</p>
+<p>export ROMIO_FSTYPE_FORCE&#x3D;”ufs:”<br>Important: It is recommended to run the calculation from one of the Lustre file systems (&#x2F;grand or &#x2F;eagle instead of &#x2F;home).</p>
+<p>$ cat run_west.sh<br>#!&#x2F;bin&#x2F;bash -l<br>#PBS -l select&#x3D;1:system&#x3D;polaris<br>#PBS -l place&#x3D;scatter<br>#PBS -l walltime&#x3D;0:20:00<br>#PBS -l filesystems&#x3D;home:grand<br>#PBS -j oe<br>#PBS -q debug<br>#PBS -A <project_name><br>#PBS -N job_name</p>
+<p>module load nvhpc&#x2F;23.3<br>module load cray-libsci&#x2F;21.08.1.2<br>module load cray-python&#x2F;3.9.12.1</p>
+<p>export MPICH_GPU_SUPPORT_ENABLED&#x3D;1<br>export ROMIO_FSTYPE_FORCE&#x3D;”ufs:”</p>
+<p>NNODES&#x3D;<code>wc -l &lt; $PBS_NODEFILE</code><br>NRANKS_PER_NODE&#x3D;$(nvidia-smi -L | wc -l)<br>NDEPTH&#x3D;8<br>NTHREADS&#x3D;1<br>NTOTRANKS&#x3D;$(( NNODES * NRANKS_PER_NODE ))</p>
+<p>cd ${PBS_O_WORKDIR}</p>
+<p>mpiexec -n ${NTOTRANKS} –ppn ${NRANKS_PER_NODE} –depth&#x3D;${NDEPTH} –cpu-bind depth –env OMP_NUM_THREADS&#x3D;${NTHREADS} -env OMP_PLACES&#x3D;threads .&#x2F;wstat.x -i wstat.in &amp;&gt; wstat.out<br>Job submission is done with the following:</p>
+<p>$ qsub run_west.sh</p>
+<p>ALCF-Theta<br>Theta is a Cray XC40 located at Argonne National Laboratory, maintained by ALCF.</p>
+<p>$ ssh <username>@theta.alcf.anl.gov<br>Building WEST<br>Start an interactive job and ssh to a compute node. The <project_name> must be replaced with an active project allocation.</p>
+<p>#Start interactive job<br>$ qsub -I -n 1 -t 1:00:00 –attrs enable_ssh&#x3D;1 -q debug-cache-quad -A <project_name><br>  Connecting to thetamom1 for interactive qsub…<br>  Job routed to queue “debug-cache-quad”.<br>  Memory mode set to cache quad for queue debug-cache-quad<br>  Wait for job 266815 to start…<br>  Opening interactive session to 3835</p>
+<p>#Get compute node number<br>$ echo $COBALT_PARTNAME<br>  3835</p>
+<p>#Full name of compute node is nid + 5-digit node number<br>$ ssh nid03835</p>
+<p>#Set up proxy for internet access<br>$ export HTTP_PROXY&#x3D;<a target="_blank" rel="noopener" href="http://theta-proxy.tmi.alcf.anl.gov:3128/">http://theta-proxy.tmi.alcf.anl.gov:3128</a><br>$ export HTTPS_PROXY&#x3D;<a target="_blank" rel="noopener" href="http://theta-proxy.tmi.alcf.anl.gov:3128/">http://theta-proxy.tmi.alcf.anl.gov:3128</a><br>$ export http_proxy&#x3D;<a target="_blank" rel="noopener" href="http://theta-proxy.tmi.alcf.anl.gov:3128/">http://theta-proxy.tmi.alcf.anl.gov:3128</a><br>$ export https_proxy&#x3D;<a target="_blank" rel="noopener" href="http://theta-proxy.tmi.alcf.anl.gov:3128/">http://theta-proxy.tmi.alcf.anl.gov:3128</a><br>Important: The ELPA eigensolver library is found to greatly improve the performance of Quantum ESPRESSO on Theta. ELPA can be installed following these steps (tested on February 3, 2023):</p>
+<p>$ cat build_west.sh<br>#!&#x2F;bin&#x2F;bash</p>
+<p>module unload cray-libsci<br>module load cray-python&#x2F;3.8.2.1</p>
+<p>export CRAYPE_LINK_TYPE&#x3D;dynamic<br>export LD_LIBRARY_PATH&#x3D;$MKLROOT&#x2F;lib&#x2F;intel64:$LD_LIBRARY_PATH<br>export LD_LIBRARY_PATH&#x3D;&#x2F;opt&#x2F;intel&#x2F;compilers_and_libraries_2020.0.166&#x2F;linux&#x2F;compiler&#x2F;lib&#x2F;intel64:$LD_LIBRARY_PATH<br>export FC&#x3D;ftn<br>export CC&#x3D;cc<br>export CXX&#x3D;CC</p>
+<p>wget <a target="_blank" rel="noopener" href="https://elpa.mpcdf.mpg.de/software/tarball-archive/Releases/2022.11.001/elpa-2022.11.001.tar.gz">https://elpa.mpcdf.mpg.de/software/tarball-archive/Releases/2022.11.001/elpa-2022.11.001.tar.gz</a><br>tar zxf elpa-2022.11.001.tar.gz<br>cd elpa-2022.11.001</p>
+<p>mkdir build<br>cd build</p>
+<p>..&#x2F;configure –prefix&#x3D;$(pwd) LDFLAGS&#x3D;”$MKLROOT&#x2F;lib&#x2F;intel64&#x2F;libmkl_scalapack_lp64.so -Wl,–start-group $MKLROOT&#x2F;lib&#x2F;intel64&#x2F;libmkl_intel_lp64.so $MKLROOT&#x2F;lib&#x2F;intel64&#x2F;libmkl_sequential.so $MKLROOT&#x2F;lib&#x2F;intel64&#x2F;libmkl_core.so $MKLROOT&#x2F;lib&#x2F;intel64&#x2F;libmkl_blacs_intelmpi_lp64.so -Wl,–end-group” –disable-sse-assembly –disable-sse –disable-avx512 –enable-c-tests&#x3D;no</p>
+<p>make -j 8<br>make install<br>WEST executables can be compiled using the following script (tested on February 3, 2023):</p>
+<p>$ cat build_west.sh<br>#!&#x2F;bin&#x2F;bash</p>
+<p>module unload cray-libsci<br>module load cray-python&#x2F;3.8.2.1</p>
+<p>export CRAYPE_LINK_TYPE&#x3D;dynamic<br>export LD_LIBRARY_PATH&#x3D;$MKLROOT&#x2F;lib&#x2F;intel64:$LD_LIBRARY_PATH<br>export LD_LIBRARY_PATH&#x3D;&#x2F;opt&#x2F;intel&#x2F;compilers_and_libraries_2020.0.166&#x2F;linux&#x2F;compiler&#x2F;lib&#x2F;intel64:$LD_LIBRARY_PATH<br>export LD_LIBRARY_PATH&#x3D;&#x2F;opt&#x2F;python&#x2F;3.8.2.1&#x2F;lib:$LD_LIBRARY_PATH<br>export MPIF90&#x3D;ftn<br>export F90&#x3D;ftn<br>export CC&#x3D;cc<br>export DFLAGS&#x3D;”-D__DFTI -D__MPI -D__SCALAPACK -D__ELPA”<br>export BLAS_LIBS&#x3D;”-Wl,–start-group $MKLROOT&#x2F;lib&#x2F;intel64&#x2F;libmkl_intel_lp64.so $MKLROOT&#x2F;lib&#x2F;intel64&#x2F;libmkl_intel_thread.so $MKLROOT&#x2F;lib&#x2F;intel64&#x2F;libmkl_core.so -Wl,–end-group”<br>export LAPACK_LIBS&#x3D;”-Wl,–start-group $MKLROOT&#x2F;lib&#x2F;intel64&#x2F;libmkl_intel_lp64.so $MKLROOT&#x2F;lib&#x2F;intel64&#x2F;libmkl_intel_thread.so $MKLROOT&#x2F;lib&#x2F;intel64&#x2F;libmkl_core.so -Wl,–end-group”<br>export SCALAPACK_LIBS&#x3D;”$MKLROOT&#x2F;lib&#x2F;intel64&#x2F;libmkl_scalapack_lp64.so $MKLROOT&#x2F;lib&#x2F;intel64&#x2F;libmkl_blacs_intelmpi_lp64.so”</p>
+<p>#Edit ELPA installation path<br>.&#x2F;configure –enable-openmp –with-elpa-include&#x3D;&#x2F;path&#x2F;to&#x2F;elpa-2022.11.001&#x2F;build&#x2F;include&#x2F;elpa-2022.11.001&#x2F;modules –with-elpa-lib&#x3D;&#x2F;path&#x2F;to&#x2F;elpa-2022.11.001&#x2F;build&#x2F;lib&#x2F;libelpa.a</p>
+<p>make -j 8 pw</p>
+<p>cd West</p>
+<p>make conf PYT&#x3D;python3 PYT_LDFLAGS&#x3D;”-L&#x2F;opt&#x2F;python&#x2F;3.8.2.1&#x2F;lib -lpython3.8”<br>make -j 8 all<br>To use the script do:</p>
+<p>$ bash build_west.sh<br>Running WEST Jobs<br>The following is an example executable script run_west.sh to run the wstat.x WEST executable on two nodes of Theta with 64 MPI ranks per node. The <project_name> must be replaced with an active project allocation.</p>
+<p>Important: The following environment variable is needed to work around a bug in ROMIO, Cray MPICH.</p>
+<p>export ROMIO_FSTYPE_FORCE&#x3D;”ufs:”<br>Important: It is recommended to run the calculation from one of the Lustre file systems (&#x2F;grand or &#x2F;eagle instead of &#x2F;home).</p>
+<p>$ cat run_west.sh<br>#!&#x2F;bin&#x2F;bash<br>#COBALT -n 2<br>#COBALT -t 00:20:00<br>#COBALT -q debug-cache-quad<br>#COBALT -A <project_name><br>#COBALT -O WEST</p>
+<p>MPIRANKS_PERNODE&#x3D;64<br>MPIRANKS&#x3D;$((COBALT_PARTSIZE * MPIRANKS_PERNODE))<br>NTHREADS&#x3D;1<br>HT&#x3D;1</p>
+<p>module unload cray-libsci<br>module load cray-python&#x2F;3.8.2.1</p>
+<p>export LD_LIBRARY_PATH&#x3D;$MKLROOT&#x2F;lib&#x2F;intel64:$LD_LIBRARY_PATH<br>export LD_LIBRARY_PATH&#x3D;&#x2F;opt&#x2F;intel&#x2F;compilers_and_libraries_2020.0.166&#x2F;linux&#x2F;compiler&#x2F;lib&#x2F;intel64:$LD_LIBRARY_PATH<br>export LD_LIBRARY_PATH&#x3D;&#x2F;opt&#x2F;python&#x2F;3.8.2.1&#x2F;lib:$LD_LIBRARY_PATH</p>
+<p>export ROMIO_FSTYPE_FORCE&#x3D;”ufs:”</p>
+<p>export OMP_NUM_THREADS&#x3D;$NTHREADS<br>aprun -n $MPIRANKS -N $MPIRANKS_PERNODE -cc depth -d $NTHREADS -j $HT .&#x2F;wstat.x -i wstat.in &amp;&gt; wstat.out<br>Make the script executable:</p>
+<p>$ chmod 755 run_west.sh<br>Job submission is done with the following:</p>
+<p>$ qsub run_west.sh</p>
+<p>ANL-LCRC-Bebop<br>Bebop is an HPC cluster maintained by the Laboratory Computing Resource Center (LCRC) at Argonne National Laboratory.</p>
+<p>$ ssh <username>@bebop.lcrc.anl.gov<br>Building WEST<br>WEST executables can be compiled using the following script (tested on December 21, 2022):</p>
+<p>$ cat build_west.sh<br>#!&#x2F;bin&#x2F;bash</p>
+<p>module purge<br>module load git&#x2F;2.31.1-6p7naeb<br>module load intel-oneapi&#x2F;2021.4.0.3422<br>module load anaconda3&#x2F;2021.05</p>
+<p>export MPIF90&#x3D;mpiifort<br>export F90&#x3D;ifort<br>export CC&#x3D;icc<br>export SCALAPACK_LIBS&#x3D;”-lmkl_scalapack_lp64 -Wl,–start-group -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_lp64 -Wl,–end-group”</p>
+<p>.&#x2F;configure –with-scalapack&#x3D;intel –enable-openmp<br>make -j 8 pw</p>
+<p>cd West</p>
+<p>make conf PYT&#x3D;python3 PYT_LDFLAGS&#x3D;”-L&#x2F;gpfs&#x2F;fs1&#x2F;home&#x2F;software&#x2F;anaconda3&#x2F;2021.05&#x2F;lib -lpython3.8”<br>make -j 8 all<br>To use the script do:</p>
+<p>$ bash build_west.sh<br>Running WEST Jobs<br>The following is an example executable script run_west.sh to run the wstat.x WEST executable on two nodes of Bebop (Broadwell partition) with 36 MPI ranks per node. The <account_name> must be replaced with an active project allocation.</p>
+<p>$ cat run_west.sh<br>#!&#x2F;bin&#x2F;bash<br>#SBATCH –time&#x3D;00:20:00<br>#SBATCH –partition&#x3D;bdwall<br>#SBATCH –account&#x3D;<account_name><br>#SBATCH –nodes&#x3D;2<br>#SBATCH –ntasks-per-node&#x3D;36<br>#SBATCH –cpus-per-task&#x3D;1</p>
+<p>module purge<br>module load intel-oneapi&#x2F;2021.4.0.3422<br>module load anaconda3&#x2F;2021.05</p>
+<p>export LD_LIBRARY_PATH&#x3D;&#x2F;gpfs&#x2F;fs1&#x2F;home&#x2F;software&#x2F;anaconda3&#x2F;2021.05&#x2F;lib:$LD_LIBRARY_PATH<br>export OMP_NUM_THREADS&#x3D;1</p>
+<p>ulimit -s unlimited</p>
+<p>srun -n 2 -N 72 .&#x2F;wstat.x -i wstat.in &gt; wstat.out<br>To run on the KNL partition, use the following flags:</p>
+<p>#SBATCH –partition&#x3D;knlall<br>#SBATCH –constraint knl,quad,cache<br>#SBATCH –ntasks-per-node&#x3D;64<br>Job submission is done with the following:</p>
+<p>$ sbatch run_west.sh<br>See also</p>
+<p>For more information, visit the LCRC user guide.</p>
+<p>ANL-LCRC-Swing<br>Swing is an HPC cluster maintained by the Laboratory Computing Resource Center (LCRC) at Argonne National Laboratory.</p>
+<p>$ ssh <username>@swing.lcrc.anl.gov<br>Building WEST<br>WEST executables can be compiled using the following script (tested on December 21, 2022):</p>
+<p>$ cat build_west.sh<br>#!&#x2F;bin&#x2F;bash</p>
+<p>module load nvhpc&#x2F;21.9-4pt64om<br>export NVHPC_HOME&#x3D;&#x2F;gpfs&#x2F;fs1&#x2F;soft&#x2F;swing&#x2F;spack-0.16.1&#x2F;opt&#x2F;spack&#x2F;linux-ubuntu20.04-x86_64&#x2F;gcc-9.3.0&#x2F;nvhpc-21.9-4pt64om&#x2F;Linux_x86_64&#x2F;21.9<br>export LD_LIBRARY_PATH&#x3D;$NVHPC_HOME&#x2F;comm_libs&#x2F;openmpi4&#x2F;openmpi-4.0.5&#x2F;lib:$LD_LIBRARY_PATH<br>export PATH&#x3D;$NVHPC_HOME&#x2F;comm_libs&#x2F;openmpi4&#x2F;openmpi-4.0.5&#x2F;bin:$PATH<br>export SCALAPACK_LIBS&#x3D;$NVHPC_HOME&#x2F;comm_libs&#x2F;openmpi4&#x2F;openmpi-4.0.5&#x2F;lib&#x2F;libscalapack.a</p>
+<p>.&#x2F;configure –with-cuda&#x3D;$NVHPC_HOME&#x2F;cuda&#x2F;11.0 –with-cuda-cc&#x3D;80 –with-cuda-runtime&#x3D;11.0</p>
+<p>make -j 8 pw</p>
+<p>cd West</p>
+<p>make conf PYT&#x3D;python3 PYT_LDFLAGS&#x3D;”-L&#x2F;usr&#x2F;lib&#x2F;python3.8&#x2F;config-3.8-x86_64-linux-gnu -lpython3.8”<br>make -j 8 all<br>To use the script do:</p>
+<p>$ bash build_west.sh<br>Running WEST Jobs<br>The following is an example executable script run_west.sh to run the wstat.x WEST executable on one node of Swing with 8 MPI ranks and 8 GPUs. The <account_name> must be replaced with an active project allocation.</p>
+<p>$ cat run_west.sh<br>#!&#x2F;bin&#x2F;bash<br>#SBATCH –time&#x3D;00:20:00<br>#SBATCH –account&#x3D;<account_name><br>#SBATCH –nodes&#x3D;1<br>#SBATCH –gres&#x3D;gpu:8</p>
+<p>module load nvhpc&#x2F;21.9-4pt64om<br>export NVHPC_HOME&#x3D;&#x2F;gpfs&#x2F;fs1&#x2F;soft&#x2F;swing&#x2F;spack-0.16.1&#x2F;opt&#x2F;spack&#x2F;linux-ubuntu20.04-x86_64&#x2F;gcc-9.3.0&#x2F;nvhpc-21.9-4pt64om&#x2F;Linux_x86_64&#x2F;21.9<br>export LD_LIBRARY_PATH&#x3D;$NVHPC_HOME&#x2F;comm_libs&#x2F;openmpi4&#x2F;openmpi-4.0.5&#x2F;lib:$LD_LIBRARY_PATH<br>export PATH&#x3D;$NVHPC_HOME&#x2F;comm_libs&#x2F;openmpi4&#x2F;openmpi-4.0.5&#x2F;bin:$PATH</p>
+<p>export OMP_NUM_THREADS&#x3D;1</p>
+<p>mpirun -n 8 .&#x2F;wstat.x -i wstat.in &gt; wstat.out<br>Job submission is done with the following:</p>
+<p>$ sbatch run_west.sh<br>See also</p>
+<p>For more information, visit the LCRC user guide.</p>
+<p>macOS<br>The following instructions have been tested on macOS 12.3 (with Intel chip).</p>
+<p>Requirements:</p>
+<p>C and Fortran compilers (e.g. gcc&#x2F;gfortran in GCC 11)</p>
+<p>MPI (e.g. OpenMPI)</p>
+<p>BLAS&#x2F;LAPACK</p>
+<p>ScaLAPACK (optional)</p>
+<p>FFTW3</p>
+<p>Python3</p>
+<p>Building WEST<br>WEST executables can be compiled using the following script:</p>
+<p>$ cat build_west.sh<br>#!&#x2F;bin&#x2F;bash</p>
+<p>export MY_LIB_PATH&#x3D;&#x2F;Users&#x2F;myname&#x2F;LIBRARIES</p>
+<p>export CPP&#x3D;’cpp-11’<br>export CC&#x3D;’gcc-11’<br>export MPIF90&#x3D;’mpif90’<br>export F90&#x3D;’mpif90’<br>export BLAS_LIBS&#x3D;${MY_LIB_PATH}&#x2F;BLAS&#x2F;libblas.a<br>export LAPACK_LIBS&#x3D;${MY_LIB_PATH}&#x2F;LAPACK&#x2F;liblapack.a<br>export SCALAPACK_LIBS&#x3D;${MY_LIB_PATH}&#x2F;SCALAPACK&#x2F;libscalapack.a<br>export FFT_LIBS&#x3D;”${MY_LIB_PATH}&#x2F;FFTW3&#x2F;lib&#x2F;libfftw3.a ${MY_LIB_PATH}&#x2F;FFTW3&#x2F;lib&#x2F;libfftw3_omp.a”</p>
+<p>.&#x2F;configure –enable-openmp –with-scalapack</p>
+<p>make -j 4 pw</p>
+<p>cd West</p>
+<p>make conf PYT&#x3D;python3 PYT_LDFLAGS&#x3D;”<code>python3-config --ldflags --embed</code>“<br>make -j 4 all<br>To use the script do:</p>
+<p>$ bash build_west.sh<br>Running WEST<br>We can run the wstat.x WEST executables on 2 cores using the following command:</p>
+<p>$ export OMP_NUM_THREADS&#x3D;1<br>$ mpirun -np 2 .&#x2F;wstat.x -i wstat.in &gt; wstat.out</p>
+<p>NERSC-Cori<br>Cori (retired on May 31, 2023) was a Cray XC40 located at National Energy Research Scientific Computing Center (NERSC).</p>
+<p>$ ssh <username>@cori.nersc.gov<br>Building WEST<br>WEST executables can be compiled using the following script:</p>
+<p>$ cat build_west.sh<br>#!&#x2F;bin&#x2F;bash</p>
+<p>module unload cray-libsci<br>module load cray-python&#x2F;3.9.7.1</p>
+<p>export CRAYPE_LINK_TYPE&#x3D;dynamic<br>export LD_LIBRARY_PATH&#x3D;$LD_LIBRARY_PATH:&#x2F;opt&#x2F;python&#x2F;3.9.7.1&#x2F;lib<br>export MPIF90&#x3D;ftn<br>export F90&#x3D;ftn<br>export CC&#x3D;cc<br>export SCALAPACK_LIBS&#x3D;”$MKLROOT&#x2F;lib&#x2F;intel64&#x2F;libmkl_scalapack_lp64.so -Wl,–start-group $MKLROOT&#x2F;lib&#x2F;intel64&#x2F;libmkl_intel_lp64.so $MKLROOT&#x2F;lib&#x2F;intel64&#x2F;libmkl_intel_thread.so $MKLROOT&#x2F;lib&#x2F;intel64&#x2F;libmkl_core.so $MKLROOT&#x2F;lib&#x2F;intel64&#x2F;libmkl_blacs_intelmpi_lp64.so -Wl,–end-group”</p>
+<p>.&#x2F;configure –enable-openmp –with-scalapack&#x3D;intel</p>
+<p>make -j 8 pw</p>
+<p>cd West</p>
+<p>make conf PYT&#x3D;python3 PYT_LDFLAGS&#x3D;”<code>python3-config --ldflags --embed</code>“<br>make -j 8 all<br>To use the script do:</p>
+<p>$ bash build_west.sh<br>Running WEST Jobs<br>The following is an example executable script run_west.sh to run the wstat.x WEST executable on two nodes of Cori (Haswell partition) with 32 MPI ranks per node. The <project_name> must be replaced with an active project allocation.</p>
+<p>Important: The following environment variable is needed to work around a bug in ROMIO, Cray MPICH.</p>
+<p>export ROMIO_FSTYPE_FORCE&#x3D;”ufs:”<br>$ cat run_west.sh<br>#!&#x2F;bin&#x2F;bash</p>
+<p>#SBATCH –job-name&#x3D;WEST<br>#SBATCH –time&#x3D;00:20:00<br>#SBATCH –account&#x3D;<project_name><br>#SBATCH –constraint&#x3D;haswell<br>#SBATCH –qos&#x3D;debug<br>#SBATCH –nodes&#x3D;2<br>#SBATCH –ntasks-per-node&#x3D;32<br>#SBATCH –cpus-per-task&#x3D;2</p>
+<p>module unload cray-libsci<br>module load cray-python&#x2F;3.9.7.1</p>
+<p>export CRAYPE_LINK_TYPE&#x3D;dynamic<br>export LD_LIBRARY_PATH&#x3D;$LD_LIBRARY_PATH:&#x2F;opt&#x2F;python&#x2F;3.9.7.1&#x2F;lib</p>
+<p>export ROMIO_FSTYPE_FORCE&#x3D;”ufs:”</p>
+<p>export OMP_NUM_THREADS&#x3D;1<br>export OMP_PLACE&#x3D;threads<br>export OMP_PROC_BIND&#x3D;spread<br>export MKL_NUM_THREADS&#x3D;$OMP_NUM_THREADS</p>
+<p>NTASKS&#x3D;$(($SLURM_NTASKS_PER_NODE * $SLURM_JOB_NUM_NODES))</p>
+<p>srun -N $SLURM_JOB_NUM_NODES -n $NTASKS -c $SLURM_CPUS_PER_TASK .&#x2F;wstat.x -i wstat.in &amp;&gt; wstat.out<br>Job submission is done with the following:</p>
+<p>$ sbatch run_west.sh<br>See also</p>
+<p>For more information, visit the NERSC user guide.</p>
+<p>NERSC-Perlmutter<br>Perlmutter is an HPE Cray EX supercomputer located at National Energy Research Scientific Computing Center (NERSC). Perlmutter has both GPU-accelerated nodes and CPU-only nodes.</p>
+<p>$ ssh <username>@saul-p1.nersc.gov<br>Building WEST (GPU)<br>WEST executables can be compiled using the following script (tested on May 20, 2023):</p>
+<p>$ cat build_west.sh<br>#!&#x2F;bin&#x2F;bash</p>
+<p>module load PrgEnv-nvidia<br>module load nvidia&#x2F;22.7<br>module load cudatoolkit&#x2F;11.7<br>module load craype-accel-nvidia80<br>module load cray-python&#x2F;3.9.13.1</p>
+<p>.&#x2F;configure –with-cuda&#x3D;$CUDA_HOME –with-cuda-runtime&#x3D;11.7 –with-cuda-cc&#x3D;80</p>
+<p>#Manually edit make.inc:</p>
+<p>#DFLAGS &#x3D; -D__PGI -D__CUDA -D__FFTW -D__MPI<br>#MPIF90 &#x3D; ftn<br>#F90 &#x3D; ftn<br>#CC &#x3D; cc<br>#LD &#x3D; ftn<br>#BLAS_LIBS &#x3D; #leave blank<br>#LAPACK_LIBS &#x3D; #leave blank</p>
+<p>make -j 8 pw</p>
+<p>cd West</p>
+<p>make conf PYT&#x3D;python3 PYT_LDFLAGS&#x3D;”<code>python3-config --ldflags --embed</code>“<br>make -j 8 all<br>To use the script do:</p>
+<p>$ bash build_west.sh<br>Running WEST Jobs (GPU)<br>The following is an example executable script run_west.sh to run the wstat.x WEST executable on two GPU nodes of Perlmutter with 4 MPI ranks and 4 GPUs per node. The <project_name> must be replaced with an active project allocation.</p>
+<p>Important: The following environment variable is needed to work around a bug in ROMIO, Cray MPICH.</p>
+<p>export ROMIO_FSTYPE_FORCE&#x3D;”ufs:”<br>Important: It is recommended to run the calculation from the Lustre file system ($PSCRATCH instead of &#x2F;home).</p>
+<p>$ cat run_west.sh<br>#!&#x2F;bin&#x2F;bash</p>
+<p>#SBATCH –job-name&#x3D;WEST<br>#SBATCH –time&#x3D;00:20:00<br>#SBATCH –account&#x3D;<project_name><br>#SBATCH –constraint&#x3D;gpu<br>#SBATCH –qos&#x3D;debug<br>#SBATCH –nodes&#x3D;2<br>#SBATCH –ntasks-per-node&#x3D;4<br>#SBATCH –gpus-per-node&#x3D;4<br>#SBATCH –cpus-per-task&#x3D;32</p>
+<p>module load PrgEnv-nvidia<br>module load nvidia&#x2F;22.7<br>module load cudatoolkit&#x2F;11.7<br>module load craype-accel-nvidia80<br>module load cray-python&#x2F;3.9.13.1</p>
+<p>export OMP_NUM_THREADS&#x3D;1<br>export SLURM_CPU_BIND&#x3D;cores<br>export MPICH_MPIIO_HINTS&#x3D;”*:romio_cb_write&#x3D;enable:romio_ds_write&#x3D;disable”<br>export ROMIO_FSTYPE_FORCE&#x3D;”ufs:”</p>
+<p>srun -N 2 -n 8 -c 32 -G 8 .&#x2F;wstat.x -i wstat.in &amp;&gt; wstat.out<br>Job submission is done with the following:</p>
+<p>$ sbatch run_west.sh<br>Building WEST (CPU)<br>WEST executables can be compiled using the following script (tested on May 20, 2023):</p>
+<p>$ cat build_west.sh<br>#!&#x2F;bin&#x2F;bash</p>
+<p>module load cpu<br>module load cray-fftw&#x2F;3.3.10.3<br>module load cray-python&#x2F;3.9.13.1</p>
+<p>export CRAYPE_LINK_TYPE&#x3D;dynamic<br>export MPIF90&#x3D;ftn<br>export F90&#x3D;ftn<br>export CC&#x3D;cc</p>
+<p>.&#x2F;configure –enable-openmp –with-scalapack</p>
+<p>#Manually edit make.inc:</p>
+<p>#DFLAGS &#x3D; -D__FFTW3 -D__MPI -D__SCALAPACK<br>#IFLAGS &#x3D; -I. -I$(TOPDIR)&#x2F;include -I$(TOPDIR)&#x2F;FoX&#x2F;finclude -I&#x2F;opt&#x2F;cray&#x2F;pe&#x2F;fftw&#x2F;3.3.10.3&#x2F;x86_milan&#x2F;include<br>#BLAS_LIBS &#x3D; #leave blank<br>#LAPACK_LIBS &#x3D; #leave blank</p>
+<p>make -j 8 pw</p>
+<p>cd West</p>
+<p>make conf PYT&#x3D;python3 PYT_LDFLAGS&#x3D;”<code>python3-config --ldflags --embed</code>“<br>make -j 8 all<br>To use the script do:</p>
+<p>$ bash build_west.sh<br>Running WEST Jobs (CPU)<br>The following is an example executable script run_west.sh to run the wstat.x WEST executable on two CPU nodes of Perlmutter with 128 MPI ranks per node. The <project_name> must be replaced with an active project allocation.</p>
+<p>Important: The following environment variable is needed to work around a bug in ROMIO, Cray MPICH.</p>
+<p>export ROMIO_FSTYPE_FORCE&#x3D;”ufs:”<br>Important: It is recommended to run the calculation from the Lustre file system ($PSCRATCH instead of &#x2F;home).</p>
+<p>$ cat run_west.sh<br>#!&#x2F;bin&#x2F;bash</p>
+<p>#SBATCH –job-name&#x3D;WEST<br>#SBATCH –time&#x3D;00:20:00<br>#SBATCH –account&#x3D;<project_name><br>#SBATCH –constraint&#x3D;cpu<br>#SBATCH –qos&#x3D;debug<br>#SBATCH –nodes&#x3D;2<br>#SBATCH –ntasks-per-node&#x3D;128<br>#SBATCH –cpus-per-task&#x3D;2</p>
+<p>module load cpu<br>module load cray-fftw&#x2F;3.3.10.3<br>module load cray-python&#x2F;3.9.13.1</p>
+<p>export OMP_NUM_THREADS&#x3D;1<br>export SLURM_CPU_BIND&#x3D;cores<br>export MPICH_MPIIO_HINTS&#x3D;”*:romio_cb_write&#x3D;enable:romio_ds_write&#x3D;disable”<br>export ROMIO_FSTYPE_FORCE&#x3D;”ufs:”</p>
+<p>srun -N 2 -n 256 -c 2 .&#x2F;wstat.x -i wstat.in &amp;&gt; wstat.out<br>Job submission is done with the following:</p>
+<p>$ sbatch run_west.sh<br>See also</p>
+<p>For more information, visit the NERSC user guide.</p>
+<p>NVIDIA DGX A100<br>The following instructions have been tested on an NVIDIA DGX A100 machine.</p>
+<p>Requirements:</p>
+<p>NVIDIA HPC SDK (23.5)</p>
+<p>Python3</p>
+<p>To download and install NVIDIA HPC SDK, do:</p>
+<p>$ wget <a target="_blank" rel="noopener" href="https://developer.download.nvidia.com/hpc-sdk/23.5/nvhpc_2023_235_Linux_x86_64_cuda_multi.tar.gz">https://developer.download.nvidia.com/hpc-sdk/23.5/nvhpc_2023_235_Linux_x86_64_cuda_multi.tar.gz</a><br>$ tar xpzf nvhpc_2023_235_Linux_x86_64_cuda_multi.tar.gz<br>$ nvhpc_2023_235_Linux_x86_64_cuda_multi&#x2F;install<br>Building WEST<br>WEST executables can be compiled using the following script:</p>
+<p>$ cat build_west.sh<br>#!&#x2F;bin&#x2F;bash</p>
+<p>export LD_LIBRARY_PATH&#x3D;&#x2F;path&#x2F;to&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.5&#x2F;compilers&#x2F;lib:$LD_LIBRARY_PATH<br>export LD_LIBRARY_PATH&#x3D;&#x2F;path&#x2F;to&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.5&#x2F;comm_libs&#x2F;11.8&#x2F;openmpi4&#x2F;openmpi-4.1.5&#x2F;lib:$LD_LIBRARY_PATH<br>export LD_LIBRARY_PATH&#x3D;&#x2F;path&#x2F;to&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.5&#x2F;cuda&#x2F;11.8&#x2F;targets&#x2F;x86_64-linux&#x2F;lib:$LD_LIBRARY_PATH<br>export PATH&#x3D;&#x2F;path&#x2F;to&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.5&#x2F;compilers&#x2F;bin:$PATH<br>export PATH&#x3D;&#x2F;path&#x2F;to&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.5&#x2F;comm_libs&#x2F;11.8&#x2F;openmpi4&#x2F;openmpi-4.1.5&#x2F;bin:$PATH<br>export SCALAPACK_LIBS&#x3D;&#x2F;path&#x2F;to&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.5&#x2F;comm_libs&#x2F;11.8&#x2F;openmpi4&#x2F;openmpi-4.1.5&#x2F;lib&#x2F;libscalapack.a</p>
+<p>.&#x2F;configure –with-cuda&#x3D;&#x2F;path&#x2F;to&#x2F;nvidia&#x2F;hpc_sdk&#x2F;Linux_x86_64&#x2F;23.5&#x2F;cuda&#x2F;11.8 –with-cuda-cc&#x3D;80 –with-cuda-runtime&#x3D;11.8</p>
+<p>make -j 8 pw</p>
+<p>cd West</p>
+<p>make conf PYT&#x3D;python3 PYT_LDFLAGS&#x3D;”-L&#x2F;usr&#x2F;lib&#x2F;python3.8&#x2F;config-3.8-x86_64-linux-gnu -lpython3.8”<br>make -j 8 all<br>To use the script do:</p>
+<p>$ bash build_west.sh<br>Running WEST<br>We can run the wstat.x WEST executables on 2 GPUs using the following command:</p>
+<p>$ export OMP_NUM_THREADS&#x3D;1<br>$ mpirun -np 2 .&#x2F;wstat.x -i wstat.in &gt; wstat.out</p>
+<p>OLCF-Summit<br>Summit is a GPU-accelerated supercomputer located at Oak Ridge National Laboratory, maintained by OLCF.</p>
+<p>$ ssh <username>@summit.olcf.ornl.gov<br>Building WEST<br>WEST executables can be compiled using the following script (tested on August 9, 2022):</p>
+<p>$ cat build_west.sh<br>#!&#x2F;bin&#x2F;bash</p>
+<p>module load nvhpc&#x2F;21.9<br>module load cuda&#x2F;11.0.3<br>module load spectrum-mpi&#x2F;10.4.0.3-20210112<br>module load essl&#x2F;6.3.0<br>module load netlib-lapack&#x2F;3.9.1<br>module load python&#x2F;3.8-anaconda3<br>module load git&#x2F;2.36.1<br>module unload darshan-runtime</p>
+<p>export BLAS_LIBS&#x3D;”$OLCF_ESSL_ROOT&#x2F;lib64&#x2F;libessl.so”<br>export LAPACK_LIBS&#x3D;”$OLCF_ESSL_ROOT&#x2F;lib64&#x2F;libessl.so $OLCF_NETLIB_LAPACK_ROOT&#x2F;lib64&#x2F;liblapack.a”</p>
+<p>.&#x2F;configure –with-cuda&#x3D;$OLCF_CUDA_ROOT –with-cuda-runtime&#x3D;11.0 –with-cuda-cc&#x3D;70</p>
+<p>#Manually edit make.inc: add -D__GPU_MPI to DFLAGS</p>
+<p>make -j 8 pw</p>
+<p>cd West</p>
+<p>make conf PYT&#x3D;python3 PYT_LDFLAGS&#x3D;”<code>python3-config --ldflags --embed</code>“<br>sed -i ‘s&#x2F;-L.*&#x2F;-L/autofs/nccs-svm1_sw/summit/python/3.8/anaconda3/2020.07-rhel8/lib -lpython3.8&#x2F;‘ west_make.inc<br>make -j 8 all<br>To use the script do:</p>
+<p>$ bash build_west.sh<br>Running WEST Jobs<br>Summit uses the jsrun job manager. The following is an example executable script run_west.sh to run the wstat.x WEST executable on two nodes of Summit with 6 MPI ranks and 6 GPUs per node. The <project_name> must be replaced with an active project allocation.</p>
+<p>Important: It is recommended to run the calculation from the IBM Spectrum Scale file system ($MEMBERWORK instead of &#x2F;home).</p>
+<p>$ cat run_west.sh<br>#!&#x2F;bin&#x2F;bash<br>#BSUB -P <project_name><br>#BSUB -W 0:20<br>#BSUB -nnodes 2<br>#BSUB -J jobname<br>#BSUB -o jobname.%J<br>#BSUB -N<br>#BSUB -q debug</p>
+<p>module load nvhpc&#x2F;21.9<br>module load cuda&#x2F;11.0.3<br>module load spectrum-mpi&#x2F;10.4.0.3-20210112<br>module load essl&#x2F;6.3.0<br>module load netlib-lapack&#x2F;3.9.1<br>module load python&#x2F;3.8-anaconda3<br>module unload darshan-runtime</p>
+<p>export OMP_NUM_THREADS&#x3D;1</p>
+<p>#The following env vars improve MPI I&#x2F;O performance</p>
+<p>export PAMI_ENABLE_STRIPING&#x3D;1<br>export PAMI_IBV_ADAPTER_AFFINITY&#x3D;1<br>export PAMI_IBV_DEVICE_NAME&#x3D;”mlx5_0:1,mlx5_3:1”<br>export PAMI_IBV_DEVICE_NAME_1&#x3D;”mlx5_3:1,mlx5_0:1”</p>
+<p>export OMPI_MCA_io&#x3D;romio321<br>export ROMIO_HINTS&#x3D;&#x2F;path&#x2F;to&#x2F;romio_hints</p>
+<p>jsrun -n 4 -a 3 -c 3 -g 3 -r 2 –smpiargs&#x3D;”-gpu” .&#x2F;wstat.x -i wstat.in &amp;&gt; wstat.out<br>The value of -n should be two times the number of nodes. When running QE and WEST, usually there is no need to change -a, -c, -g, and -r.</p>
+<p>romio_hints is a text file with the following content:</p>
+<p>romio_cb_write enable<br>romio_ds_write enable<br>cb_buffer_size 16777216<br>cb_nodes 2<br>Job submission is done with the following:</p>
+<p>$ bsub run_west.sh<br>See also</p>
+<p>For more information, visit the OLCF user guide.</p>
+<p>hrj<br>qwer1234</p>
+<p>UChicago-Midway2<br>Midway2 is the HPC cluster of the University of Chicago, maintained by UChicago’s RCC.</p>
+<p>$ ssh <username>@midway2.rcc.uchicago.edu<br>Building WEST<br>WEST executables can be compiled using the following script (tested on June 23, 2022):</p>
+<p>$ cat build_west.sh<br>#!&#x2F;bin&#x2F;bash</p>
+<p>module load intel&#x2F;19.1.1<br>module load intelmpi&#x2F;2019.up7+intel-19.1.1<br>module load mkl&#x2F;2020.up1<br>module load python&#x2F;cpython-3.8.5</p>
+<p>export MPIF90&#x3D;mpiifort<br>export F90&#x3D;ifort<br>export CC&#x3D;icc<br>export SCALAPACK_LIBS&#x3D;”-lmkl_scalapack_lp64 -Wl,–start-group -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_lp64 -Wl,–end-group”</p>
+<p>.&#x2F;configure –with-scalapack&#x3D;intel –enable-openmp<br>make -j 8 pw</p>
+<p>cd West<br>make conf PYT&#x3D;python3 PYT_LDFLAGS&#x3D;”<code>python3-config --ldflags --embed</code>“<br>sed -i ‘s&#x2F;-L.*config-3.8-x86_64-linux-gnu &#x2F;&#x2F;‘ west_make.inc<br>make -j 8 all<br>To use the script do:</p>
+<p>$ bash build_west.sh<br>Running WEST Jobs<br>The following is an example executable script run_west.sh to run the wstat.x WEST executable on two nodes of Midway2 with 32 MPI ranks per node. The <project_name> and <account_name> must be replaced with an active project allocation.</p>
+<p>$ cat run_west.sh<br>#!&#x2F;bin&#x2F;bash<br>#SBATCH –time&#x3D;00:20:00<br>#SBATCH –partition&#x3D;<partition_name><br>#SBATCH –account&#x3D;<account_name><br>#SBATCH –nodes&#x3D;2<br>#SBATCH –ntasks-per-node&#x3D;48<br>#SBATCH –cpus-per-task&#x3D;1</p>
+<p>module load intel&#x2F;19.1.1<br>module load intelmpi&#x2F;2019.up7+intel-19.1.1<br>module load mkl&#x2F;2020.up1<br>module load python&#x2F;cpython-3.8.5</p>
+<p>export I_MPI_PMI_LIBRARY&#x3D;&#x2F;software&#x2F;slurm-current-$DISTARCH&#x2F;lib&#x2F;libpmi.so<br>export LD_LIBRARY_PATH&#x3D;&#x2F;software&#x2F;python-3.8.5-el7-x86_64&#x2F;lib:$LD_LIBRARY_PATH<br>export OMP_NUM_THREADS&#x3D;1</p>
+<p>srun -n 96 -N 2 .&#x2F;wstat.x -i wstat.in &gt; wstat.out<br>Job submission is done with the following:</p>
+<p>$ sbatch run_west.sh<br>See also</p>
+<p>For more information, visit the RCC user guide.</p>
+<p>UChicago-Midway3<br>Midway3 is the HPC cluster of the University of Chicago, maintained by UChicago’s RCC.</p>
+<p>$ ssh <username>@midway3.rcc.uchicago.edu<br>Building WEST<br>WEST executables can be compiled using the following script (tested on May 4, 2022):</p>
+<p>$ cat build_west.sh<br>#!&#x2F;bin&#x2F;bash</p>
+<p>module load intel&#x2F;19.1.1<br>module load intelmpi&#x2F;2019.up7+intel-19.1.1<br>module load mkl&#x2F;2020.up1<br>module load python&#x2F;anaconda-2020.11</p>
+<p>export MPIF90&#x3D;mpiifort<br>export F90&#x3D;ifort<br>export CC&#x3D;icc<br>export SCALAPACK_LIBS&#x3D;”-lmkl_scalapack_lp64 -Wl,–start-group -lmkl_intel_lp64 -lmkl_intel_thread -lmkl_core -lmkl_blacs_intelmpi_lp64 -Wl,–end-group”</p>
+<p>.&#x2F;configure –with-scalapack&#x3D;intel –enable-openmp<br>make -j 8 pw</p>
+<p>cd West</p>
+<p>make conf PYT&#x3D;python3 PYT_LDFLAGS&#x3D;”<code>python3-config --ldflags --embed</code>“<br>sed -i ‘s&#x2F;-L.*config-3.8-x86_64-linux-gnu &#x2F;&#x2F;‘ west_make.inc<br>make -j 8 all</p>
+<p>To use the script do:</p>
+<p>$ bash build_west.sh<br>Running WEST Jobs<br>The following is an example executable script run_west.sh to run the wstat.x WEST executable on two nodes of Midway3 with 32 MPI ranks per node. The <project_name> and <account_name> must be replaced with an active project allocation.</p>
+<p>$ cat run_west.sh<br>#!&#x2F;bin&#x2F;bash<br>#SBATCH –time&#x3D;00:20:00<br>#SBATCH –partition&#x3D;<partition_name><br>#SBATCH –account&#x3D;<account_name><br>#SBATCH –nodes&#x3D;2<br>#SBATCH –ntasks-per-node&#x3D;48<br>#SBATCH –cpus-per-task&#x3D;1</p>
+<p>module load intel&#x2F;19.1.1<br>module load intelmpi&#x2F;2019.up7+intel-19.1.1<br>module load mkl&#x2F;2020.up1<br>module load python&#x2F;anaconda-2020.11</p>
+<p>export I_MPI_PMI_LIBRARY&#x3D;&#x2F;software&#x2F;slurm-current-$DISTARCH&#x2F;lib&#x2F;libpmi.so<br>export LD_LIBRARY_PATH&#x3D;&#x2F;software&#x2F;python-anaconda-2020.11-el8-x86_64&#x2F;lib:$LD_LIBRARY_PATH<br>export OMP_NUM_THREADS&#x3D;1</p>
+<p>srun -n 96 -N 2 .&#x2F;wstat.x -i wstat.in &gt; wstat.out<br>Job submission is done with the following:</p>
+<p>$ sbatch run_west.sh<br>See also</p>
+<p>For more information, visit the RCC user guide.</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2024/06/15/llm/" rel="prev" title="llm">
+                  <i class="fa fa-angle-left"></i> llm
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2024/06/16/qc/" rel="next" title="qc">
+                  qc <i class="fa fa-angle-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+  <div class="copyright">
+    &copy; 
+    <span itemprop="copyrightYear">2024</span>
+    <span class="with-love">
+      <i class="fa fa-heart"></i>
+    </span>
+    <span class="author" itemprop="copyrightHolder">Mingzhe Liu</span>
+  </div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/muse/" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+  <div class="sidebar-dimmer"></div>
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up fa-lg"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/sidebar.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>
